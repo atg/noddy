@@ -1,0 +1,405 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7535573A15AC7BC0006AFA43 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535573915AC7BC0006AFA43 /* Cocoa.framework */; };
+		7535577015AC7C72006AFA43 /* NoddyThread.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7535576F15AC7C6F006AFA43 /* NoddyThread.mm */; };
+		7535577115AC7C75006AFA43 /* NoddyIndirectObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535576C15AC7C6F006AFA43 /* NoddyIndirectObjects.m */; };
+		7535577215AC7C7A006AFA43 /* NoddyBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7535576915AC7C6F006AFA43 /* NoddyBridge.mm */; };
+		7535577315AC7C7D006AFA43 /* NoddyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535576715AC7C6F006AFA43 /* NoddyAppDelegate.m */; };
+		7535577415AC7C80006AFA43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535576315AC7C6F006AFA43 /* main.m */; };
+		7535577515AC7C87006AFA43 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7535575D15AC7C6F006AFA43 /* Credits.rtf */; };
+		7535577615AC7C87006AFA43 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7535575F15AC7C6F006AFA43 /* InfoPlist.strings */; };
+		7535577715AC7C87006AFA43 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7535576115AC7C6F006AFA43 /* MainMenu.xib */; };
+		7535577915AC7CA9006AFA43 /* chocolat.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7535575B15AC7C6F006AFA43 /* chocolat.js */; };
+		7535578215AC7CBC006AFA43 /* libchrome_zlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535577A15AC7CBC006AFA43 /* libchrome_zlib.a */; };
+		7535578315AC7CBC006AFA43 /* libhttp_parser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535577B15AC7CBC006AFA43 /* libhttp_parser.a */; };
+		7535578415AC7CBC006AFA43 /* libnode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535577C15AC7CBC006AFA43 /* libnode.a */; };
+		7535578515AC7CBC006AFA43 /* libopenssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535577D15AC7CBC006AFA43 /* libopenssl.a */; };
+		7535578615AC7CBC006AFA43 /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535577E15AC7CBC006AFA43 /* libuv.a */; };
+		7535578715AC7CBC006AFA43 /* libv8_base.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535577F15AC7CBC006AFA43 /* libv8_base.a */; };
+		7535578815AC7CBC006AFA43 /* libv8_nosnapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535578015AC7CBC006AFA43 /* libv8_nosnapshot.a */; };
+		7535578915AC7CBC006AFA43 /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535578115AC7CBC006AFA43 /* libv8_snapshot.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7535577815AC7C93006AFA43 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = node;
+			dstSubfolderSpec = 12;
+			files = (
+				7535577915AC7CA9006AFA43 /* chocolat.js in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		7535573515AC7BC0006AFA43 /* noddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = noddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7535573915AC7BC0006AFA43 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		7535573C15AC7BC0006AFA43 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		7535573D15AC7BC0006AFA43 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7535573E15AC7BC0006AFA43 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7535575B15AC7C6F006AFA43 /* chocolat.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = chocolat.js; path = source/chocolat.js; sourceTree = SOURCE_ROOT; };
+		7535575E15AC7C6F006AFA43 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = Credits.rtf; sourceTree = "<group>"; };
+		7535576015AC7C6F006AFA43 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		7535576215AC7C6F006AFA43 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = MainMenu.xib; sourceTree = "<group>"; };
+		7535576315AC7C6F006AFA43 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = source/main.m; sourceTree = SOURCE_ROOT; };
+		7535576415AC7C6F006AFA43 /* noddy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "noddy-Info.plist"; path = "source/noddy-Info.plist"; sourceTree = SOURCE_ROOT; };
+		7535576515AC7C6F006AFA43 /* noddy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "noddy-Prefix.pch"; path = "source/noddy-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		7535576615AC7C6F006AFA43 /* NoddyAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoddyAppDelegate.h; path = source/NoddyAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		7535576715AC7C6F006AFA43 /* NoddyAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NoddyAppDelegate.m; path = source/NoddyAppDelegate.m; sourceTree = SOURCE_ROOT; };
+		7535576815AC7C6F006AFA43 /* NoddyBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoddyBridge.h; path = source/NoddyBridge.h; sourceTree = SOURCE_ROOT; };
+		7535576915AC7C6F006AFA43 /* NoddyBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = NoddyBridge.mm; path = source/NoddyBridge.mm; sourceTree = SOURCE_ROOT; };
+		7535576A15AC7C6F006AFA43 /* NoddyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoddyController.h; path = source/NoddyController.h; sourceTree = SOURCE_ROOT; };
+		7535576B15AC7C6F006AFA43 /* NoddyIndirectObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoddyIndirectObjects.h; path = source/NoddyIndirectObjects.h; sourceTree = SOURCE_ROOT; };
+		7535576C15AC7C6F006AFA43 /* NoddyIndirectObjects.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NoddyIndirectObjects.m; path = source/NoddyIndirectObjects.m; sourceTree = SOURCE_ROOT; };
+		7535576D15AC7C6F006AFA43 /* NoddyMixin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoddyMixin.h; path = source/NoddyMixin.h; sourceTree = SOURCE_ROOT; };
+		7535576E15AC7C6F006AFA43 /* NoddyThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoddyThread.h; path = source/NoddyThread.h; sourceTree = SOURCE_ROOT; };
+		7535576F15AC7C6F006AFA43 /* NoddyThread.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = NoddyThread.mm; path = source/NoddyThread.mm; sourceTree = SOURCE_ROOT; };
+		7535577A15AC7CBC006AFA43 /* libchrome_zlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libchrome_zlib.a; path = deps/libchrome_zlib.a; sourceTree = SOURCE_ROOT; };
+		7535577B15AC7CBC006AFA43 /* libhttp_parser.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libhttp_parser.a; path = deps/libhttp_parser.a; sourceTree = SOURCE_ROOT; };
+		7535577C15AC7CBC006AFA43 /* libnode.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libnode.a; path = deps/libnode.a; sourceTree = SOURCE_ROOT; };
+		7535577D15AC7CBC006AFA43 /* libopenssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopenssl.a; path = deps/libopenssl.a; sourceTree = SOURCE_ROOT; };
+		7535577E15AC7CBC006AFA43 /* libuv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libuv.a; path = deps/libuv.a; sourceTree = SOURCE_ROOT; };
+		7535577F15AC7CBC006AFA43 /* libv8_base.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.a; path = deps/libv8_base.a; sourceTree = SOURCE_ROOT; };
+		7535578015AC7CBC006AFA43 /* libv8_nosnapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_nosnapshot.a; path = deps/libv8_nosnapshot.a; sourceTree = SOURCE_ROOT; };
+		7535578115AC7CBC006AFA43 /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = deps/libv8_snapshot.a; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7535573215AC7BC0006AFA43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7535573A15AC7BC0006AFA43 /* Cocoa.framework in Frameworks */,
+				7535578215AC7CBC006AFA43 /* libchrome_zlib.a in Frameworks */,
+				7535578315AC7CBC006AFA43 /* libhttp_parser.a in Frameworks */,
+				7535578415AC7CBC006AFA43 /* libnode.a in Frameworks */,
+				7535578515AC7CBC006AFA43 /* libopenssl.a in Frameworks */,
+				7535578615AC7CBC006AFA43 /* libuv.a in Frameworks */,
+				7535578715AC7CBC006AFA43 /* libv8_base.a in Frameworks */,
+				7535578815AC7CBC006AFA43 /* libv8_nosnapshot.a in Frameworks */,
+				7535578915AC7CBC006AFA43 /* libv8_snapshot.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7535572A15AC7BBF006AFA43 = {
+			isa = PBXGroup;
+			children = (
+				7535578B15AC7CDF006AFA43 /* Source */,
+				7535578A15AC7CC4006AFA43 /* Libraries */,
+				7535573F15AC7BC0006AFA43 /* noddy */,
+				7535573815AC7BC0006AFA43 /* Frameworks */,
+				7535573615AC7BC0006AFA43 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7535573615AC7BC0006AFA43 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7535573515AC7BC0006AFA43 /* noddy.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7535573815AC7BC0006AFA43 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7535573915AC7BC0006AFA43 /* Cocoa.framework */,
+				7535573B15AC7BC0006AFA43 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7535573B15AC7BC0006AFA43 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7535573C15AC7BC0006AFA43 /* AppKit.framework */,
+				7535573D15AC7BC0006AFA43 /* CoreData.framework */,
+				7535573E15AC7BC0006AFA43 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		7535573F15AC7BC0006AFA43 /* noddy */ = {
+			isa = PBXGroup;
+			children = (
+				7535575C15AC7C6F006AFA43 /* en.lproj */,
+				7535576315AC7C6F006AFA43 /* main.m */,
+				7535576415AC7C6F006AFA43 /* noddy-Info.plist */,
+				7535576515AC7C6F006AFA43 /* noddy-Prefix.pch */,
+				7535576615AC7C6F006AFA43 /* NoddyAppDelegate.h */,
+				7535576715AC7C6F006AFA43 /* NoddyAppDelegate.m */,
+			);
+			path = noddy;
+			sourceTree = "<group>";
+		};
+		7535575C15AC7C6F006AFA43 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				7535575D15AC7C6F006AFA43 /* Credits.rtf */,
+				7535575F15AC7C6F006AFA43 /* InfoPlist.strings */,
+				7535576115AC7C6F006AFA43 /* MainMenu.xib */,
+			);
+			name = en.lproj;
+			path = source/en.lproj;
+			sourceTree = SOURCE_ROOT;
+		};
+		7535578A15AC7CC4006AFA43 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				7535577A15AC7CBC006AFA43 /* libchrome_zlib.a */,
+				7535577B15AC7CBC006AFA43 /* libhttp_parser.a */,
+				7535577C15AC7CBC006AFA43 /* libnode.a */,
+				7535577D15AC7CBC006AFA43 /* libopenssl.a */,
+				7535577E15AC7CBC006AFA43 /* libuv.a */,
+				7535577F15AC7CBC006AFA43 /* libv8_base.a */,
+				7535578015AC7CBC006AFA43 /* libv8_nosnapshot.a */,
+				7535578115AC7CBC006AFA43 /* libv8_snapshot.a */,
+			);
+			name = Libraries;
+			path = noddy;
+			sourceTree = "<group>";
+		};
+		7535578B15AC7CDF006AFA43 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7535575B15AC7C6F006AFA43 /* chocolat.js */,
+				7535576815AC7C6F006AFA43 /* NoddyBridge.h */,
+				7535576915AC7C6F006AFA43 /* NoddyBridge.mm */,
+				7535576A15AC7C6F006AFA43 /* NoddyController.h */,
+				7535576B15AC7C6F006AFA43 /* NoddyIndirectObjects.h */,
+				7535576C15AC7C6F006AFA43 /* NoddyIndirectObjects.m */,
+				7535576D15AC7C6F006AFA43 /* NoddyMixin.h */,
+				7535576E15AC7C6F006AFA43 /* NoddyThread.h */,
+				7535576F15AC7C6F006AFA43 /* NoddyThread.mm */,
+			);
+			name = Source;
+			path = noddy;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7535573415AC7BC0006AFA43 /* noddy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7535575315AC7BC1006AFA43 /* Build configuration list for PBXNativeTarget "noddy" */;
+			buildPhases = (
+				7535573115AC7BC0006AFA43 /* Sources */,
+				7535573215AC7BC0006AFA43 /* Frameworks */,
+				7535573315AC7BC0006AFA43 /* Resources */,
+				7535577815AC7C93006AFA43 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = noddy;
+			productName = noddy;
+			productReference = 7535573515AC7BC0006AFA43 /* noddy.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7535572C15AC7BBF006AFA43 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Noddy;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 7535572F15AC7BBF006AFA43 /* Build configuration list for PBXProject "noddy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7535572A15AC7BBF006AFA43;
+			productRefGroup = 7535573615AC7BC0006AFA43 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7535573415AC7BC0006AFA43 /* noddy */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7535573315AC7BC0006AFA43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7535577515AC7C87006AFA43 /* Credits.rtf in Resources */,
+				7535577615AC7C87006AFA43 /* InfoPlist.strings in Resources */,
+				7535577715AC7C87006AFA43 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7535573115AC7BC0006AFA43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7535577015AC7C72006AFA43 /* NoddyThread.mm in Sources */,
+				7535577115AC7C75006AFA43 /* NoddyIndirectObjects.m in Sources */,
+				7535577215AC7C7A006AFA43 /* NoddyBridge.mm in Sources */,
+				7535577315AC7C7D006AFA43 /* NoddyAppDelegate.m in Sources */,
+				7535577415AC7C80006AFA43 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7535575D15AC7C6F006AFA43 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7535575E15AC7C6F006AFA43 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		7535575F15AC7C6F006AFA43 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7535576015AC7C6F006AFA43 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7535576115AC7C6F006AFA43 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7535576215AC7C6F006AFA43 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7535575115AC7BC1006AFA43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		7535575215AC7BC1006AFA43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		7535575415AC7BC1006AFA43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "source/noddy-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/deps/node-headers/src\"",
+					"\"$(SRCROOT)/deps/node-headers/deps/v8/include\"",
+					"\"$(SRCROOT)/deps/node-headers/deps/uv/include\"",
+				);
+				INFOPLIST_FILE = "source/noddy-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/deps\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7535575515AC7BC1006AFA43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "source/noddy-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/deps/node-headers/src\"",
+					"\"$(SRCROOT)/deps/node-headers/deps/v8/include\"",
+					"\"$(SRCROOT)/deps/node-headers/deps/uv/include\"",
+				);
+				INFOPLIST_FILE = "source/noddy-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/deps\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7535572F15AC7BBF006AFA43 /* Build configuration list for PBXProject "noddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7535575115AC7BC1006AFA43 /* Debug */,
+				7535575215AC7BC1006AFA43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7535575315AC7BC1006AFA43 /* Build configuration list for PBXNativeTarget "noddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7535575415AC7BC1006AFA43 /* Debug */,
+				7535575515AC7BC1006AFA43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7535572C15AC7BBF006AFA43 /* Project object */;
+}
