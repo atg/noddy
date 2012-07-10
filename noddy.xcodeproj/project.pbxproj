@@ -26,6 +26,9 @@
 		7535578815AC7CBC006AFA43 /* libv8_nosnapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535578015AC7CBC006AFA43 /* libv8_nosnapshot.a */; };
 		7535578915AC7CBC006AFA43 /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535578115AC7CBC006AFA43 /* libv8_snapshot.a */; };
 		7535578F15AC8770006AFA43 /* api.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7535578E15AC8770006AFA43 /* api.js */; };
+		75CD4A0815AC8F5600F97D8B /* r.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75CD4A0515AC8F5600F97D8B /* r.js */; };
+		75CD4A0915AC8F5600F97D8B /* underscore.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75CD4A0615AC8F5600F97D8B /* underscore.js */; };
+		75CD4A0A15AC8F5600F97D8B /* underscore.string.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75CD4A0715AC8F5600F97D8B /* underscore.string.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +40,9 @@
 			files = (
 				7535577915AC7CA9006AFA43 /* chocolat.js in CopyFiles */,
 				7535578F15AC8770006AFA43 /* api.js in CopyFiles */,
+				75CD4A0815AC8F5600F97D8B /* r.js in CopyFiles */,
+				75CD4A0915AC8F5600F97D8B /* underscore.js in CopyFiles */,
+				75CD4A0A15AC8F5600F97D8B /* underscore.string.js in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +80,9 @@
 		7535578015AC7CBC006AFA43 /* libv8_nosnapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_nosnapshot.a; path = deps/libv8_nosnapshot.a; sourceTree = SOURCE_ROOT; };
 		7535578115AC7CBC006AFA43 /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = deps/libv8_snapshot.a; sourceTree = SOURCE_ROOT; };
 		7535578E15AC8770006AFA43 /* api.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = api.js; path = source/api.js; sourceTree = "<group>"; };
+		75CD4A0515AC8F5600F97D8B /* r.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = r.js; path = libraries/r.js; sourceTree = "<group>"; };
+		75CD4A0615AC8F5600F97D8B /* underscore.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = underscore.js; path = libraries/underscore.js; sourceTree = "<group>"; };
+		75CD4A0715AC8F5600F97D8B /* underscore.string.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = underscore.string.js; path = libraries/underscore.string.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +108,9 @@
 		7535572A15AC7BBF006AFA43 = {
 			isa = PBXGroup;
 			children = (
+				75CD4A0515AC8F5600F97D8B /* r.js */,
+				75CD4A0615AC8F5600F97D8B /* underscore.js */,
+				75CD4A0715AC8F5600F97D8B /* underscore.string.js */,
 				7535578E15AC8770006AFA43 /* api.js */,
 				7535578B15AC7CDF006AFA43 /* Source */,
 				7535578A15AC7CC4006AFA43 /* Libraries */,
