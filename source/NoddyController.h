@@ -1,3 +1,6 @@
+
+@class NoddyThread;
+
 @interface NoddyController : NSObject {
     NoddyThread* thread;
     NSArray* mixins;
@@ -7,7 +10,6 @@
 @property (readonly) NSArray* mixins;
 
 + (id)sharedController;
-+ (id)sharedThread;
 
 // Search for mixins on disk
 // Mixins can be in either

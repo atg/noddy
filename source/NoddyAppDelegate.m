@@ -8,14 +8,14 @@
 
 #import "NoddyAppDelegate.h"
 #import "NoddyThread.h"
+#import "NoddyController.h"
 
 @implementation NoddyAppDelegate
 
 @synthesize window = _window;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    thread = [[NoddyThread alloc] init];
-    [thread start];
+    [NoddyController sharedController];
 }
 
 @end
