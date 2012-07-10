@@ -1,4 +1,5 @@
 #import "NoddyBridge.h"
+#import "NoddyIndirectObjects.h"
 
 using namespace v8;
 
@@ -130,10 +131,15 @@ Local<Value> cocoa_to_node(id x) {
     return scope.Close(Local<Primitive>::New(Null()));
 }
 
-NSString* node_string_to_cocoa(Local<String> str) {
+id node_string_to_cocoa(Local<String> str) {
     HandleScope scope;
     String::Value s(str);
-    return [NSString stringWithCharacters:*s length:s.length()];
+    NSString* objcstr = [NSString stringWithCharacters:*s length:s.length()];
+    
+    if ([objcstr hasPrefix:@"NODDYID$$"])
+        return [[NoddyIndirectObjects globalContext] objectForID:objcstr];
+    
+    return objcstr;
 }
 NSNumber* node_number_to_cocoa(Local<Number> num) {
     HandleScope scope;

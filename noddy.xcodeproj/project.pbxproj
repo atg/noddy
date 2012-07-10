@@ -25,6 +25,7 @@
 		7535578715AC7CBC006AFA43 /* libv8_base.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535577F15AC7CBC006AFA43 /* libv8_base.a */; };
 		7535578815AC7CBC006AFA43 /* libv8_nosnapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535578015AC7CBC006AFA43 /* libv8_nosnapshot.a */; };
 		7535578915AC7CBC006AFA43 /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535578115AC7CBC006AFA43 /* libv8_snapshot.a */; };
+		7535578F15AC8770006AFA43 /* api.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7535578E15AC8770006AFA43 /* api.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +36,7 @@
 			dstSubfolderSpec = 12;
 			files = (
 				7535577915AC7CA9006AFA43 /* chocolat.js in CopyFiles */,
+				7535578F15AC8770006AFA43 /* api.js in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +73,7 @@
 		7535577F15AC7CBC006AFA43 /* libv8_base.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.a; path = deps/libv8_base.a; sourceTree = SOURCE_ROOT; };
 		7535578015AC7CBC006AFA43 /* libv8_nosnapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_nosnapshot.a; path = deps/libv8_nosnapshot.a; sourceTree = SOURCE_ROOT; };
 		7535578115AC7CBC006AFA43 /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = deps/libv8_snapshot.a; sourceTree = SOURCE_ROOT; };
+		7535578E15AC8770006AFA43 /* api.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = api.js; path = source/api.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +99,7 @@
 		7535572A15AC7BBF006AFA43 = {
 			isa = PBXGroup;
 			children = (
+				7535578E15AC8770006AFA43 /* api.js */,
 				7535578B15AC7CDF006AFA43 /* Source */,
 				7535578A15AC7CC4006AFA43 /* Libraries */,
 				7535573F15AC7BC0006AFA43 /* noddy */,
@@ -195,6 +199,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7535575315AC7BC1006AFA43 /* Build configuration list for PBXNativeTarget "noddy" */;
 			buildPhases = (
+				7535578D15AC864B006AFA43 /* ShellScript */,
 				7535573115AC7BC0006AFA43 /* Sources */,
 				7535573215AC7BC0006AFA43 /* Frameworks */,
 				7535573315AC7BC0006AFA43 /* Resources */,
@@ -247,6 +252,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7535578D15AC864B006AFA43 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "cat api/* >source/api.js";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7535573115AC7BC0006AFA43 /* Sources */ = {

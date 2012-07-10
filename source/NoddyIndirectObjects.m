@@ -46,7 +46,7 @@
                 break;
         }
         
-        noddyid = [NSString stringWithFormat:@"%@@%x%x%x", NSStringFromClass(c), arc4random(), arc4random(), arc4random()];
+        noddyid = [NSString stringWithFormat:@"NODDYID$$%@@%x%x%x", NSStringFromClass(c), arc4random(), arc4random(), arc4random()];
         
         // If we've been passed a class, then don't set
         if ([obj class] != obj)
