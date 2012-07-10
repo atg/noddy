@@ -10,7 +10,6 @@ function Mixin(mixinPath, mixinID, vmContext) {
     this.path = mixinPath;
     this.vmCtx = vmContext;
     this.id = mixinid;
-    return this;
 }
 
 function load_initjs(mixinPath, mixinID, pathToInitjs) {
