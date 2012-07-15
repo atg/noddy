@@ -47,7 +47,7 @@
     // Miximons, gotta load'em all!
     for (NSString *aPath in [[NSFileManager defaultManager] subpathsAtPath:sharedSupportPath]) {
         if ([[aPath pathExtension] isEqualToString:@"chocmixin"]) {
-            NoddyMixin *newMixin = [[NoddyMixin alloc] initWithPath:aPath];
+            NoddyMixin *newMixin = [[NoddyMixin alloc] initWithPath:[sharedSupportPath stringByAppendingPathComponent:aPath]];
             [newMixin reload];
             [self.mixins addObject:newMixin];
         }
@@ -55,7 +55,7 @@
     
     for (NSString *aPath in [[NSFileManager defaultManager] subpathsAtPath:appSupportPath]) {
         if ([[aPath pathExtension] isEqualToString:@"chocmixin"]) {
-            NoddyMixin *newMixin = [[NoddyMixin alloc] initWithPath:aPath];
+            NoddyMixin *newMixin = [[NoddyMixin alloc] initWithPath:[appSupportPath stringByAppendingPathComponent:aPath]];
             [newMixin reload];
             [self.mixins addObject:newMixin];
         }
@@ -63,7 +63,7 @@
     
     for (NSString *aPath in [[NSFileManager defaultManager] subpathsAtPath:homePath]) {
         if ([[aPath pathExtension] isEqualToString:@"chocmixin"]) {
-            NoddyMixin *newMixin = [[NoddyMixin alloc] initWithPath:aPath];
+            NoddyMixin *newMixin = [[NoddyMixin alloc] initWithPath:[homePath stringByAppendingPathComponent:aPath]];
             [newMixin reload];
             [self.mixins addObject:newMixin];
         }
