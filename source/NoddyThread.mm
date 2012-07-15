@@ -38,8 +38,8 @@ static void NoddyPrepareNode(uv_prepare_t* handle, int status) {
 }
 
 static volatile OSSpinLock NoddyMessageQueueLock = OS_SPINLOCK_INIT;
-static volatile unsigned NoddyMessagesCount = 0; // Avoid sending a -count message each poll
-static volatile NSMutableArray* NoddyMessages = nil;
+static unsigned NoddyMessagesCount; // Avoid sending a -count message each poll
+static NSMutableArray* NoddyMessages;
 
 void NoddyScheduleBlock(dispatch_block_t block) {
     OSSpinLockLock(&NoddyMessageQueueLock);
@@ -55,13 +55,13 @@ void NoddyScheduleBlock(dispatch_block_t block) {
 }
 static void NoddyPollMessageQueue(uv_idle_t* handle, int status) {
     
-    // Copy the messages to another array to prevent race condition
     NSArray* messages = nil;
     
     OSSpinLockLock(&NoddyMessageQueueLock);
     if (NoddyMessagesCount) {
         messages = [NoddyMessages copy];
         [NoddyMessages removeAllObjects];
+        NoddyMessagesCount = 0;
     }
     OSSpinLockUnlock(&NoddyMessageQueueLock);
     
