@@ -54,7 +54,7 @@ global.load_initjs = function(mixinPath, mixinID) {
             "catch (e) { " +
                 "return requireJS.apply({}, arguments); " +
             "} " +
-        "} ");
+        "} ", vmContext);
     
     // Add our new Mixin
     var mixin = new Mixin(mixinPath, mixinID, vmContext);
