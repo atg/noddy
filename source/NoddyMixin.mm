@@ -1,5 +1,6 @@
 #import "NoddyMixin.h"
 #import "NoddyIndirectObjects.h"
+#import "NoddyThread.h"
 
 @implementation NoddyMixin
 
@@ -20,6 +21,10 @@
         }
         
         self.noddyID = [[NoddyIndirectObjects globalContext] generateAndSetIDForObject:self];
+        
+        // init ourselves!
+        [NoddyThread callGlobalFunction:@"load_initjs"
+                              arguments:[NSArray arrayWithObjects:self.path, self.noddyID, nil]];
     }
     
     return self;
