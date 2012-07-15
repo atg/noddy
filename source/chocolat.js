@@ -24,7 +24,7 @@ function Mixin(mixinPath, mixinID, vmContext) {
     this.id = mixinid;
 }
 
-function load_initjs(mixinPath, mixinID, pathToInitjs) {
+function load_initjs(mixinPath, mixinID) {
     
     // Look in loadedMixins for this mixin
     // Remove any that match mixinPath
