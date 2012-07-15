@@ -24,7 +24,11 @@ function Mixin(mixinPath, mixinID, vmContext) {
     this.id = mixinid;
 }
 
-function load_initjs(mixinPath, mixinID) {
+global.sayHelloTo = function(person) {
+    console.log("Hello, " + person + "!");
+}
+
+global.load_initjs = function(mixinPath, mixinID) {
     
     // Look in loadedMixins for this mixin
     // Remove any that match mixinPath

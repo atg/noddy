@@ -7,12 +7,16 @@
 //
 #import <node.h>
 #import <uv.h>
+#import <libkern/OSAtomic.h>
+
+#import "NoddyBridge.h"
+
 using namespace v8;
 
 // http://izs.me/v8-docs/classv8_1_1Array.html
 
 void noddy_init(v8::Handle<v8::Object> target) {
-    printf("noddy_init\n");
+//    printf("noddy_init\n");
 }
 
 static uv_prepare_t noddy_prep;
@@ -21,11 +25,9 @@ static void NoddyPrepareNode(uv_prepare_t* handle, int status) {
     HandleScope scope;
     Persistent<Object> noddyModule;
 
-    //    Just testing that it works: scope.Close(noddyModule);
-    
     // Create _choc module
     Local<FunctionTemplate> noddy_init_template = FunctionTemplate::New();
-//    node::EventEmitter::Initialize(noddy_init_template);
+    // node::EventEmitter::Initialize(noddy_init_template);
     noddyModule = Persistent<Object>::New(noddy_init_template->GetFunction()->NewInstance());
     noddy_init(noddyModule);
     
@@ -34,6 +36,42 @@ static void NoddyPrepareNode(uv_prepare_t* handle, int status) {
     
     uv_prepare_stop(handle);
 }
+
+static volatile OSSpinLock NoddyMessageQueueLock = OS_SPINLOCK_INIT;
+static volatile unsigned NoddyMessagesCount = 0; // Avoid sending a -count message each poll
+static volatile NSMutableArray* NoddyMessages = nil;
+
+void NoddyScheduleBlock(dispatch_block_t block) {
+    OSSpinLockLock(&NoddyMessageQueueLock);
+
+    if (!NoddyMessages) {
+        NoddyMessages = [[NSMutableArray alloc] init];
+    }
+    
+    [NoddyMessages addObject:[block copy]];
+    NoddyMessagesCount = [NoddyMessages count];
+    
+    OSSpinLockUnlock(&NoddyMessageQueueLock);
+}
+static void NoddyPollMessageQueue(uv_idle_t* handle, int status) {
+    
+    // Copy the messages to another array to prevent race condition
+    NSArray* messages = nil;
+    
+    OSSpinLockLock(&NoddyMessageQueueLock);
+    if (NoddyMessagesCount) {
+        messages = [NoddyMessages copy];
+        [NoddyMessages removeAllObjects];
+    }
+    OSSpinLockUnlock(&NoddyMessageQueueLock);
+    
+    // For each message, run it!
+    for (id message in messages) {
+        dispatch_block_t block = (dispatch_block_t)message;
+        block();
+    }
+}
+
 
 #import "NoddyThread.h"
 
@@ -69,9 +107,34 @@ static void NoddyPrepareNode(uv_prepare_t* handle, int status) {
     uv_prepare_init(uv_default_loop(), &noddy_prep);
     uv_prepare_start(&noddy_prep, NoddyPrepareNode);
     
+    static uv_idle_t noddy_idle;
+    uv_idle_init(uv_default_loop(), &noddy_idle);
+    uv_idle_start(&noddy_idle, NoddyPollMessageQueue);
+    
     /* int exitStatus = */ node::Start(argc, const_cast<char**>(argv));
     
     [pool drain];
+}
+
++ (void)callGlobalFunction:(NSString*)functionName arguments:(NSArray*)args {
+    
+    NoddyScheduleBlock(^{
+        
+        HandleScope scope;
+                
+        v8::Local<v8::Object> global = v8::Context::GetCurrent()->Global();
+        v8::Local<v8::Function> fun = global->Get(v8::String::New([functionName UTF8String])).As<v8::Function>();
+        
+        NSUInteger count = [args count];
+        v8::Handle<v8::Value>* argv = new v8::Handle<v8::Value>[count]();
+        for (NSUInteger i = 0; i < count; i++) {
+            argv[i] = cocoa_to_node([args objectAtIndex:i]);
+        }
+        
+        fun->Call(global, count, argv);
+        
+        delete[] argv;
+    });
 }
 
 @end

@@ -15,4 +15,6 @@
 
 @property (assign) IBOutlet NSWindow *window;
 
+- (IBAction)helloButton:(id)sender;
+
 @end

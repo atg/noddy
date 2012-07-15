@@ -131,7 +131,7 @@ Local<Value> cocoa_to_node(id x) {
     return scope.Close(Local<Primitive>::New(Null()));
 }
 
-id node_string_to_cocoa(Local<String> str) {
+id node_string_to_cocoa(Handle<String> str) {
     HandleScope scope;
     String::Value s(str);
     NSString* objcstr = [NSString stringWithCharacters:*s length:s.length()];
@@ -141,11 +141,11 @@ id node_string_to_cocoa(Local<String> str) {
     
     return objcstr;
 }
-NSNumber* node_number_to_cocoa(Local<Number> num) {
+NSNumber* node_number_to_cocoa(Handle<Number> num) {
     HandleScope scope;
     return [NSNumber numberWithDouble:num->Value()];
 }
-NSArray* node_array_to_cocoa(Local<Array> arr) {
+NSArray* node_array_to_cocoa(Handle<Array> arr) {
     HandleScope scope;
     uint32_t length = arr->Length();
     NSMutableArray* arrobj = [NSMutableArray arrayWithCapacity:length];
@@ -154,7 +154,7 @@ NSArray* node_array_to_cocoa(Local<Array> arr) {
     }
     return arrobj;
 }
-NSDictionary* node_object_to_cocoa(Local<Object> obj) {
+NSDictionary* node_object_to_cocoa(Handle<Object> obj) {
     HandleScope scope;
     Local<Array> keys = obj->GetOwnPropertyNames();
     uint32_t length = keys->Length();
@@ -169,7 +169,7 @@ NSDictionary* node_object_to_cocoa(Local<Object> obj) {
     return dictobj;
 }
 
-id node_to_cocoa(Local<Value> val) {
+id node_to_cocoa(Handle<Value> val) {
     HandleScope scope;
     if (val->IsUndefined() || val->IsNull())
         return nil;
@@ -266,7 +266,11 @@ Local<Value> noddy_objc_msgSend(const Arguments& args) {
 }
 - (v8::Local<v8::Value>)basicCall:(v8::Handle<v8::Object>)thisObject arguments:(v8::Handle<v8::Array>)args {
     HandleScope scope;
-    return scope.Close([self basicCall:thisObject arguments:args]);
+    
+    // TODO: thisObject is not used
+    
+    v8::Handle<v8::Value> argv[1] = { args };
+    return scope.Close(func->Get(String::New("apply")).As<v8::Function>()->Call(func, 1, argv));
 }
 - (id)call:(id)thisObject arguments:(NSArray*)args {
     HandleScope scope;

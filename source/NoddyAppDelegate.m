@@ -18,4 +18,8 @@
     [[NoddyController sharedController] reloadMixins];
 }
 
+- (IBAction)helloButton:(id)sender {
+    [NoddyThread callGlobalFunction:@"sayHelloTo" arguments:[NSArray arrayWithObject:NSFullUserName()]];
+}
+
 @end

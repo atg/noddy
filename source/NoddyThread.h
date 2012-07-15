@@ -7,6 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+
+void NoddyScheduleBlock(dispatch_block_t block);
+
 @interface NoddyThread : NSThread
+
++ (void)callGlobalFunction:(NSString*)functionName arguments:(NSArray*)args;
 
 @end
