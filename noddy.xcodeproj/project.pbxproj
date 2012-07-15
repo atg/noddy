@@ -26,7 +26,6 @@
 		7535578815AC7CBC006AFA43 /* libv8_nosnapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535578015AC7CBC006AFA43 /* libv8_nosnapshot.a */; };
 		7535578915AC7CBC006AFA43 /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535578115AC7CBC006AFA43 /* libv8_snapshot.a */; };
 		7535578F15AC8770006AFA43 /* api.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7535578E15AC8770006AFA43 /* api.js */; };
-		75CD4A0815AC8F5600F97D8B /* r.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75CD4A0515AC8F5600F97D8B /* r.js */; };
 		75CD4A0915AC8F5600F97D8B /* underscore.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75CD4A0615AC8F5600F97D8B /* underscore.js */; };
 		75CD4A0A15AC8F5600F97D8B /* underscore.string.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75CD4A0715AC8F5600F97D8B /* underscore.string.js */; };
 		7CEE72DF15AC949100C8C95A /* NoddyController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE72DE15AC949100C8C95A /* NoddyController.mm */; };
@@ -42,7 +41,6 @@
 			files = (
 				7535577915AC7CA9006AFA43 /* chocolat.js in CopyFiles */,
 				7535578F15AC8770006AFA43 /* api.js in CopyFiles */,
-				75CD4A0815AC8F5600F97D8B /* r.js in CopyFiles */,
 				75CD4A0915AC8F5600F97D8B /* underscore.js in CopyFiles */,
 				75CD4A0A15AC8F5600F97D8B /* underscore.string.js in CopyFiles */,
 			);

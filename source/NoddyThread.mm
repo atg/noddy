@@ -68,7 +68,7 @@ static void NoddyPollMessageQueue(uv_async_t* handle, int status) {
     }
     OSSpinLockUnlock(&NoddyMessageQueueLock);
     
-    // For each message, run it!
+    // Run each message
     for (id message in messages) {
         dispatch_block_t block = (dispatch_block_t)message;
         block();
