@@ -3,11 +3,11 @@
 
 @interface NoddyController : NSObject {
     NoddyThread* thread;
-    NSArray* mixins;
+    NSMutableArray* mixins;
 }
 
 @property (readonly) NoddyThread* thread;
-@property (readonly) NSArray* mixins;
+@property (readonly) NSMutableArray* mixins;
 
 + (id)sharedController;
 

@@ -15,7 +15,7 @@
 @synthesize window = _window;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [NoddyController sharedController];
+    [[NoddyController sharedController] reloadMixins];
 }
 
 @end

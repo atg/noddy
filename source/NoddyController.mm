@@ -1,5 +1,6 @@
 #import "NoddyController.h"
 #import "NoddyThread.h"
+#import "NoddyMixin.h"
 
 @implementation NoddyController
 
@@ -19,23 +20,54 @@
         // init
         NSLog(@"Starting our thread...");
         _thread = [[NoddyThread alloc] init];
+        _mixins = [[NSMutableArray alloc] init];
         [self.thread start];
+        //[self reloadMixins];
     }
     
     return self;
 }
 
-- (NSArray *)mixins
-{
-    if (!_mixins) {
-        [self reloadMixins];
-    }
-    
-    return _mixins;
-}
+
 
 - (void)reloadMixins
 {
+    // load mixins from disk...
+    // first, sharedsupport
+    NSString *sharedSupportPath = [[[NSBundle mainBundle] sharedSupportPath] stringByAppendingPathComponent:@"Mixins"];
+    
+    // App Support
+    NSString *executableName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleExecutable"];
+    NSArray *basePaths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *appSupportPath = [[[basePaths objectAtIndex:0] stringByAppendingPathComponent:executableName] stringByAppendingPathComponent:@"Mixins"];
+    
+    // home dir
+    NSString *homePath = [NSHomeDirectory() stringByAppendingPathComponent:@".chocolat/mixins/"];
+    
+    // Miximons, gotta load'em all!
+    for (NSString *aPath in [[NSFileManager defaultManager] subpathsAtPath:sharedSupportPath]) {
+        if ([[aPath pathExtension] isEqualToString:@"chocmixin"]) {
+            NoddyMixin *newMixin = [[NoddyMixin alloc] initWithPath:aPath];
+            [newMixin reload];
+            [self.mixins addObject:newMixin];
+        }
+    }
+    
+    for (NSString *aPath in [[NSFileManager defaultManager] subpathsAtPath:appSupportPath]) {
+        if ([[aPath pathExtension] isEqualToString:@"chocmixin"]) {
+            NoddyMixin *newMixin = [[NoddyMixin alloc] initWithPath:aPath];
+            [newMixin reload];
+            [self.mixins addObject:newMixin];
+        }
+    }
+    
+    for (NSString *aPath in [[NSFileManager defaultManager] subpathsAtPath:homePath]) {
+        if ([[aPath pathExtension] isEqualToString:@"chocmixin"]) {
+            NoddyMixin *newMixin = [[NoddyMixin alloc] initWithPath:aPath];
+            [newMixin reload];
+            [self.mixins addObject:newMixin];
+        }
+    }
     
 }
 

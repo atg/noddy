@@ -7,15 +7,20 @@
 // @property (assign) NSString* expandedPath;
 
 // The timestamp on the mixin, so we know whether it's been changed and needs to be reloaded
-@property (assign) time_t timestamp;
+@property (assign) NSDate  *timestamp;
+
+// noddy id
+@property (copy) NSString* noddyID;
 
 // The contents of the info.json file
 @property (assign) NSDictionary* info;
 
 - (id)initWithPath:(NSString*)p;
-- (void)reload;
 
-- (id)noddyID;
+// loading and reloading
+- (void)load;
+- (void)reload;
+- (void)unload;
 
 // 
 - (NSString*)execute:(NSString*)js;

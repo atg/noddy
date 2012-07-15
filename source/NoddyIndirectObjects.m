@@ -21,6 +21,7 @@
     
     return self;
 }
+
 + (id)globalContext {
     static id sharedContext;
     static dispatch_once_t onceToken;
@@ -29,6 +30,7 @@
     });
     return sharedContext;
 }
+
 - (NSString*)generateAndSetIDForObject:(id)obj {
     
     __block NSString* noddyid = nil;
@@ -55,6 +57,7 @@
     
     return noddyid;
 }
+
 - (id)objectForID:(NSString*)noddyid {
     
     __block id obj = nil;
@@ -64,6 +67,7 @@
     
     return obj;
 }
+
 - (void)finalize {
     dispatch_release(queue);
     [super finalize];
