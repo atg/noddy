@@ -19,6 +19,7 @@ void noddy_init(v8::Handle<v8::Object> target) {
 //    printf("noddy_init\n");
 }
 
+static uv_async_t noddy_async;
 static uv_prepare_t noddy_prep;
 
 static void NoddyPrepareNode(uv_prepare_t* handle, int status) {
@@ -52,8 +53,10 @@ void NoddyScheduleBlock(dispatch_block_t block) {
     NoddyMessagesCount = [NoddyMessages count];
     
     OSSpinLockUnlock(&NoddyMessageQueueLock);
+    
+    uv_async_send(&noddy_async);
 }
-static void NoddyPollMessageQueue(uv_idle_t* handle, int status) {
+static void NoddyPollMessageQueue(uv_async_t* handle, int status) {
     
     NSArray* messages = nil;
     
@@ -107,9 +110,11 @@ static void NoddyPollMessageQueue(uv_idle_t* handle, int status) {
     uv_prepare_init(uv_default_loop(), &noddy_prep);
     uv_prepare_start(&noddy_prep, NoddyPrepareNode);
     
-    static uv_idle_t noddy_idle;
-    uv_idle_init(uv_default_loop(), &noddy_idle);
-    uv_idle_start(&noddy_idle, NoddyPollMessageQueue);
+//    static uv_idle_t noddy_idle;
+//    uv_idle_init(uv_default_loop(), &noddy_idle);
+//    uv_idle_start(&noddy_idle, NoddyPollMessageQueue);
+    uv_async_init(uv_default_loop(), &noddy_async, NoddyPollMessageQueue);
+    
     
     /* int exitStatus = */ node::Start(argc, const_cast<char**>(argv));
     
