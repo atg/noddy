@@ -45,6 +45,7 @@ static unsigned NoddyMessagesCount; // Avoid sending a -count message each poll
 static NSMutableArray* NoddyMessages;
 
 void NoddyScheduleBlock(dispatch_block_t block) {
+
     OSSpinLockLock(&NoddyMessageQueueLock);
 
     if (!NoddyMessages) {

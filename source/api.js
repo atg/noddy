@@ -1,15 +1,6 @@
 var Alert = {};
 global.Alert = Alert;
 
-Alert.show = function(title, message, buttons) {
-    
-    return global.objc_msgSendSync(private_get_mixin(), "showAlert:", {
-        "title": title,
-        "message": message,
-        "buttons": buttons
-    });
-};
-
 function private_get_mixin() {
     var stacktrace = new Error().stack;
     
@@ -20,6 +11,15 @@ function private_get_mixin() {
     
     return null;
 }
+
+Alert.show = function(title, message, buttons) {
+    
+    return global.objc_msgSendSync(private_get_mixin(), "showAlert:", {
+        "title": title,
+        "message": message,
+        "buttons": buttons
+    });
+};
 
 // Implement the Recipe class
 var Recipe = {};

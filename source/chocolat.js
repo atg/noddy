@@ -1,5 +1,5 @@
 var os = require('os');
-var vm = require('vm');
+//var vm = require('vm');
 var fs = require('fs');
 var path = require('path');
 
@@ -18,6 +18,11 @@ process.on('uncaughtException', function () {
 var api = require('api.js');
 var loadedMixins = [];
 
+
+// Keep the event loop running until uv_async is less buggy
+setInterval(function () {}, 500);
+
+
 global.objc_msgSend = function() {
     global.private_objc_msgSend.apply({ sync: false }, arguments);
 }
@@ -30,7 +35,6 @@ global.sayHelloTo = function(person) {
 }
 
 global.load_initjs = function(mixinPath, mixinID) {
-    
     // Look in loadedMixins for this mixin
     // Remove any that match mixinPath
     loadedMixins = loadedMixins.filter(function (aMixin) { return aMixin.path !== mixinPath; });
@@ -45,7 +49,7 @@ global.load_initjs = function(mixinPath, mixinID) {
     for (var key in Object.keys(require.cache)) {
         delete require.cache[key];
     }
-    
+
     // Run the code!
     require(pathToInitjs);
 }

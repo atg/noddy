@@ -10,7 +10,7 @@
 - (id)initWithPath:(NSString *)p
 {
     if (self = [super init]) {
-        NSLog(@"Mixin Loaded");
+        NSLog(@"Loading mixin %@", [p stringByAbbreviatingWithTildeInPath]);
         self.path = p;
         
         NSError *e = nil;
@@ -20,12 +20,11 @@
             self.timestamp = [attrs objectForKey:NSFileModificationDate];
         }
         
-        self.noddyID = [NSString stringWithFormat:@"NODDYID$$MIXIN$$%@", [[p lastPathComponent] stringByDeletingPathExtension]]; //[[NoddyIndirectObjects globalContext] generateAndSetIDForObject:self];
+        self.noddyID = [NSString stringWithFormat:@"NODDYID$$MIXIN$$%@", [[p lastPathComponent] stringByDeletingPathExtension]];
         [[NoddyIndirectObjects globalContext] registerID:self.noddyID object:self];
         
         // init ourselves!
-        [NoddyThread callGlobalFunction:@"w"
-                              arguments:[NSArray arrayWithObjects:self.path, self.noddyID, nil]];
+        [NoddyThread callGlobalFunction:@"load_initjs" arguments:[NSArray arrayWithObjects:self.path, self.noddyID, nil]];
     }
     
     return self;
