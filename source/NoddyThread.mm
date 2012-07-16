@@ -23,7 +23,6 @@ void noddy_init(v8::Handle<v8::Object> target) {
     private_objc_msgSend->SetCallHandler(noddy_objc_msgSend);
     
     target->Set(String::New("private_objc_msgSend"), private_objc_msgSend->GetFunction());
-    NSLog(@"Set target private objc msgSend");
 }
 
 static uv_async_t noddy_async;
@@ -32,22 +31,12 @@ static uv_prepare_t noddy_prep;
 static void NoddyPrepareNode(uv_prepare_t* handle, int status) {
     HandleScope scope;
     Persistent<Object> noddyModule;
-
-    // Create _choc module
-//    Local<FunctionTemplate> noddy_init_template = FunctionTemplate::New();
-    // node::EventEmitter::Initialize(noddy_init_template);
-//    noddyModule = Persistent<Object>::New(noddy_init_template->GetFunction()->NewInstance());
-//    noddy_init(noddyModule);
-    
-//    Local<Object> global = v8::Context::GetCurrent()->Global();
-//    noddy_init(global);
     
     if (!hasRunNoddyInit) {
         hasRunNoddyInit = true;
         noddy_init(v8::Context::GetCurrent()->Global());
     }
-//    global->Set(String::New("_choc"), noddyModule);
-
+    
     uv_prepare_stop(handle);
 }
 

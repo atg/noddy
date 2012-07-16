@@ -26,7 +26,6 @@ RegExp::Flags cocoa_regex_flags_to_node(NSRegularExpressionOptions opts) {
 }
 
 id target_from_receiver_string(NSString* str) {
-    NSLog(@"str = '%@'", str);
     return [[NoddyIndirectObjects globalContext] objectForID:str];
 }
 
@@ -242,7 +241,6 @@ Handle<Value> noddy_objc_msgSend(const Arguments& args) {
         [objcArgs addObject:node_to_cocoa(args[i + 2])];
     }
     
-    NSLog(@"objcArgs = %@", objcArgs);
     NSMethodSignature *signature = [target methodSignatureForSelector:NSSelectorFromString(selectorstring)];
     NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:signature];
     
@@ -251,7 +249,6 @@ Handle<Value> noddy_objc_msgSend(const Arguments& args) {
         [invocation setSelector:NSSelectorFromString(selectorstring)];
         
         for (long i = 0; i < numberOfParameters; i++) {
-            NSLog(@"ARG %d -> %@", i, [objcArgs objectAtIndex:i]);
             id argObj = [objcArgs objectAtIndex:i];
             [invocation setArgument:&argObj atIndex:i + 2];
         }

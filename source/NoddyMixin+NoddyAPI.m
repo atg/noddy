@@ -15,7 +15,6 @@ static id collection_default(id coll, id defaultColl) {
 @implementation NoddyMixin (NoddyAPI)
 
 - (NSNumber*)showAlert:(NSDictionary*)options {
-    NSLog(@"options = %@", options);
     NSAlert* alert = [[NSAlert alloc] init];
     [alert setMessageText:string_default([options objectForKey:@"title"], @"Alert")];
     [alert setInformativeText:string_default([options objectForKey:@"message"], @"")];
