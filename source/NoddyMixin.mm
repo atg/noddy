@@ -20,7 +20,8 @@
             self.timestamp = [attrs objectForKey:NSFileModificationDate];
         }
         
-        self.noddyID = [[NoddyIndirectObjects globalContext] generateAndSetIDForObject:self];
+        self.noddyID = [NSString stringWithFormat:@"NODDYID$$MIXIN$$%@", [[p lastPathComponent] stringByDeletingPathExtension]]; //[[NoddyIndirectObjects globalContext] generateAndSetIDForObject:self];
+        [[NoddyIndirectObjects globalContext] registerID:self.noddyID object:self];
         
         // init ourselves!
         [NoddyThread callGlobalFunction:@"w"

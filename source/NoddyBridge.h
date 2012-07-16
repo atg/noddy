@@ -1,6 +1,8 @@
 #import <Foundation/Foundation.h>
 #import <node.h>
 
+v8::Handle<v8::Value> noddy_objc_msgSend(const v8::Arguments& args);
+
 NSRegularExpressionOptions node_regex_flags_to_cocoa(v8::RegExp::Flags flags);
 v8::RegExp::Flags cocoa_regex_flags_to_node(NSRegularExpressionOptions opts);
 

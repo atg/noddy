@@ -1,3 +1,8 @@
+// MUST DO FIRST: Grab a global context to use later
+var _underscorejs_ = require('underscore.js');
+var cloned_global = _underscorejs_.clone(global);
+
+
 var os = require('os');
 var vm = require('vm');
 var fs = require('fs');
@@ -15,7 +20,6 @@ process.on('uncaughtException', function () {
 });
 */
 
-var _ = require('underscore.js');
 var api = require('api.js');
 var loadedMixins = [];
 
@@ -25,75 +29,77 @@ function Mixin(mixinPath, mixinID, vmContext) {
     this.id = mixinID;
 }
 
-
-/*function clone(obj){
-    if(obj == null || typeof(obj) != 'object')
-        return obj;
+global.objc_msgSend = function() {
     
-    var temp = obj.constructor(); // changed
-    
-    for(var key in obj)
-        temp[key] = clone(obj[key]);
-    return temp;
+    global.private_objc_msgSend.apply({ sync: false }, arguments);
 }
-*/
+global.objc_msgSendSync = function() {
+    
+    console.log(global.private_objc_msgSend);
+    console.log("after");
+    return global.private_objc_msgSend.apply({ sync: true }, arguments);
+}
 
 global.sayHelloTo = function(person) {
     console.log("Hello, " + person + "!");
 }
 
+
 global.load_initjs = function(mixinPath, mixinID) {
     
     // Look in loadedMixins for this mixin
     // Remove any that match mixinPath
-    loadedMixins = loadedMixins.filter(function (aMixin) { return a.Min.path === mixinPath; });
+    loadedMixins = loadedMixins.filter(function (aMixin) { return aMixin.path !== mixinPath; });
     
     // Read the source from disk
     var pathToInitjs = path.join(mixinPath, "init.js");
+    /*
     var initJSSource = fs.readFileSync(pathToInitjs);
     
     // Load in a new context with `api` as the root
-    var sandbox = _.clone(global);
-//    console.log(sandbox.require);
+    var sandbox = _underscorejs_.clone(cloned_global);
     
-    sandbox.mixinPath = mixinPath;
-    sandbox.nodeRequire = sandbox.require;
-    sandbox.requireJS = require("r.js");
-    sandbox.requireJS.config({
-        'nodeRequire': sandbox.nodeRequire, 'baseUrl': sandbox.mixinPath
-    });
-    sandbox.require = function() {
-        try {
-            return sandbox.nodeRequire.apply({}, arguments);
-        }
-        catch (e) {
-            return sandbox.requireJS.apply({}, arguments);
-        }
-    };
+    sandbox.mixinID = mixinID;
+    sandbox.mixinPath = path.normalize(mixinPath);
+    sandbox.require = require;
+    sandbox.global = sandbox;
+    sandbox.objc_msgSendSync = objc_msgSendSync;
+    sandbox.objc_msgSend = objc_msgSend;
+//    _underscorejs_.extend(sandbox, api);
+    
     var vmContext = vm.createContext(sandbox);
     
-    /*
     // Set up require.js in vmContext
     vm.runInContext(
-        "global.nodeRequire = global.require; " +
-        "global.requireJS = global.nodeRequire(\"r.js\"); " + 
-        "global.requireJS.config({ " +
-            "'nodeRequire': global.nodeRequire, 'baseUrl': global.mixinPath " +
-        "}); " +
-        "global.require = function() { " +
+        "var nodeRequire = require; " +
+        "require = function() { " +
             "try { " +
-                "return global.nodeRequire.apply({}, arguments); " +
+                "return nodeRequire.apply({}, arguments); " +
             "} " +
             "catch (e) { " +
-                "return global.requireJS.apply({}, arguments); " +
+                "return nodeRequire(mixinPath + \"/\" + arguments[0]); " +
             "} " +
-        "} ", vmContext);
-    */
+        "}; " +
+        "var chocapi = require('api.js'); console.log(JSON.stringify(chocapi)); " +
+        "for (k in chocapi) { global[k] = chocapi[k]; } ", vmContext);
+*/
+    
+    
+    var vmContext = null;
     
     // Add our new Mixin
     var mixin = new Mixin(mixinPath, mixinID, vmContext);
     loadedMixins.push(mixin);
     
+    
+    for (var key in Object.keys(require.cache)) {
+        delete require.cache[key];
+    }
+    
+    require(pathToInitjs);
+    
+    /*
     // Run init.js
-    vm.runInContext(initJSSource, vmContext, pathToInitjs)
+    vm.runInContext(initJSSource, vmContext, pathToInitjs);
+     */
 }
