@@ -24,7 +24,7 @@
         [[NoddyIndirectObjects globalContext] registerID:self.noddyID object:self];
         
         // init ourselves!
-        [NoddyThread callGlobalFunction:@"load_initjs"
+        [NoddyThread callGlobalFunction:@"w"
                               arguments:[NSArray arrayWithObjects:self.path, self.noddyID, nil]];
     }
     
