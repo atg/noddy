@@ -57,6 +57,13 @@
     
     return noddyid;
 }
+- (void)registerID:(NSString*)noddyid object:(id)obj {
+    
+    dispatch_sync(queue, ^{
+        [weakmap setObject:obj forKey:noddyid];
+    });
+}
+
 
 - (id)objectForID:(NSString*)noddyid {
     

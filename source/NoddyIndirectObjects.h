@@ -14,6 +14,7 @@
 }
 
 + (id)globalContext;
+- (void)registerID:(NSString*)noddyid object:(id)obj;
 - (NSString*)generateAndSetIDForObject:(id)obj;
 - (id)objectForID:(NSString*)noddyid; // May return nil
 

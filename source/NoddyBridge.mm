@@ -26,7 +26,8 @@ RegExp::Flags cocoa_regex_flags_to_node(NSRegularExpressionOptions opts) {
 }
 
 id target_from_receiver_string(NSString* str) {
-    return nil; // implement me
+    NSLog(@"str = '%@'", str);
+    return [[NoddyIndirectObjects globalContext] objectForID:str];
 }
 
 Local<Value> cocoa_to_node(id x) {
@@ -214,12 +215,19 @@ id node_to_cocoa(Handle<Value> val) {
     return nil;
 }
 
-Local<Value> noddy_objc_msgSend(const Arguments& args) {
+Handle<Value> noddy_objc_msgSend(const Arguments& args) {
     HandleScope scope;
+    
+    Local<Object> thisObject = args.This();
+    bool isSync = thisObject->Has(String::New("sync")) && thisObject->Get(String::New("sync"))->BooleanValue();
     
     // Determine the target
     Local<String> receiver = args[0].As<String>();
-    id target = target_from_receiver_string(node_to_cocoa(receiver));
+    id target = node_to_cocoa(receiver);
+    if (![target respondsToSelector:@selector(noddyID)]) {
+        NSLog(@"Error target %@ does not have a noddyID", target);
+        return Undefined();
+    }
     
     // Get the selector
     Local<String> selector = args[1].As<String>();
@@ -228,29 +236,48 @@ Local<Value> noddy_objc_msgSend(const Arguments& args) {
     // Delete all colons to find out how many it has. E.g. [@"a:b:c:" length] - [@"abc" length] == 3
     long numberOfParameters = [selectorstring length] - [[selectorstring stringByReplacingOccurrencesOfString:@":" withString:@""] length];
     
-    NSMethodSignature *signature = [target methodSignatureForSelector:NSSelectorFromString(selectorstring)];
-    NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:signature];
-    [invocation setTarget:target];
-    [invocation setSelector:NSSelectorFromString(selectorstring)];
-    
     // Get the parameters
+    NSMutableArray* objcArgs = [NSMutableArray array];
     for (long i = 0; i < numberOfParameters; i++) {
-        [invocation setArgument:node_to_cocoa(args[i + 2]) atIndex:i + 2];
+        [objcArgs addObject:node_to_cocoa(args[i + 2])];
     }
     
+    NSLog(@"objcArgs = %@", objcArgs);
+    NSMethodSignature *signature = [target methodSignatureForSelector:NSSelectorFromString(selectorstring)];
+    NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:signature];
     
-    // Send the message!
-    [invocation invoke];
+    dispatch_block_t invocationBlock = ^{
+        [invocation setTarget:target];
+        [invocation setSelector:NSSelectorFromString(selectorstring)];
+        
+        for (long i = 0; i < numberOfParameters; i++) {
+            NSLog(@"ARG %d -> %@", i, [objcArgs objectAtIndex:i]);
+            id argObj = [objcArgs objectAtIndex:i];
+            [invocation setArgument:&argObj atIndex:i + 2];
+        }
+        
+        // Send the message!
+        [invocation invoke];
+    };
     
-    
-    if (![signature methodReturnLength])
-        return Local<Primitive>::New(Undefined());
-    
-    id returnvalue = nil;
-    [invocation getReturnValue:&returnvalue];
-    
-    Local<Object> result = cocoa_to_node(returnvalue).As<Object>();
-    return scope.Close(result);
+    if (isSync) {
+        
+        dispatch_sync(dispatch_get_main_queue(), invocationBlock);
+        
+        if (![signature methodReturnLength])
+            return Local<Primitive>::New(Undefined());
+        
+        id returnvalue = nil;
+        [invocation getReturnValue:&returnvalue];
+        
+        Local<Object> result = cocoa_to_node(returnvalue).As<Object>();
+        return scope.Close(result);
+    }
+    else {
+        dispatch_async(dispatch_get_main_queue(), invocationBlock);
+        
+        return Undefined();
+    }
 }
 
 

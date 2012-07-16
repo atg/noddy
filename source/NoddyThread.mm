@@ -15,8 +15,15 @@ using namespace v8;
 
 // http://izs.me/v8-docs/classv8_1_1Array.html
 
+static bool hasRunNoddyInit;
 void noddy_init(v8::Handle<v8::Object> target) {
-//    printf("noddy_init\n");
+    HandleScope scope;
+    
+    Local<FunctionTemplate> private_objc_msgSend = FunctionTemplate::New();
+    private_objc_msgSend->SetCallHandler(noddy_objc_msgSend);
+    
+    target->Set(String::New("private_objc_msgSend"), private_objc_msgSend->GetFunction());
+    NSLog(@"Set target private objc msgSend");
 }
 
 static uv_async_t noddy_async;
@@ -27,14 +34,20 @@ static void NoddyPrepareNode(uv_prepare_t* handle, int status) {
     Persistent<Object> noddyModule;
 
     // Create _choc module
-    Local<FunctionTemplate> noddy_init_template = FunctionTemplate::New();
+//    Local<FunctionTemplate> noddy_init_template = FunctionTemplate::New();
     // node::EventEmitter::Initialize(noddy_init_template);
-    noddyModule = Persistent<Object>::New(noddy_init_template->GetFunction()->NewInstance());
-    noddy_init(noddyModule);
+//    noddyModule = Persistent<Object>::New(noddy_init_template->GetFunction()->NewInstance());
+//    noddy_init(noddyModule);
     
-    Local<Object> global = v8::Context::GetCurrent()->Global();
-    global->Set(String::New("_choc"), noddyModule);
+//    Local<Object> global = v8::Context::GetCurrent()->Global();
+//    noddy_init(global);
     
+    if (!hasRunNoddyInit) {
+        hasRunNoddyInit = true;
+        noddy_init(v8::Context::GetCurrent()->Global());
+    }
+//    global->Set(String::New("_choc"), noddyModule);
+
     uv_prepare_stop(handle);
 }
 
@@ -53,8 +66,10 @@ void NoddyScheduleBlock(dispatch_block_t block) {
     NoddyMessagesCount = [NoddyMessages count];
     
     OSSpinLockUnlock(&NoddyMessageQueueLock);
-    
+
+#ifdef USE_NODDY_ASYNC
     uv_async_send(&noddy_async);
+#endif
 }
 static void NoddyPollMessageQueue(uv_async_t* handle, int status) {
     
@@ -68,13 +83,20 @@ static void NoddyPollMessageQueue(uv_async_t* handle, int status) {
     }
     OSSpinLockUnlock(&NoddyMessageQueueLock);
     
+    if (!hasRunNoddyInit) {
+        hasRunNoddyInit = true;
+        noddy_init(v8::Context::GetCurrent()->Global());
+    }
+    
     // Run each message
     for (id message in messages) {
         dispatch_block_t block = (dispatch_block_t)message;
         block();
     }
 }
-
+static void NoddyPollMessageQueuePrep(uv_prepare_t* handle, int status) {
+    NoddyPollMessageQueue(NULL, status);
+}
 
 #import "NoddyThread.h"
 
@@ -113,7 +135,17 @@ static void NoddyPollMessageQueue(uv_async_t* handle, int status) {
 //    static uv_idle_t noddy_idle;
 //    uv_idle_init(uv_default_loop(), &noddy_idle);
 //    uv_idle_start(&noddy_idle, NoddyPollMessageQueue);
-    uv_async_init(uv_default_loop(), &noddy_async, NoddyPollMessageQueue);
+    
+    
+#ifdef USE_NODDY_ASYNC
+    // TODO: uv_async is either buggy in this version of node, or we're using it wrong
+    // Either way, disabled for now
+    //    uv_async_init(uv_default_loop(), &noddy_async, NoddyPollMessageQueue);
+#else
+    static uv_prepare_t noddy_mq_prep;
+    uv_prepare_init(uv_default_loop(), &noddy_mq_prep);
+    uv_prepare_start(&noddy_mq_prep, NoddyPollMessageQueuePrep);
+#endif
     
     
     /* int exitStatus = */ node::Start(argc, const_cast<char**>(argv));
