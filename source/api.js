@@ -1,19 +1,6 @@
 var Alert = {};
 global.Alert = Alert;
 
-/**
- * @api private
- */
-function private_get_mixin() {
-    var stacktrace = new Error().stack;
-    
-    // Find things named /X.chocmixin
-    var m = new RegExp("/([^/]+)\\.chocmixin", "i").exec(stacktrace);
-    if (m.length >= 2)
-        return "NODDYID$$MIXIN$$" + m[1];
-    
-    return null;
-}
 
 /**
  * Shows an alert.
@@ -57,9 +44,26 @@ Clipboard.copy = function(value) {
  */
 Clipboard.paste = function() {
     return global.objc_msgSendSync(private_get_mixin(), "clipboard_paste");
-};// Implement the Recipe class
+};
+
+/**
+ * @api private
+ */
+function private_get_mixin() {
+    var stacktrace = new Error().stack;
+    
+    // Find things named /X.chocmixin
+    var m = new RegExp("/([^/]+)\\.chocmixin", "i").exec(stacktrace);
+    if (m.length >= 2)
+        return "NODDYID$$MIXIN$$" + m[1];
+    
+    return null;
+}
+
+// Implement the Recipe class
 var Recipe = {};
 global.Recipe = Recipe;
+
 // Implement the UI class
 var UI = {};
 global.UI = UI;
@@ -74,7 +78,7 @@ global.UI = UI;
  */
 UI.addMenuItem = function(path, shortcut, options, callback) {
     
-}
+};
 
 /**
  * Add a keyboard shortcut.
@@ -85,7 +89,7 @@ UI.addMenuItem = function(path, shortcut, options, callback) {
  */
 UI.addKeyboardShortcut = function(shortcut, callback) {
     
-}
+};
 
 /**
  * Add an item in the bottom status bar.
@@ -96,4 +100,7 @@ UI.addKeyboardShortcut = function(shortcut, callback) {
  */
 UI.addStatusItem = function (name, valueFunction, selector) {
     
-}// Implement the MainWindow, Tab, Editor and Document classes
+};
+
+// Implement the MainWindow, Tab, Editor and Document classes
+
