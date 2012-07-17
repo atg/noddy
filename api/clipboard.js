@@ -19,3 +19,4 @@ Clipboard.copy = function(value) {
 Clipboard.paste = function() {
     return global.objc_msgSendSync(private_get_mixin(), "clipboard_paste");
 };
+

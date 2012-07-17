@@ -12,7 +12,7 @@ global.UI = UI;
  */
 UI.addMenuItem = function(path, shortcut, options, callback) {
     
-}
+};
 
 /**
  * Add a keyboard shortcut.
@@ -23,7 +23,7 @@ UI.addMenuItem = function(path, shortcut, options, callback) {
  */
 UI.addKeyboardShortcut = function(shortcut, callback) {
     
-}
+};
 
 /**
  * Add an item in the bottom status bar.
@@ -34,4 +34,5 @@ UI.addKeyboardShortcut = function(shortcut, callback) {
  */
 UI.addStatusItem = function (name, valueFunction, selector) {
     
-}
+};
+
