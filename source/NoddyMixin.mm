@@ -23,8 +23,6 @@
         self.noddyID = [NSString stringWithFormat:@"NODDYID$$MIXIN$$%@", [[p lastPathComponent] stringByDeletingPathExtension]];
         [[NoddyIndirectObjects globalContext] registerID:self.noddyID object:self];
         
-        // init ourselves!
-        [NoddyThread callGlobalFunction:@"load_initjs" arguments:[NSArray arrayWithObjects:self.path, self.noddyID, nil]];
     }
     
     return self;
@@ -34,12 +32,14 @@
 #pragma mark - Loading
 - (void)load
 {
-    
+    [NoddyThread callGlobalFunction:@"load_initjs" arguments:[NSArray arrayWithObjects:self.path, self.noddyID, nil]];
+
 }
 
 - (void)reload
 {
-    
+    [self unload];
+    [self load];
 }
 
 - (void)unload

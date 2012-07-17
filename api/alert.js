@@ -1,6 +1,9 @@
 var Alert = {};
 global.Alert = Alert;
 
+/**
+ * @api private
+ */
 function private_get_mixin() {
     var stacktrace = new Error().stack;
     
@@ -12,6 +15,19 @@ function private_get_mixin() {
     return null;
 }
 
+/**
+ * Shows an alert.
+ *
+ * Example:
+ * 
+ *     Alert.show("My Title", "My awesome body!", ["Yes", "No"]);
+ *
+ * @param {String} title the title of your alert.
+ * @param {String} message the body of your alert message.
+ * @param {Array} buttons an array of buttons to display.
+ * @memberOf Alert
+ *
+ */
 Alert.show = function(title, message, buttons) {
     
     return global.objc_msgSendSync(private_get_mixin(), "showAlert:", {

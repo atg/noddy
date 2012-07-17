@@ -5,4 +5,7 @@
 
 - (NSNumber*)showAlert:(NSDictionary*)options;
 
+// Clipboard.js
+- (void)clipboard_copy:(NSString *)value;
+
 @end

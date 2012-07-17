@@ -14,6 +14,7 @@ static id collection_default(id coll, id defaultColl) {
 
 @implementation NoddyMixin (NoddyAPI)
 
+#pragma mark - Alert
 - (NSNumber*)showAlert:(NSDictionary*)options {
     NSAlert* alert = [[NSAlert alloc] init];
     [alert setMessageText:string_default([options objectForKey:@"title"], @"Alert")];
@@ -24,6 +25,23 @@ static id collection_default(id coll, id defaultColl) {
     }
     
     return [NSNumber numberWithInteger:[alert runModal] - NSAlertFirstButtonReturn];
+}
+
+#pragma mark - Clipboard
+- (void)clipboard_copy:(NSString *)value
+{
+    [[NSPasteboard generalPasteboard] writeObjects:[NSArray arrayWithObject:value]];
+}
+
+- (id)clipboard_paste
+{
+    NSArray *items = [[NSPasteboard generalPasteboard] readObjectsForClasses:[NSArray arrayWithObject:[NSString class]]
+                                                                     options:nil];
+    if (items.count > 0) {        
+        return [items objectAtIndex:0];
+    }
+    
+    return nil;
 }
 
 @end
