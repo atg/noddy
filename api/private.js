@@ -12,3 +12,21 @@ function private_get_mixin() {
     return null;
 }
 
+/**
+* @api private
+*/
+function createObject(parent) {
+ function TempClass() {}
+ TempClass.prototype = parent;
+ var child = new TempClass();
+ return child;
+}
+
+/**
+* @api private
+*/
+function inherit(sub, super) {
+ var newSubPrototype = createObject(super.prototype); 
+ newSubPrototype.constructor = sub; 
+ sub.prototype = newSubPrototype;
+}

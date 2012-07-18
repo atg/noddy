@@ -63,3 +63,12 @@ Window.prototype.sendMessage = function (msg, arg) {
   
 }
 
+
+var Sheet = function(w) {
+  Window.call(this);
+  this.parentWindow = w;
+}
+
+inherit(Sheet, Window);
+
+global.Sheet = Sheet;
