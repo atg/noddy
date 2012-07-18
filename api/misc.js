@@ -1,5 +1,5 @@
-var Storage = function() {
-    this.nid = private_get_mixin();
+var Storage = function(nid) {
+    this.nid = nid;
 };
 
 global.Storage = Storage;

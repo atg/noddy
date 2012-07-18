@@ -1,6 +1,65 @@
 var Window = function() {
-  
+  this.resourcePath = '';
+  this.indexPath = '';
+  this.generateHTML = '';
+  this.canResize = true;
+  this.onLoad = null;
+  this.onMessage = null;
 };
 
 global.Window = Window;
+
+/**
+ * Display the window.
+ * @memberOf Window
+ */
+Window.prototype.run = function() {
+  
+};
+
+/**
+ * Close the window.
+ * @memberOf Window
+ */
+Window.prototype.close = function() {
+
+};
+
+/**
+ * Get the window's frame.
+ * @return the window's frame.
+ * @memberOf Window
+ */
+Window.prototype.frame = function() {
+
+};
+
+/**
+ * Set the window's frame. The frame should be an object with the x, y, width and
+ * height properties. e.g. `{x: 0, y: 0, width: 250, height: 300}`
+ * param {Object} newFrame the new window's frame.
+ * param {Bool} shouldAnimate optional, whether to animate the resizing or not (default: false)
+ * @memberOf Window
+ */
+Window.prototype.setFrame = function(newFrame, shouldAnimate) {
+  if (typeof shouldAnimate === 'undefined') {shouldAnimate = false;}
+  
+};
+
+Window.prototype.eval = function(str) {
+  
+};
+
+Window.prototype.addFunction = function(name, f) {
+  
+};
+
+/**
+ * Send a message to the window that you can catch with the window.onMessage attribute.
+ * @param {String} msg the name of the message to send.
+ * @param {Value} arg an argument to pass to the callback function.
+ */
+Window.prototype.sendMessage = function (msg, arg) {
+  
+}
 
