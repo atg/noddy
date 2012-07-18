@@ -1,5 +1,5 @@
 var Storage = function() {
-    this.storage = {};
+    this.nid = private_get_mixin();
 };
 
 global.Storage = Storage;
@@ -12,7 +12,7 @@ global.Storage = Storage;
  * @memberOf Storage
  */
 Storage.prototype.get = function(k) {
-    return this.storage[k];
+    return objc_msgSendSync(this.nid, "valueForKey", k);
 };
 
 /**
@@ -23,7 +23,7 @@ Storage.prototype.get = function(k) {
  * @memberOf Storage
  */
 Storage.prototype.set = function(k, v) {
-    this.storage[k] = v;
+    objc_msgSend(this.nid, "setValue:forKey:", v, k);
 }
 
 /**
@@ -33,7 +33,7 @@ Storage.prototype.set = function(k, v) {
  * @memberOf Storage
  */
 Storage.prototype.count = function() {
-    return Object.keys(this.storage).length;
+    return objc_msgSendSync(this.nid, "count");
 }
 
 /**
@@ -45,7 +45,8 @@ Storage.prototype.count = function() {
  * @memberOf Storage
  */
 Storage.prototype.forall = function(f) {
-    for (var k in this.storage) {
-        f(k, this.storage[k]);
+    var storage = objc_msgSendSync(this.nid, "dictionary");
+    for (var k in storage) {
+        f(k, storage[k]);
     }
 }

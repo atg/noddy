@@ -1,2 +1,6 @@
-// Implement the MainWindow, Tab, Editor and Document classes
+var Window = function() {
+  
+};
+
+global.Window = Window;
 
