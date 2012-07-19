@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Chocolat API &rsaquo; UI</title>
+    
+    <link href="../apidocsstyle.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <h1>Chocolat API</h1>
+    <h2>UI</h2>
+    
+    <nav>
+    
+        <a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    
+        <a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    
+        <a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    
+        <a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    
+        <a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    
+        <a href="inserttextatlocation.html">insertTextAtLocation</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    
+        <a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    
+        <a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    
+        <a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    
+        <a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    
+        <a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    
+        <a href="sendmessage.html">sendMessage</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    
+        <a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    
+    </nav>
+    
+    
+    
+        <h3><span class="parent-name">UI</span>.<span class="item-name">addMenuItem</span>(<var>path</var>, <var>shortcut</var>, <var>callback</var>)</h3>
+        <p>Add a menu item at the given path.</p>
+        
+        
+        <ul class="params">
+            
+                <li class="param"><span class="param-name">path</span>: <span class="param-type">String</span> &ndash; the path of the new menu item.</li>
+            
+                <li class="param"><span class="param-name">shortcut</span>: <span class="param-type">String</span> &ndash; keyboard shortcut, e.g. `ctrl-alt-cmd-b`.</li>
+            
+                <li class="param"><span class="param-name">callback</span>: <span class="param-type">Function</span> &ndash; a callback to be executed when the menu item is selected.</li>
+            
+        </ul>
+        
+        
+        
+    
+    
+        <h3><span class="parent-name">UI</span>.<span class="item-name">addKeyboardShortcut</span>(<var>shortcut</var>, <var>callback</var>)</h3>
+        <p>Add a keyboard shortcut.</p>
+        
+        
+        <ul class="params">
+            
+                <li class="param"><span class="param-name">shortcut</span>: <span class="param-type">String</span> &ndash; the keyboard shortcut, e.g. `ctrl-alt-cmd-b`</li>
+            
+                <li class="param"><span class="param-name">callback</span>: <span class="param-type">Function</span> &ndash; the callback function to execute.</li>
+            
+        </ul>
+        
+        
+        
+    
+    
+        <h3><span class="parent-name">UI</span>.<span class="item-name">addStatusItem</span>(<var>name</var>, <var>valueFunction</var>, <var>selector</var>)</h3>
+        <p>Add an item in the bottom status bar.</p>
+        
+        
+        <ul class="params">
+            
+                <li class="param"><span class="param-name">name</span>: <span class="param-type">String</span> &ndash; the name of the item to add.</li>
+            
+                <li class="param"><span class="param-name">valueFunction</span>: <span class="param-type">Function</span> &ndash; a function that will return the value to display in the status bar.</li>
+            
+                <li class="param"><span class="param-name">selector</span>: <span class="param-type">String</span> &ndash; a scope selector e.g. `source.objc`</li>
+            
+        </ul>
+        
+        
+        
+    
+        
+        
+</body>
+</html>

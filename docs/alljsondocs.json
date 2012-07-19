@@ -1,0 +1,1528 @@
+
+
+
+
+
+
+
+
+[
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "title",
+        "description": "the title of your alert."
+      },
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "message",
+        "description": "the body of your alert message."
+      },
+      {
+        "type": "param",
+        "types": [
+          "Array"
+        ],
+        "name": "buttons",
+        "description": "an array of buttons to display."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Alert"
+      }
+    ],
+    "description": {
+      "full": "<p>Shows an alert.</p>\n\n<h2>Example</h2>\n\n<pre><code>Alert.show(\"My Title\", \"My awesome body!\", [\"Yes\", \"No\"]);\n</code></pre>",
+      "summary": "<p>Shows an alert.</p>",
+      "body": "<h2>Example</h2>\n\n<pre><code>Alert.show(\"My Title\", \"My awesome body!\", [\"Yes\", \"No\"]);\n</code></pre>"
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Alert.show = function(title, message, buttons) {\n    \n    return global.objc_msgSendSync(private_get_mixin(), \"showAlert:\", {\n        \"title\": title,\n        \"message\": message,\n        \"buttons\": buttons\n    });\n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "Alert",
+      "name": "show",
+      "string": "Alert.show()"
+    }
+  }
+]
+
+
+
+
+
+
+
+
+[
+  {
+    "tags": [
+      {
+        "type": "memberOf",
+        "parent": "Clipboard"
+      },
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "value",
+        "description": "the value to copy."
+      }
+    ],
+    "description": {
+      "full": "<p>Copy a string into the clipboard so that it can be pasted later.</p>",
+      "summary": "<p>Copy a string into the clipboard so that it can be pasted later.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Clipboard.copy = function(value) {\n    global.objc_msgSendSync(private_get_mixin(), \"clipboard_copy\", value);\n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "Clipboard",
+      "name": "copy",
+      "string": "Clipboard.copy()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "memberOf",
+        "parent": "Clipboard"
+      },
+      {
+        "type": "returns",
+        "string": "{String} the last item from the clipboard."
+      }
+    ],
+    "description": {
+      "full": "<p>Returns the last string that was copied to the clipboard.</p>",
+      "summary": "<p>Returns the last string that was copied to the clipboard.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Clipboard.paste = function() {\n    return global.objc_msgSendSync(private_get_mixin(), \"clipboard_paste\");\n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "Clipboard",
+      "name": "paste",
+      "string": "Clipboard.paste()"
+    }
+  }
+]
+
+
+
+
+
+
+
+
+[
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "k",
+        "description": "the key to retrieve."
+      },
+      {
+        "type": "return",
+        "types": [
+          "Object"
+        ],
+        "description": "the value for the given key."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Storage"
+      }
+    ],
+    "description": {
+      "full": "<p>Retrieves a value in the storage.</p>",
+      "summary": "<p>Retrieves a value in the storage.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Storage.prototype.get = function(k) {\n    return objc_msgSendSync(this.nid, \"valueForKey\", k);\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Storage",
+      "name": "get",
+      "string": "Storage.prototype.get()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "k",
+        "description": "the key to set."
+      },
+      {
+        "type": "param",
+        "types": [
+          "Object"
+        ],
+        "name": "v",
+        "description": "the value to set it to (can be anything)."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Storage"
+      }
+    ],
+    "description": {
+      "full": "<p>Sets a value in the storage.</p>",
+      "summary": "<p>Sets a value in the storage.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Storage.prototype.set = function(k, v) {\n    objc_msgSend(this.nid, \"setValue:forKey:\", v, k);\n}",
+    "ctx": {
+      "type": "method",
+      "constructor": "Storage",
+      "name": "set",
+      "string": "Storage.prototype.set()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Number"
+        ],
+        "description": "number of keys in storage."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Storage"
+      }
+    ],
+    "description": {
+      "full": "<p>Returns the number of keys in the storage.</p>",
+      "summary": "<p>Returns the number of keys in the storage.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Storage.prototype.count = function() {\n    return objc_msgSendSync(this.nid, \"count\");\n}",
+    "ctx": {
+      "type": "method",
+      "constructor": "Storage",
+      "name": "count",
+      "string": "Storage.prototype.count()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "f",
+        "description": "the function to apply to each items `f(k,v)`."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Storage"
+      }
+    ],
+    "description": {
+      "full": "<p>Applies function <code>f</code> to every items in the storage. The function should<br />have the following signature: <code>f(k, v)</code> where k is the key for the item<br />and v is its value.</p>",
+      "summary": "<p>Applies function <code>f</code> to every items in the storage. The function should<br />have the following signature: <code>f(k, v)</code> where k is the key for the item<br />and v is its value.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Storage.prototype.forall = function(f) {\n    var storage = objc_msgSendSync(this.nid, \"dictionary\");\n    for (var k in storage) {\n        f(k, storage[k]);\n    }\n}",
+    "ctx": {
+      "type": "method",
+      "constructor": "Storage",
+      "name": "forall",
+      "string": "Storage.prototype.forall()"
+    }
+  }
+]
+
+
+
+
+
+
+
+
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>@api private</p>",
+      "summary": "<p>@api private</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "function private_get_mixin() {\n    var stacktrace = new Error().stack;\n    \n    // Find things named /X.chocmixin\n    var m = new RegExp(\"/([^/]+)\\\\.chocmixin\", \"i\").exec(stacktrace);\n    if (m.length >= 2)\n        return \"NODDYID$$MIXIN$$\" + m[1];\n    \n    return null;\n}",
+    "ctx": {
+      "type": "function",
+      "name": "private_get_mixin",
+      "string": "private_get_mixin()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>@api private</p>",
+      "summary": "<p>@api private</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "function createObject(parent) {\n function TempClass() {}\n TempClass.prototype = parent;\n var child = new TempClass();\n return child;\n}",
+    "ctx": {
+      "type": "function",
+      "name": "createObject",
+      "string": "createObject()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>@api private</p>",
+      "summary": "<p>@api private</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "function inherit(sub, super) {\n var newSubPrototype = createObject(super.prototype); \n newSubPrototype.constructor = sub; \n sub.prototype = newSubPrototype;\n}",
+    "ctx": {
+      "type": "function",
+      "name": "inherit",
+      "string": "inherit()"
+    }
+  }
+]
+
+
+
+
+
+
+
+
+[
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Number"
+        ],
+        "name": "loc",
+        "description": "the starting location (or index) of the range."
+      },
+      {
+        "type": "param",
+        "types": [
+          "Number"
+        ],
+        "name": "len",
+        "description": "the length of the range."
+      }
+    ],
+    "description": {
+      "full": "<p>Creates a new Range.</p>",
+      "summary": "<p>Creates a new Range.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "var Range = function(loc, len) {\n    this.location = loc;\n    this.length = len;\n}\n\nglobal.Range = Range;",
+    "ctx": {
+      "type": "function",
+      "name": "Range",
+      "string": "Range()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Number"
+        ],
+        "description": "the end of the range."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Range"
+      }
+    ],
+    "description": {
+      "full": "<p>Returns the end of the range (i.e. location + length)</p>",
+      "summary": "<p>Returns the end of the range (i.e. location + length)</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Range.prototype.max = function() {\n    return this.location + this.length;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Range",
+      "name": "max",
+      "string": "Range.prototype.max()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Number"
+        ],
+        "description": "the location of the range."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Range"
+      }
+    ],
+    "description": {
+      "full": "<p>Returns the range's location</p>",
+      "summary": "<p>Returns the range's location</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Range.prototype.min = function() {\n    return this.location;\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Range",
+      "name": "min",
+      "string": "Range.prototype.min()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Object"
+        ],
+        "name": "rng",
+        "description": "a range."
+      },
+      {
+        "type": "return",
+        "types": [
+          "Bool"
+        ],
+        "description": "whether the given range is contained within this range."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Range"
+      }
+    ],
+    "description": {
+      "full": "<p>Check if a range is contained in another range.</p>",
+      "summary": "<p>Check if a range is contained in another range.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Range.prototype.containsRange = function(rng) {\n    return (this.location >= rng.location && this.length <= rng.length);\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Range",
+      "name": "containsRange",
+      "string": "Range.prototype.containsRange()"
+    }
+  }
+]
+
+
+
+
+
+
+
+
+[
+  {
+    "tags": [
+      {
+        "type": "memberOf",
+        "parent": "Recipe"
+      }
+    ],
+    "description": {
+      "full": "<p>Run the recipe</p>",
+      "summary": "<p>Run the recipe</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Recipe.run = function() {\n    \n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "Recipe",
+      "name": "run",
+      "string": "Recipe.run()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Number"
+        ],
+        "description": "the length of the document."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Recipe"
+      }
+    ],
+    "description": {
+      "full": "<p>Returns the length of the document.</p>",
+      "summary": "<p>Returns the length of the document.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Recipe.prototype.length = function() {\n    \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Recipe",
+      "name": "length",
+      "string": "Recipe.prototype.length()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "String"
+        ],
+        "description": "the content of the document."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Recipe"
+      }
+    ],
+    "description": {
+      "full": "<p>Returns the text of the document.</p>",
+      "summary": "<p>Returns the text of the document.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Recipe.prototype.text = function() {\n    \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Recipe",
+      "name": "text",
+      "string": "Recipe.prototype.text()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Range"
+        ],
+        "name": "rng",
+        "description": "the desired range."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Recipe"
+      }
+    ],
+    "description": {
+      "full": "<p>Returns text in range.</p>",
+      "summary": "<p>Returns text in range.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Recipe.prototype.textInRange = function(rng) {\n    \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Recipe",
+      "name": "textInRange",
+      "string": "Recipe.prototype.textInRange()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Range"
+        ],
+        "name": "rng",
+        "description": "a range."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Recipe"
+      }
+    ],
+    "description": {
+      "full": "<p>Expands a range to cover the full lines.</p>",
+      "summary": "<p>Expands a range to cover the full lines.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Recipe.prototype.rangeOfLinesInRange = function(rng){\n  \n};\nRecipe.prototype.contentRangeOfLinesInRange = function(rng){\n  \n};\nRecipe.prototype.lineIndexesForCharacterRange = function(rng){\n  \n};\n\n\nRecipe.prototype.characterRangeForLineIndexes = function(rng) {\n  \n};\n\nRecipe.prototype.lineMarkersForCharacterRange = function(rng) {\n  \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Recipe",
+      "name": "rangeOfLinesInRange",
+      "string": "Recipe.prototype.rangeOfLinesInRange()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "f",
+        "description": "a function with a single argument; the line."
+      },
+      {
+        "type": "param",
+        "types": [
+          "Range"
+        ],
+        "name": "rng",
+        "description": "an optional range. Defaults to the whole document if omitted."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Recipe"
+      }
+    ],
+    "description": {
+      "full": "<p>Execute function <code>f</code> on lines in range <code>rng</code>. If no range is passed, execute the function<br />on all the lines in the document.</p>",
+      "summary": "<p>Execute function <code>f</code> on lines in range <code>rng</code>. If no range is passed, execute the function<br />on all the lines in the document.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Recipe.prototype.foreachLine = function(f, rng) {\n  \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Recipe",
+      "name": "foreachLine",
+      "string": "Recipe.prototype.foreachLine()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Range"
+        ],
+        "name": "rng",
+        "description": "the range of text you want to replace."
+      },
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "replacement",
+        "description": "the text to replace it with."
+      },
+      {
+        "type": "param",
+        "types": [
+          "Bool"
+        ],
+        "name": "recordUndo",
+        "description": "whether or not to record the operation for undo (Default is true)."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Recipe"
+      }
+    ],
+    "description": {
+      "full": "<p>Replace text in <code>rng</code> with <code>replacement</code>, optionally recording the operation for undo.</p>",
+      "summary": "<p>Replace text in <code>rng</code> with <code>replacement</code>, optionally recording the operation for undo.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Recipe.prototype.replaceTextInRange = function(rng, replacement, recordUndo) {\n  \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Recipe",
+      "name": "replaceTextInRange",
+      "string": "Recipe.prototype.replaceTextInRange()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Range"
+        ],
+        "name": "rng",
+        "description": "the range of text to delete."
+      },
+      {
+        "type": "param",
+        "types": [
+          "Bool"
+        ],
+        "name": "recordUndo",
+        "description": "whether or not to record the operation for undo (Default is true)."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Recipe"
+      }
+    ],
+    "description": {
+      "full": "<p>Delete text in range <code>rng</code>, optionally recording the operation for undo.</p>",
+      "summary": "<p>Delete text in range <code>rng</code>, optionally recording the operation for undo.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Recipe.prototype.deleteTextInRange = function(rng, recordUndo) {\n  \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Recipe",
+      "name": "deleteTextInRange",
+      "string": "Recipe.prototype.deleteTextInRange()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Number"
+        ],
+        "name": "location",
+        "description": "the location at which to insert the new text."
+      },
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "newText",
+        "description": "the text to insert at `location`."
+      },
+      {
+        "type": "param",
+        "types": [
+          "Bool"
+        ],
+        "name": "recordUndo",
+        "description": "whether or not to record the operation for undo (Default is true)."
+      }
+    ],
+    "description": {
+      "full": "<p>Insert text at specified location, optionally recording the operation for undo.</p>",
+      "summary": "<p>Insert text at specified location, optionally recording the operation for undo.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Recipe.prototype.insertTextAtLocation = function(location, newText, recordUndo) {\n  \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Recipe",
+      "name": "insertTextAtLocation",
+      "string": "Recipe.prototype.insertTextAtLocation()"
+    }
+  }
+]
+
+
+
+
+
+
+
+
+[
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "path",
+        "description": "the path of the new menu item."
+      },
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "shortcut",
+        "description": "keyboard shortcut, e.g. `ctrl-alt-cmd-b`."
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": "a callback to be executed when the menu item is selected."
+      },
+      {
+        "type": "memberOf",
+        "parent": "UI"
+      }
+    ],
+    "description": {
+      "full": "<p>Add a menu item at the given path.</p>",
+      "summary": "<p>Add a menu item at the given path.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "UI.addMenuItem = function(path, shortcut, options, callback) {\n    \n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "UI",
+      "name": "addMenuItem",
+      "string": "UI.addMenuItem()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "shortcut",
+        "description": "the keyboard shortcut, e.g. `ctrl-alt-cmd-b`"
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "callback",
+        "description": "the callback function to execute."
+      },
+      {
+        "type": "memberOf",
+        "parent": "UI"
+      }
+    ],
+    "description": {
+      "full": "<p>Add a keyboard shortcut.</p>",
+      "summary": "<p>Add a keyboard shortcut.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "UI.addKeyboardShortcut = function(shortcut, callback) {\n    \n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "UI",
+      "name": "addKeyboardShortcut",
+      "string": "UI.addKeyboardShortcut()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "name",
+        "description": "the name of the item to add."
+      },
+      {
+        "type": "param",
+        "types": [
+          "Function"
+        ],
+        "name": "valueFunction",
+        "description": "a function that will return the value to display in the status bar."
+      },
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "selector",
+        "description": "a scope selector e.g. `source.objc`"
+      },
+      {
+        "type": "memberOf",
+        "parent": "UI"
+      }
+    ],
+    "description": {
+      "full": "<p>Add an item in the bottom status bar.</p>",
+      "summary": "<p>Add an item in the bottom status bar.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "UI.addStatusItem = function (name, valueFunction, selector) {\n    \n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "UI",
+      "name": "addStatusItem",
+      "string": "UI.addStatusItem()"
+    }
+  }
+]
+
+
+
+
+
+
+
+
+[
+  {
+    "tags": [
+      {
+        "type": "memberOf",
+        "parent": "Window"
+      }
+    ],
+    "description": {
+      "full": "<p>Create a new window.</p>",
+      "summary": "<p>Create a new window.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "var Window = function() {\n  this.resourcePath = '';\n  this.indexPath = '';\n  this.generateHTML = '';\n  this.canResize = true;\n  this.onLoad = null;\n  this.onMessage = null;\n};\n\nglobal.Window = Window;",
+    "ctx": {
+      "type": "function",
+      "name": "Window",
+      "string": "Window()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "memberOf",
+        "parent": "Window"
+      }
+    ],
+    "description": {
+      "full": "<p>Display the window.</p>",
+      "summary": "<p>Display the window.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Window.prototype.run = function() {\n\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Window",
+      "name": "run",
+      "string": "Window.prototype.run()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "memberOf",
+        "parent": "Window"
+      }
+    ],
+    "description": {
+      "full": "<p>Close the window.</p>",
+      "summary": "<p>Close the window.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Window.prototype.close = function() {\n\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Window",
+      "name": "close",
+      "string": "Window.prototype.close()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "the"
+        ],
+        "description": "window's frame."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Window"
+      }
+    ],
+    "description": {
+      "full": "<p>Get the window's frame.</p>",
+      "summary": "<p>Get the window's frame.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Window.prototype.frame = function() {\n\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Window",
+      "name": "frame",
+      "string": "Window.prototype.frame()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "memberOf",
+        "parent": "Window"
+      }
+    ],
+    "description": {
+      "full": "<p>Set the window's frame. The frame should be an object with the x, y, width and<br />height properties. e.g. <code>{x: 0, y: 0, width: 250, height: 300}</code><br />param {Object} newFrame the new window's frame.<br />param {Bool} shouldAnimate optional, whether to animate the resizing or not (default: false)</p>",
+      "summary": "<p>Set the window's frame. The frame should be an object with the x, y, width and<br />height properties. e.g. <code>{x: 0, y: 0, width: 250, height: 300}</code><br />param {Object} newFrame the new window's frame.<br />param {Bool} shouldAnimate optional, whether to animate the resizing or not (default: false)</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Window.prototype.setFrame = function(newFrame, shouldAnimate) {\n  if (typeof shouldAnimate === 'undefined') {shouldAnimate = false;}\n\n};\n\nWindow.prototype.eval = function(str) {\n\n};\n\nWindow.prototype.addFunction = function(name, f) {\n\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Window",
+      "name": "setFrame",
+      "string": "Window.prototype.setFrame()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "msg",
+        "description": "the name of the message to send."
+      },
+      {
+        "type": "param",
+        "types": [
+          "Value"
+        ],
+        "name": "arg",
+        "description": "an argument to pass to the callback function."
+      }
+    ],
+    "description": {
+      "full": "<p>Send a message to the window that you can catch with the window.onMessage attribute.</p>",
+      "summary": "<p>Send a message to the window that you can catch with the window.onMessage attribute.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Window.prototype.sendMessage = function (msg, arg) {\n\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Window",
+      "name": "sendMessage",
+      "string": "Window.prototype.sendMessage()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "memberOf",
+        "parent": "Sheet"
+      }
+    ],
+    "description": {
+      "full": "<p>Create a new sheet.</p>",
+      "summary": "<p>Create a new sheet.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "var Sheet = function(w) {\n  Window.call(this);\n  this.parentWindow = w;\n}\n\ninherit(Sheet, Window);\n\nglobal.Sheet = Sheet;",
+    "ctx": {
+      "type": "function",
+      "name": "Sheet",
+      "string": "Sheet()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "Range"
+        ],
+        "name": "range",
+        "description": "the range of text over which the popover should appear."
+      },
+      {
+        "type": "param",
+        "types": [
+          "Editor"
+        ],
+        "name": "editor",
+        "description": "the editor containing the text."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Popover"
+      }
+    ],
+    "description": {
+      "full": "<p>Creates a new Popover.</p>",
+      "summary": "<p>Creates a new Popover.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "var Popover = function(range, editor) {\n  Window.call(this);\n  this.range = range;\n  this.editor = editor;\n};\n\ninherit(Popover, Window);\nglobal.Popover = Popover;",
+    "ctx": {
+      "type": "function",
+      "name": "Popover",
+      "string": "Popover()"
+    }
+  }
+]
+
+
+
+
+
+
+
+
+[
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>@api private</p>",
+      "summary": "<p>@api private</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "var MainWindow = function(nid) {\n  this.nid = nid;\n};\n\nglobal.MainWindow = MainWindow;",
+    "ctx": {
+      "type": "function",
+      "name": "MainWindow",
+      "string": "MainWindow()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "MainWindow"
+        ],
+        "description": "the current MainWindow."
+      },
+      {
+        "type": "memberOf",
+        "parent": "MainWindow"
+      }
+    ],
+    "description": {
+      "full": "<p>Class method that returns the current window.</p>",
+      "summary": "<p>Class method that returns the current window.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "MainWindow.current = function() {\n  \n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "MainWindow",
+      "name": "current",
+      "string": "MainWindow.current()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Array"
+        ],
+        "description": "tabs."
+      },
+      {
+        "type": "memberOf",
+        "parent": "MainWindow"
+      }
+    ],
+    "description": {
+      "full": "<p>Returns and array of tabs in the main window.</p>",
+      "summary": "<p>Returns and array of tabs in the main window.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "MainWindow.prototype.tabs = function() {\n  \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "MainWindow",
+      "name": "tabs",
+      "string": "MainWindow.prototype.tabs()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Tab"
+        ],
+        "description": "the active tab in the main window."
+      },
+      {
+        "type": "memberOf",
+        "parent": "MainWindow"
+      }
+    ],
+    "description": {
+      "full": "<p>Get the current, active tab from the main window.</p>",
+      "summary": "<p>Get the current, active tab from the main window.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "MainWindow.prototype.currentTab = function() {\n  \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "MainWindow",
+      "name": "currentTab",
+      "string": "MainWindow.prototype.currentTab()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "param",
+        "types": [
+          "String"
+        ],
+        "name": "selector",
+        "description": "the message selector to send."
+      },
+      {
+        "type": "param",
+        "types": [
+          "Array"
+        ],
+        "name": "arguments",
+        "description": "the arguments to send along with the message."
+      },
+      {
+        "type": "memberOf",
+        "parent": "MainWindow"
+      }
+    ],
+    "description": {
+      "full": "<p>Send an objective-c message to the MainWindow.</p>",
+      "summary": "<p>Send an objective-c message to the MainWindow.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "MainWindow.prototype.sendMessage = function(selector, arguments) {\n  \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "MainWindow",
+      "name": "sendMessage",
+      "string": "MainWindow.prototype.sendMessage()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Storage"
+        ],
+        "description": "the storage."
+      },
+      {
+        "type": "memberOf",
+        "parent": "MainWindow"
+      }
+    ],
+    "description": {
+      "full": "<p>Access the storage object of the MainWindow (see Storage class).</p>",
+      "summary": "<p>Access the storage object of the MainWindow (see Storage class).</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "MainWindow.prototype.storage = function() {\n  \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "MainWindow",
+      "name": "storage",
+      "string": "MainWindow.prototype.storage()"
+    }
+  },
+  {
+    "tags": [],
+    "description": {
+      "full": "<p>@api private</p>",
+      "summary": "<p>@api private</p>",
+      "body": ""
+    },
+    "ignore": false,
+    "code": "var Tab = function(nid) {\n  this.nid = nid;\n};\n\nglobal.Tab = Tab;",
+    "ctx": {
+      "type": "function",
+      "name": "Tab",
+      "string": "Tab()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Tab"
+        ],
+        "description": "the active tab."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Tab"
+      }
+    ],
+    "description": {
+      "full": "<p>Class method that returns the current, active tab.</p>",
+      "summary": "<p>Class method that returns the current, active tab.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Tab.current = function() {\n  \n};",
+    "ctx": {
+      "type": "method",
+      "receiver": "Tab",
+      "name": "current",
+      "string": "Tab.current()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "MainWindow"
+        ],
+        "description": "the parent MainWindow."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Tab"
+      }
+    ],
+    "description": {
+      "full": "<p>The window which the tab is part of</p>",
+      "summary": "<p>The window which the tab is part of</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Tab.prototype.window = function() {\n  \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Tab",
+      "name": "window",
+      "string": "Tab.prototype.window()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Array"
+        ],
+        "description": "an array of visible `Editor`s."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Tab"
+      }
+    ],
+    "description": {
+      "full": "<p>Get a list of all visible editors in the tab.</p>",
+      "summary": "<p>Get a list of all visible editors in the tab.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Tab.prototype.editors = function() {\n  \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Tab",
+      "name": "editors",
+      "string": "Tab.prototype.editors()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Editor"
+        ],
+        "description": "the current editor."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Tab"
+      }
+    ],
+    "description": {
+      "full": "<p>Get the active editor in this tab.</p>",
+      "summary": "<p>Get the active editor in this tab.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Tab.prototype.currentEditor = function() {\n  \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Tab",
+      "name": "currentEditor",
+      "string": "Tab.prototype.currentEditor()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Array"
+        ],
+        "description": "an array containing the active `Document`s"
+      },
+      {
+        "type": "memberOf",
+        "parent": "Tab"
+      }
+    ],
+    "description": {
+      "full": "<p>Get a list of all the documents in the \"Active\" part of the sidebar.</p>",
+      "summary": "<p>Get a list of all the documents in the \"Active\" part of the sidebar.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Tab.prototype.activeDocuments = function() {\n  \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Tab",
+      "name": "activeDocuments",
+      "string": "Tab.prototype.activeDocuments()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Array"
+        ],
+        "description": "an array containing the visible `Document`s"
+      },
+      {
+        "type": "memberOf",
+        "parent": "Tab"
+      }
+    ],
+    "description": {
+      "full": "<p>A list of all the <code>Document</code>s currently visible in this tab.</p>",
+      "summary": "<p>A list of all the <code>Document</code>s currently visible in this tab.</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Tab.prototype.visibleDocuments = function() {\n  \n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Tab",
+      "name": "visibleDocuments",
+      "string": "Tab.prototype.visibleDocuments()"
+    }
+  },
+  {
+    "tags": [
+      {
+        "type": "return",
+        "types": [
+          "Storage"
+        ],
+        "description": "the storage."
+      },
+      {
+        "type": "memberOf",
+        "parent": "Tab"
+      }
+    ],
+    "description": {
+      "full": "<p>Access the storage object of the Tab (see Storage class).</p>",
+      "summary": "<p>Access the storage object of the Tab (see Storage class).</p>",
+      "body": ""
+    },
+    "isPrivate": false,
+    "ignore": false,
+    "code": "Tab.prototype.storage = function() {\n\n};",
+    "ctx": {
+      "type": "method",
+      "constructor": "Tab",
+      "name": "storage",
+      "string": "Tab.prototype.storage()"
+    }
+  }
+]

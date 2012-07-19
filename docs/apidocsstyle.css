@@ -1,0 +1,24 @@
+html {
+    font-family: Arial, "Helvetica Neue",  Helvetica, Geneva, sans-serif;
+}
+h3, code, var, .param-name, .param-type {
+    font-family: "Menlo", "Monaco", mono;
+}
+h3 {
+    font-weight: normal;
+    color: gray;
+}
+.item-name {
+    font-weight: bold;
+}
+var, .item-name, .parent-name {
+    color: black;
+}
+
+ul /* .params */ {
+    list-style-type: square;
+    color: #000;
+}
+.param-name {
+    font-weight: bold;
+}

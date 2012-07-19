@@ -23,3 +23,13 @@ id node_to_cocoa(v8::Handle<v8::Value> val);
 - (v8::Local<v8::Function>)functionValue;
 
 @end
+
+/*
+ #define ENSUREERROR(value, name) { NSLog("Error in [%@ %@]: %s was %@", [self class], NSStringFromSelector(_cmd), name, value); return nil; }
+ #define ENSURE_STRING(x) if (![x isKindOfClass:[NSString class]]) { ENSUREERROR(x, #x); }
+ #define ENSURE_NUMBER(x) if (![x isKindOfClass:[NSNumber class]]) { ENSUREERROR(x, #x); }
+ #define ENSURE_ARRAY(x) if (![x isKindOfClass:[NSArray class]]) { ENSUREERROR(x, #x); }
+ #define ENSURE_DICTIONARY(x) if (![x isKindOfClass:[NSDictionary class]]) { ENSUREERROR(x, #x); }
+ #define ENSURE_STRING_ARRAY(x) if (![x isKindOfClass:[NSArray class]]) return nil; for (id y in x) { ENSURE_STRING(y); }
+ #define ENSURE_NUMBER_ARRAY(x) if (![x isKindOfClass:[NSArray class]]) return nil; for (id y in x) { ENSURE_NUMBER(y); }
+ */
