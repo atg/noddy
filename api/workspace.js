@@ -61,7 +61,7 @@ Window.prototype.addFunction = function(name, f) {
  */
 Window.prototype.sendMessage = function (msg, arg) {
   
-}
+};
 
 
 var Sheet = function(w) {
@@ -72,3 +72,19 @@ var Sheet = function(w) {
 inherit(Sheet, Window);
 
 global.Sheet = Sheet;
+
+/**
+ * Creates a new Popover.
+ * 
+ * @param {Range} range the range of text over which the popover should appear.
+ * @param {Editor} editor the editor containing the text.
+ */
+var Popover = function(range, editor) {
+  Window.call(this);
+  this.range = range;
+  this.editor = editor;
+};
+
+inherit(Popover, Window);
+global.Popover = Popover;
+
