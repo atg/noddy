@@ -22,8 +22,6 @@
     
         <a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;
     
-        <a href="inserttextatlocation.html">insertTextAtLocation</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
         <a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;
     
         <a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -33,8 +31,6 @@
         <a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;
     
         <a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="sendmessage.html">sendMessage</a>&nbsp;&nbsp;&nbsp;&nbsp;
     
         <a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;
     
@@ -78,9 +74,33 @@
         
     
     
-        <h3>.<span class="item-name">setFrame</span>()</h3>
-        <p>Set the window's frame. The frame should be an object with the x, y, width and<br />height properties. e.g. <code>{x: 0, y: 0, width: 250, height: 300}</code><br />param {Object} newFrame the new window's frame.<br />param {Bool} shouldAnimate optional, whether to animate the resizing or not (default: false)</p>
+        <h3>.<span class="item-name">setFrame</span>(<var>newFrame</var>, <var>shouldAnimate</var>)</h3>
+        <p>Set the window's frame. The frame should be an object with the x, y, width and<br />height properties. e.g. <code>{x: 0, y: 0, width: 250, height: 300}</code></p>
         
+        
+        <ul class="params">
+            
+                <li class="param"><span class="param-name">newFrame</span>: <span class="param-type">Object</span> &ndash; the new window's frame.</li>
+            
+                <li class="param"><span class="param-name">shouldAnimate</span>: <span class="param-type">Bool</span> &ndash; optional, whether to animate the resizing or not (default: false)</li>
+            
+        </ul>
+        
+        
+        
+    
+    
+        <h3>.<span class="item-name">sendMessage</span>(<var>msg</var>, <var>arg</var>)</h3>
+        <p>Send a message to the window that you can catch with the window.onMessage attribute.</p>
+        
+        
+        <ul class="params">
+            
+                <li class="param"><span class="param-name">msg</span>: <span class="param-type">String</span> &ndash; the name of the message to send.</li>
+            
+                <li class="param"><span class="param-name">arg</span>: <span class="param-type">Value</span> &ndash; an argument to pass to the callback function.</li>
+            
+        </ul>
         
         
         
