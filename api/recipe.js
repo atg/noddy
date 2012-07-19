@@ -16,10 +16,22 @@ Recipe.run = function() {
     
 };
 
+/**
+ * Returns the length of the document.
+ *
+ * @return {Number} the length of the document.
+ * @memberOf Recipe
+ */
 Recipe.prototype.length = function() {
     
 };
 
+/**
+ * Returns the text of the document.
+ *
+ * @return {String} the content of the document.
+ * @memberOf Recipe
+ */
 Recipe.prototype.text = function() {
     
 };
@@ -34,6 +46,12 @@ Recipe.prototype.textInRange = function(rng) {
     
 };
 
+/**
+ * Expands a range to cover the full lines.
+ *
+ * @param {Range} rng a range.
+ * @memberOf Recipe
+ */
 Recipe.prototype.rangeOfLinesInRange = function(rng){
   
 };
