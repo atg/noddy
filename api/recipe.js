@@ -112,6 +112,7 @@ Recipe.prototype.deleteTextInRange = function(rng, recordUndo) {
  * @param {Number} location the location at which to insert the new text.
  * @param {String} newText the text to insert at `location`.
  * @param {Bool} recordUndo whether or not to record the operation for undo (Default is true).
+ * @memberOf Recipe
  */
 Recipe.prototype.insertTextAtLocation = function(location, newText, recordUndo) {
   
