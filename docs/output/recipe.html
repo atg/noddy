@@ -81,11 +81,52 @@
     <td id="content">
         
         
-            <h3><span class="parent-name">Recipe</span>.<span class="item-name">run</span>()</h3>
+            <h3><span class="parent-name">Recipe</span>.<span class="item-name">run</span>(<var>callback</var>)</h3>
             <p>Run the recipe</p>
             
             
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">callback</span><span class="bigspace"> </span><span class="param-type">Function(Recipe)</span> &ndash; A callback function in which to make the changes. The function will be given an instance of Recipe as its argument, and may return false at any time in order to cancel the changes.</li>
+                
+            </ul>
             
+            
+            
+            
+            <h2>Example</h2>
+
+<pre><code>Recipe.run(function(recipe) {
+    recipe.insertTextAtLocation(recipe.length, "Hello World!");
+});
+</code></pre>
+
+        
+        
+            <h3>.<span class="item-name">selection</span>()</h3>
+            <p>Returns the editor's selected range.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Range</span> &ndash; the selected character range.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">setSelection</span>()</h3>
+            <p>Set the editor's selected range.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Range</span> &ndash; the selected character range.
+            </p>
             
             
             
@@ -122,6 +163,21 @@
 
         
         
+            <h3>.<span class="item-name">setText</span>()</h3>
+            <p>Set the document's text.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">String</span> &ndash; the content of the document.
+            </p>
+            
+            
+            
+
+        
+        
             <h3>.<span class="item-name">textInRange</span>(<var>rng</var>)</h3>
             <p>Returns text in range.</p>
             
@@ -140,12 +196,63 @@
         
         
             <h3>.<span class="item-name">rangeOfLinesInRange</span>(<var>rng</var>)</h3>
-            <p>Expands a range to cover the full lines.</p>
+            <p>Expands a given range to cover the entire range of each line, <em>including</em> ending newlines.</p>
             
             
             <ul class="params">
                 
-                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; a range.</li>
+                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; a range of characters to expand.</li>
+                
+            </ul>
+            
+            
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">contentRangeOfLinesInRange</span>(<var>rng</var>)</h3>
+            <p>Expands a given range to cover the entire range of each line, <em>excluding</em> ending newlines.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; a range of characters to expand.</li>
+                
+            </ul>
+            
+            
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">lineIndexesForCharacterRange</span>(<var>rng</var>)</h3>
+            <p>Gives a range of line indexes (line numbers starting from zero) for the given character range.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; a range of characters.</li>
+                
+            </ul>
+            
+            
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">characterRangeForLineIndexes</span>(<var>rng</var>)</h3>
+            <p>Gives a character range for the given range of line indexes (line numbers starting from zero).</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; a range of line indexes.</li>
                 
             </ul>
             
@@ -157,12 +264,12 @@
         
         
             <h3>.<span class="item-name">foreachLine</span>(<var>f</var>, <var>rng</var>)</h3>
-            <p>Execute function <code>f</code> on lines in range <code>rng</code>. If no range is passed, execute the function<br />on all the lines in the document.</p>
+            <p>Execute function <code>f</code> on lines in character range <code>rng</code>. If no range is passed, execute the function<br />on all the lines in the document.</p>
             
             
             <ul class="params">
                 
-                    <li class="param"><span class="param-name">f</span><span class="bigspace"> </span><span class="param-type">Function</span> &ndash; a function with a single argument; the line.</li>
+                    <li class="param"><span class="param-name">f</span><span class="bigspace"> </span><span class="param-type">Function</span> &ndash; a function with a single argument: the a line marker. Return a string to replace it with (excluding the trailing newline) or null to delete it.</li>
                 
                     <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; an optional range. Defaults to the whole document if omitted.</li>
                 
@@ -185,7 +292,7 @@
                 
                     <li class="param"><span class="param-name">replacement</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the text to replace it with.</li>
                 
-                    <li class="param"><span class="param-name">recordUndo</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; whether or not to record the operation for undo (Default is true).</li>
+                    <li class="param"><span class="param-name">recordUndo</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; **Optional** whether or not to record the operation for undo (default is true).</li>
                 
             </ul>
             
@@ -204,7 +311,7 @@
                 
                     <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; the range of text to delete.</li>
                 
-                    <li class="param"><span class="param-name">recordUndo</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; whether or not to record the operation for undo (Default is true).</li>
+                    <li class="param"><span class="param-name">recordUndo</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; whether or not to record the operation for undo (default is true).</li>
                 
             </ul>
             
@@ -225,7 +332,7 @@
                 
                     <li class="param"><span class="param-name">newText</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the text to insert at `location`.</li>
                 
-                    <li class="param"><span class="param-name">recordUndo</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; whether or not to record the operation for undo (Default is true).</li>
+                    <li class="param"><span class="param-name">recordUndo</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; whether or not to record the operation for undo (default is true).</li>
                 
             </ul>
             

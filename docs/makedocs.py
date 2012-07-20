@@ -24,6 +24,7 @@ categories = OrderedDict([
 
 for path in os.listdir("../api"):
     jtxt = subprocess.check_output("dox < ../api/" + path, shell=True)
+    #print jtxt
     #print '\n\n\n\n\n\n\n'
     #print jtxt
     #filenamelower = os.path.splitext(path)[0]
@@ -31,6 +32,8 @@ for path in os.listdir("../api"):
     
     j = json.loads(jtxt)
     for item in j:
+        if 'ctx' not in item:
+            continue
         if '@api private' in item['description']['full']:
             continue
         
