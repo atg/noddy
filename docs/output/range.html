@@ -100,6 +100,46 @@
 
         
         
+            <h3>.<span class="item-name">isValid</span>(<var>documentLength</var>)</h3>
+            <p>Is the range valid?</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">documentLength</span><span class="bigspace"> </span><span class="param-type">Number</span> &ndash; (optional) check that the indexes of this range are in <code>[0,&nbsp;documentLength)</code>.</li>
+                
+            </ul>
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Boolean</span> &ndash; whether the range is valid.
+            </p>
+            
+            
+            <ul>
+<li><p>To be valid, both the <code>length</code> and <code>location</code> must be >= 0.</p></li>
+<li><p><code>length</code>, <code>location</code> and <code>length + location</code> must all be "small" (less than 2^30).</p></li>
+<li><p>If <code>documentLength</code> is specified, <code>location + length</code> must not exceed it.</p></li>
+</ul>
+
+        
+        
+            <h3>.<span class="item-name">isEmpty</span>()</h3>
+            <p>Is the range's length 0?</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Boolean</span> &ndash; whether the range is empty.
+            </p>
+            
+            
+            
+
+        
+        
             <h3>.<span class="item-name">max</span>()</h3>
             <p>Returns the end of the range (i.e. location + length)</p>
             
@@ -130,20 +170,178 @@
 
         
         
-            <h3>.<span class="item-name">containsRange</span>(<var>rng</var>)</h3>
-            <p>Check if a range is contained in another range.</p>
+            <h3>.<span class="item-name">lastIndex</span>()</h3>
+            <p>Returns the last index in the range (<code>length + location - 1</code>), or <code>location</code> if the range is empty.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Number</span> &ndash; the last index in the range.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">hasIndex</span>(<var>idx</var>)</h3>
+            <p>Test whether the range has a given index. <em>If the range is empty (<code>length</code> is 0), then returns <code>false</code>.</em></p>
             
             
             <ul class="params">
                 
-                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Object</span> &ndash; a range.</li>
+                    <li class="param"><span class="param-name">idx</span><span class="bigspace"> </span><span class="param-type">Number</span> &ndash; the index.</li>
                 
             </ul>
             
             
             
             <p class="returns">
-                <b>Returns</b> <span class="param-type">Bool</span> &ndash; whether the given range is contained within this range.
+                <b>Returns</b> <span class="param-type">Boolean</span> &ndash; true if the range contains the given index.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">containsIndex</span>(<var>idx</var>)</h3>
+            <p>Test whether the range has a given index. <em>If the range is empty (<code>length</code> is 0), then it treats it as a range of <code>length == 1</code>.</em></p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">idx</span><span class="bigspace"> </span><span class="param-type">Number</span> &ndash; the index.</li>
+                
+            </ul>
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Boolean</span> &ndash; true if the range contains the given index.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">overlapsWith</span>(<var>rng</var>)</h3>
+            <p>Checks if two ranges's indexes overlap. <em>If either range is empty, returns <code>false</code>.</em></p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; a range.</li>
+                
+            </ul>
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Boolean</span> &ndash; whether the given range is overlaps with this range.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">intersectsWith</span>(<var>rng</var>)</h3>
+            <p>Checks if two ranges's indexes overlap. <em>Considers empty ranges as if they were of length <code>1</code>.</em></p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; a range.</li>
+                
+            </ul>
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Boolean</span> &ndash; whether the given range intersects with this range.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">containsRange</span>(<var>rng</var>)</h3>
+            <p>Checks if all indexes of a given range are contained in this range.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; a range.</li>
+                
+            </ul>
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Boolean</span> &ndash; whether the given range is contained within this range.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">equals</span>(<var>rng</var>)</h3>
+            <p>Checks if both ranges are equal (treats any two invalid ranges as equal).</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; a range.</li>
+                
+            </ul>
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Boolean</span> &ndash; whether the given range is equal to this range.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">toString</span>()</h3>
+            <p>Returns a string in the form of <code>{loc, len}</code>. For debugging only, do not attempt to parse this string.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">String</span> &ndash; a string representation of the range.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3><span class="parent-name">Range</span>.<span class="item-name">compare</span>(<var>a</var>, <var>b</var>)</h3>
+            <p>Compare first by <code>location</code>, then by <code>length</code>. Treats any two invalid ranges as equal.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">a</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; a range.</li>
+                
+                    <li class="param"><span class="param-name">b</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; another range.</li>
+                
+            </ul>
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Number</span> &ndash; <code>-1</code> if <code>a < b</code>, <code>1</code> if <code>a > b</code> or <code>0</code> if <code>a</code> and <code>b</code> are equal.
             </p>
             
             
