@@ -7,105 +7,168 @@
     <link href="../apidocsstyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h1>Chocolat API</h1>
-    <h2>Window</h2>
-    
+    <h1><b>Window</b> &lsaquo; Chocolat API</h1>
+    <!--
     <nav>
-    
-        <a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
+        
+            <a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
     </nav>
-    
-    
-    
-        <h3><span class="item-name">Window</span>()</h3>
-        <p>Create a new window.</p>
+-->
+<table>
+<tr>
+    <td id="nav">
+        <ul>
         
-        
-        
-        
-    
-    
-        <h3>.<span class="item-name">run</span>()</h3>
-        <p>Display the window.</p>
-        
-        
-        
-        
-    
-    
-        <h3>.<span class="item-name">close</span>()</h3>
-        <p>Close the window.</p>
-        
-        
-        
-        
-    
-    
-        <h3>.<span class="item-name">frame</span>()</h3>
-        <p>Get the window's frame.</p>
-        
-        
-        
-        
-        <p class="returns">
-            <b>Returns</b> <span class="param-type">the</span> &ndash; window's frame.
-        </p>
-        
-    
-    
-        <h3>.<span class="item-name">setFrame</span>(<var>newFrame</var>, <var>shouldAnimate</var>)</h3>
-        <p>Set the window's frame. The frame should be an object with the x, y, width and<br />height properties. e.g. <code>{x: 0, y: 0, width: 250, height: 300}</code></p>
-        
-        
-        <ul class="params">
+            <li>Text
+            <ul>
+                
+                <li><a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
             
-                <li class="param"><span class="param-name">newFrame</span>: <span class="param-type">Object</span> &ndash; the new window's frame.</li>
+                <li><a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
             
-                <li class="param"><span class="param-name">shouldAnimate</span>: <span class="param-type">Bool</span> &ndash; optional, whether to animate the resizing or not (default: false)</li>
+                <li><a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
             
+            </ul>
+            </li>
+        
+            <li>Workspace
+            <ul>
+                
+                <li><a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+            </ul>
+            </li>
+        
+            <li>UI
+            <ul>
+                
+                <li><a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+            </ul>
+            </li>
+        
         </ul>
+    </td>
+    <td id="content">
         
         
-        
-    
-    
-        <h3>.<span class="item-name">sendMessage</span>(<var>msg</var>, <var>arg</var>)</h3>
-        <p>Send a message to the window that you can catch with the window.onMessage attribute.</p>
-        
-        
-        <ul class="params">
+            <h3><span class="item-name">Window</span>()</h3>
+            <p>Create a new window.</p>
             
-                <li class="param"><span class="param-name">msg</span>: <span class="param-type">String</span> &ndash; the name of the message to send.</li>
             
-                <li class="param"><span class="param-name">arg</span>: <span class="param-type">Value</span> &ndash; an argument to pass to the callback function.</li>
             
-        </ul>
+            
+            
+            
+
         
         
+            <h3>.<span class="item-name">run</span>()</h3>
+            <p>Display the window.</p>
+            
+            
+            
+            
+            
+            
+
         
-    
         
+            <h3>.<span class="item-name">close</span>()</h3>
+            <p>Close the window.</p>
+            
+            
+            
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">frame</span>()</h3>
+            <p>Get the window's frame.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">the</span> &ndash; window's frame.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">setFrame</span>(<var>newFrame</var>, <var>shouldAnimate</var>)</h3>
+            <p>Set the window's frame. The frame should be an object with the x, y, width and<br />height properties. e.g. <code>{x: 0, y: 0, width: 250, height: 300}</code></p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">newFrame</span><span class="bigspace"> </span><span class="param-type">Object</span> &ndash; the new window's frame.</li>
+                
+                    <li class="param"><span class="param-name">shouldAnimate</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; optional, whether to animate the resizing or not (default: false)</li>
+                
+            </ul>
+            
+            
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">sendMessage</span>(<var>msg</var>, <var>arg</var>)</h3>
+            <p>Send a message to the window that you can catch with the window.onMessage attribute.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">msg</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the name of the message to send.</li>
+                
+                    <li class="param"><span class="param-name">arg</span><span class="bigspace"> </span><span class="param-type">Value</span> &ndash; an argument to pass to the callback function.</li>
+                
+            </ul>
+            
+            
+            
+            
+            
+
+        
+    </td>
+</tr>
+</table>
         
 </body>
 </html>

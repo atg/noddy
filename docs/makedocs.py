@@ -6,6 +6,7 @@ import io
 import re
 from jinja2 import Template
 import pprint
+from collections import OrderedDict
 
 root = os.path.split(os.path.abspath( __file__ ))[0]
 os.chdir(root)
@@ -14,6 +15,12 @@ with open('template.html', 'r') as f:
     template = Template(f.read())
 
 pages = {}
+
+categories = OrderedDict([
+    ('Text', ['Recipe', 'Range', 'Clipboard']),
+    ('Workspace', ['MainWindow', 'Tab', 'Editor', 'Document']),
+    ('UI', ['Window', 'Sheet', 'Popover', 'Pane', 'Alert']),
+])
 
 for path in os.listdir("../api"):
     jtxt = subprocess.check_output("dox < ../api/" + path, shell=True)
@@ -70,8 +77,13 @@ for path in os.listdir("../api"):
             pages[parent] = [item]
 # print json.dumps(pages, sort_keys=True, indent=4)
 
+for category in categories:
+    for item in categories[category][:]:
+        if item not in pages:
+            categories[category].remove(item)
+
 for pagename in pages:
     with open(os.path.join('output', pagename.lower() + '.html'), 'w') as f:
-        f.write(template.render(page=pages[pagename], pagename=pagename, pagenames=pages.keys()))
+        f.write(template.render(categories=categories, page=pages[pagename], pagename=pagename, pagenames=pages.keys()))
 
     

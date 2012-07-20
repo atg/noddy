@@ -7,165 +7,237 @@
     <link href="../apidocsstyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h1>Chocolat API</h1>
-    <h2>Recipe</h2>
-    
+    <h1><b>Recipe</b> &lsaquo; Chocolat API</h1>
+    <!--
     <nav>
-    
-        <a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
+        
+            <a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
     </nav>
-    
-    
-    
-        <h3><span class="parent-name">Recipe</span>.<span class="item-name">run</span>()</h3>
-        <p>Run the recipe</p>
+-->
+<table>
+<tr>
+    <td id="nav">
+        <ul>
         
-        
-        
-        
-    
-    
-        <h3>.<span class="item-name">length</span>()</h3>
-        <p>Returns the length of the document.</p>
-        
-        
-        
-        
-        <p class="returns">
-            <b>Returns</b> <span class="param-type">Number</span> &ndash; the length of the document.
-        </p>
-        
-    
-    
-        <h3>.<span class="item-name">text</span>()</h3>
-        <p>Returns the text of the document.</p>
-        
-        
-        
-        
-        <p class="returns">
-            <b>Returns</b> <span class="param-type">String</span> &ndash; the content of the document.
-        </p>
-        
-    
-    
-        <h3>.<span class="item-name">textInRange</span>(<var>rng</var>)</h3>
-        <p>Returns text in range.</p>
-        
-        
-        <ul class="params">
+            <li>Text
+            <ul>
+                
+                <li><a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
             
-                <li class="param"><span class="param-name">rng</span>: <span class="param-type">Range</span> &ndash; the desired range.</li>
+                <li><a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
             
+                <li><a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+            </ul>
+            </li>
+        
+            <li>Workspace
+            <ul>
+                
+                <li><a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+            </ul>
+            </li>
+        
+            <li>UI
+            <ul>
+                
+                <li><a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+            </ul>
+            </li>
+        
         </ul>
+    </td>
+    <td id="content">
         
         
-        
-    
-    
-        <h3>.<span class="item-name">rangeOfLinesInRange</span>(<var>rng</var>)</h3>
-        <p>Expands a range to cover the full lines.</p>
-        
-        
-        <ul class="params">
+            <h3><span class="parent-name">Recipe</span>.<span class="item-name">run</span>()</h3>
+            <p>Run the recipe</p>
             
-                <li class="param"><span class="param-name">rng</span>: <span class="param-type">Range</span> &ndash; a range.</li>
             
-        </ul>
-        
-        
-        
-    
-    
-        <h3>.<span class="item-name">foreachLine</span>(<var>f</var>, <var>rng</var>)</h3>
-        <p>Execute function <code>f</code> on lines in range <code>rng</code>. If no range is passed, execute the function<br />on all the lines in the document.</p>
-        
-        
-        <ul class="params">
             
-                <li class="param"><span class="param-name">f</span>: <span class="param-type">Function</span> &ndash; a function with a single argument; the line.</li>
             
-                <li class="param"><span class="param-name">rng</span>: <span class="param-type">Range</span> &ndash; an optional range. Defaults to the whole document if omitted.</li>
             
-        </ul>
-        
-        
-        
-    
-    
-        <h3>.<span class="item-name">replaceTextInRange</span>(<var>rng</var>, <var>replacement</var>, <var>recordUndo</var>)</h3>
-        <p>Replace text in <code>rng</code> with <code>replacement</code>, optionally recording the operation for undo.</p>
-        
-        
-        <ul class="params">
             
-                <li class="param"><span class="param-name">rng</span>: <span class="param-type">Range</span> &ndash; the range of text you want to replace.</li>
+
+        
+        
+            <h3>.<span class="item-name">length</span>()</h3>
+            <p>Returns the length of the document.</p>
             
-                <li class="param"><span class="param-name">replacement</span>: <span class="param-type">String</span> &ndash; the text to replace it with.</li>
             
-                <li class="param"><span class="param-name">recordUndo</span>: <span class="param-type">Bool</span> &ndash; whether or not to record the operation for undo (Default is true).</li>
             
-        </ul>
-        
-        
-        
-    
-    
-        <h3>.<span class="item-name">deleteTextInRange</span>(<var>rng</var>, <var>recordUndo</var>)</h3>
-        <p>Delete text in range <code>rng</code>, optionally recording the operation for undo.</p>
-        
-        
-        <ul class="params">
             
-                <li class="param"><span class="param-name">rng</span>: <span class="param-type">Range</span> &ndash; the range of text to delete.</li>
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Number</span> &ndash; the length of the document.
+            </p>
             
-                <li class="param"><span class="param-name">recordUndo</span>: <span class="param-type">Bool</span> &ndash; whether or not to record the operation for undo (Default is true).</li>
             
-        </ul>
-        
-        
-        
-    
-    
-        <h3>.<span class="item-name">insertTextAtLocation</span>(<var>location</var>, <var>newText</var>, <var>recordUndo</var>)</h3>
-        <p>Insert text at specified location, optionally recording the operation for undo.</p>
-        
-        
-        <ul class="params">
             
-                <li class="param"><span class="param-name">location</span>: <span class="param-type">Number</span> &ndash; the location at which to insert the new text.</li>
+
+        
+        
+            <h3>.<span class="item-name">text</span>()</h3>
+            <p>Returns the text of the document.</p>
             
-                <li class="param"><span class="param-name">newText</span>: <span class="param-type">String</span> &ndash; the text to insert at `location`.</li>
             
-                <li class="param"><span class="param-name">recordUndo</span>: <span class="param-type">Bool</span> &ndash; whether or not to record the operation for undo (Default is true).</li>
             
-        </ul>
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">String</span> &ndash; the content of the document.
+            </p>
+            
+            
+            
+
         
         
+            <h3>.<span class="item-name">textInRange</span>(<var>rng</var>)</h3>
+            <p>Returns text in range.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; the desired range.</li>
+                
+            </ul>
+            
+            
+            
+            
+            
+
         
-    
         
+            <h3>.<span class="item-name">rangeOfLinesInRange</span>(<var>rng</var>)</h3>
+            <p>Expands a range to cover the full lines.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; a range.</li>
+                
+            </ul>
+            
+            
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">foreachLine</span>(<var>f</var>, <var>rng</var>)</h3>
+            <p>Execute function <code>f</code> on lines in range <code>rng</code>. If no range is passed, execute the function<br />on all the lines in the document.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">f</span><span class="bigspace"> </span><span class="param-type">Function</span> &ndash; a function with a single argument; the line.</li>
+                
+                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; an optional range. Defaults to the whole document if omitted.</li>
+                
+            </ul>
+            
+            
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">replaceTextInRange</span>(<var>rng</var>, <var>replacement</var>, <var>recordUndo</var>)</h3>
+            <p>Replace text in <code>rng</code> with <code>replacement</code>, optionally recording the operation for undo.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; the range of text you want to replace.</li>
+                
+                    <li class="param"><span class="param-name">replacement</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the text to replace it with.</li>
+                
+                    <li class="param"><span class="param-name">recordUndo</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; whether or not to record the operation for undo (Default is true).</li>
+                
+            </ul>
+            
+            
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">deleteTextInRange</span>(<var>rng</var>, <var>recordUndo</var>)</h3>
+            <p>Delete text in range <code>rng</code>, optionally recording the operation for undo.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; the range of text to delete.</li>
+                
+                    <li class="param"><span class="param-name">recordUndo</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; whether or not to record the operation for undo (Default is true).</li>
+                
+            </ul>
+            
+            
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">insertTextAtLocation</span>(<var>location</var>, <var>newText</var>, <var>recordUndo</var>)</h3>
+            <p>Insert text at specified location, optionally recording the operation for undo.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">location</span><span class="bigspace"> </span><span class="param-type">Number</span> &ndash; the location at which to insert the new text.</li>
+                
+                    <li class="param"><span class="param-name">newText</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the text to insert at `location`.</li>
+                
+                    <li class="param"><span class="param-name">recordUndo</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; whether or not to record the operation for undo (Default is true).</li>
+                
+            </ul>
+            
+            
+            
+            
+            
+
+        
+    </td>
+</tr>
+</table>
         
 </body>
 </html>

@@ -7,95 +7,152 @@
     <link href="../apidocsstyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h1>Chocolat API</h1>
-    <h2>Range</h2>
-    
+    <h1><b>Range</b> &lsaquo; Chocolat API</h1>
+    <!--
     <nav>
-    
-        <a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
+        
+            <a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
     </nav>
-    
-    
-    
-        <h3><span class="item-name">Range</span>(<var>loc</var>, <var>len</var>)</h3>
-        <p>Creates a new Range.</p>
+-->
+<table>
+<tr>
+    <td id="nav">
+        <ul>
         
+            <li>Text
+            <ul>
+                
+                <li><a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+            </ul>
+            </li>
         
-        <ul class="params">
+            <li>Workspace
+            <ul>
+                
+                <li><a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
             
-                <li class="param"><span class="param-name">loc</span>: <span class="param-type">Number</span> &ndash; the starting location (or index) of the range.</li>
+                <li><a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
             
-                <li class="param"><span class="param-name">len</span>: <span class="param-type">Number</span> &ndash; the length of the range.</li>
+            </ul>
+            </li>
+        
+            <li>UI
+            <ul>
+                
+                <li><a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
             
+                <li><a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+            </ul>
+            </li>
+        
         </ul>
+    </td>
+    <td id="content">
         
         
-        
-    
-    
-        <h3>.<span class="item-name">max</span>()</h3>
-        <p>Returns the end of the range (i.e. location + length)</p>
-        
-        
-        
-        
-        <p class="returns">
-            <b>Returns</b> <span class="param-type">Number</span> &ndash; the end of the range.
-        </p>
-        
-    
-    
-        <h3>.<span class="item-name">min</span>()</h3>
-        <p>Returns the range's location</p>
-        
-        
-        
-        
-        <p class="returns">
-            <b>Returns</b> <span class="param-type">Number</span> &ndash; the location of the range.
-        </p>
-        
-    
-    
-        <h3>.<span class="item-name">containsRange</span>(<var>rng</var>)</h3>
-        <p>Check if a range is contained in another range.</p>
-        
-        
-        <ul class="params">
+            <h3><span class="item-name">Range</span>(<var>loc</var>, <var>len</var>)</h3>
+            <p>Creates a new Range.</p>
             
-                <li class="param"><span class="param-name">rng</span>: <span class="param-type">Object</span> &ndash; a range.</li>
             
-        </ul>
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">loc</span><span class="bigspace"> </span><span class="param-type">Number</span> &ndash; the starting location (or index) of the range.</li>
+                
+                    <li class="param"><span class="param-name">len</span><span class="bigspace"> </span><span class="param-type">Number</span> &ndash; the length of the range.</li>
+                
+            </ul>
+            
+            
+            
+            
+            
+
         
         
+            <h3>.<span class="item-name">max</span>()</h3>
+            <p>Returns the end of the range (i.e. location + length)</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Number</span> &ndash; the end of the range.
+            </p>
+            
+            
+            
+
         
-        <p class="returns">
-            <b>Returns</b> <span class="param-type">Bool</span> &ndash; whether the given range is contained within this range.
-        </p>
         
-    
+            <h3>.<span class="item-name">min</span>()</h3>
+            <p>Returns the range's location</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Number</span> &ndash; the location of the range.
+            </p>
+            
+            
+            
+
         
+        
+            <h3>.<span class="item-name">containsRange</span>(<var>rng</var>)</h3>
+            <p>Check if a range is contained in another range.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Object</span> &ndash; a range.</li>
+                
+            </ul>
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Bool</span> &ndash; whether the given range is contained within this range.
+            </p>
+            
+            
+            
+
+        
+    </td>
+</tr>
+</table>
         
 </body>
 </html>

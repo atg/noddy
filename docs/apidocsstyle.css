@@ -1,12 +1,76 @@
+/* https://github.com/fileability/Ingredients/blob/master/HTML_Example/main.css */
+
+@import url(http://fonts.googleapis.com/css?family=Port+Lligat+Slab);
+@import url(http://fonts.googleapis.com/css?family=PT+Mono);
+
+/* <link href='http://fonts.googleapis.com/css?family=Port+Lligat+Slab' rel='stylesheet' type='text/css'> */
+
 html {
-    font-family: Arial, "Helvetica Neue",  Helvetica, Geneva, sans-serif;
+    font-family: "Helvetica Neue", "Lucida Grande", "Lucida Sans Unicode", Geneva, sans-serif;
+    color: #222;
+    line-height: 130%;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 180px;
+}
+body {
+    padding: 0;
+    margin: 20px;
+    
+    max-width: 940px;
+    margin: 0 auto;
+}
+#nav {
+    font-family: "Menlo", "Monaco", mono;
+    font-size: 14px;
+}
+#nav a:visited {
+    color: darkblue;
+}
+#nav a:active {
+    color: red;
+}
+h1 {
+    color: #888;
+    text-align: right;
+    font-weight: normal;
+}
+h2 {
+    color: #666;
+    font-size: 16px;
 }
 h3, code, var, .param-name, .param-type {
     font-family: "Menlo", "Monaco", mono;
 }
+code {
+    /* background-color: #E8EFF0; */
+    font-weight: bold;
+}
+pre code {
+    font-weight: normal;
+    background-color: transparent;
+}
 h3 {
+    font-size: 18px;
     font-weight: normal;
     color: gray;
+    padding-top: 10px;
+    margin-bottom: -3px;
+    border-top: 3px #eee solid;
+}
+pre {
+    margin: 15px -20px 15px -20px;
+    line-height: 1.3em;
+    padding: 7px 20px 7px 20px;
+    font-size: 14px;
+    background-color: #EEE;
+}
+p {
+    margin: 10px 0px;
+}
+p code, .param-name, .param-type {
+    font-size: 14px;
 }
 .item-name {
     font-weight: bold;
@@ -14,11 +78,39 @@ h3 {
 var, .item-name, .parent-name {
     color: black;
 }
-
-ul /* .params */ {
+.bigspace {
+padding-left: 5px;
+}
+ul.params {
     list-style-type: square;
-    color: #000;
+    color: #323232;
+    line-height: 200%;
 }
 .param-name {
+    font-style: italic;
+}
+
+#nav {
+    width: 220px;
+    vertical-align: top;
+}
+#content {
+    width: 720px;
+    vertical-align: top;
+}
+#nav > ul {
+    margin-left: 0;
+    padding-left: 0;
+    list-style-type: none;
+}
+#nav ul li {
     font-weight: bold;
 }
+#nav ul ul {
+    list-style-type: square;
+    margin-bottom: 10px;
+}
+#nav ul li ul li {
+    font-weight: normal;
+}
+

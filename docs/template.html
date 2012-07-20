@@ -7,35 +7,55 @@
     <link href="../apidocsstyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h1>Chocolat API</h1>
-    <h2>{{ pagename }}</h2>
-    
+    <h1><b>{{ pagename }}</b> &lsaquo; Chocolat API</h1>
+    <!--
     <nav>
-    {% for otherpage in pagenames %}
-        <a href="{{ otherpage|lower }}.html">{{ otherpage }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    {% endfor %}
+        {% for otherpage in pagenames %}
+            <a href="{{ otherpage|lower }}.html">{{ otherpage }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        {% endfor %}
     </nav>
-    
-    {% for item in page %}
-    
-        <h3>{{ item.headerstring }}</h3>
-        {{item.description.full|safe}}
-        
-        {% if item.params %}
-        <ul class="params">
-            {% for param in item.params %}
-                <li class="param"><span class="param-name">{{ param.name }}</span>: <span class="param-type">{{ param.types|join(" or ") }}</span> &ndash; {{ param.description }}</li>
+-->
+<table>
+<tr>
+    <td id="nav">
+        <ul>
+        {% for categoryname, category in categories.items() %}
+            <li>{{ categoryname }}
+            <ul>
+                {% for otherpage in category %}
+                <li><a href="{{ otherpage|lower }}.html">{{ otherpage }}</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
             {% endfor %}
+            </ul>
+            </li>
+        {% endfor %}
         </ul>
-        {% endif %}
+    </td>
+    <td id="content">
+        {% for item in page %}
         
-        {% if item.returns %}
-        <p class="returns">
-            <b>Returns</b> <span class="param-type">{{ item.returns.types|join(" or ") }}</span> &ndash; {{ item.returns.description }}
-        </p>
-        {% endif %}
-    {% endfor %}
-        
+            <h3>{{ item.headerstring }}</h3>
+            {{item.description.summary|safe}}
+            
+            {% if item.params %}
+            <ul class="params">
+                {% for param in item.params %}
+                    <li class="param"><span class="param-name">{{ param.name }}</span><span class="bigspace"> </span><span class="param-type">{{ param.types|join(" or ") }}</span> &ndash; {{ param.description }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            
+            {% if item.returns %}
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">{{ item.returns.types|join(" or ") }}</span> &ndash; {{ item.returns.description }}
+            </p>
+            {% endif %}
+            
+            {{item.description.body|safe}}
+
+        {% endfor %}
+    </td>
+</tr>
+</table>
         
 </body>
 </html>

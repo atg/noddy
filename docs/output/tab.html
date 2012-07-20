@@ -7,121 +7,187 @@
     <link href="../apidocsstyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h1>Chocolat API</h1>
-    <h2>Tab</h2>
-    
+    <h1><b>Tab</b> &lsaquo; Chocolat API</h1>
+    <!--
     <nav>
-    
-        <a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
-        <a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    
+        
+            <a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
     </nav>
-    
-    
-    
-        <h3><span class="parent-name">Tab</span>.<span class="item-name">current</span>()</h3>
-        <p>Class method that returns the current, active tab.</p>
+-->
+<table>
+<tr>
+    <td id="nav">
+        <ul>
+        
+            <li>Text
+            <ul>
+                
+                <li><a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+            </ul>
+            </li>
+        
+            <li>Workspace
+            <ul>
+                
+                <li><a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+            </ul>
+            </li>
+        
+            <li>UI
+            <ul>
+                
+                <li><a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+            </ul>
+            </li>
+        
+        </ul>
+    </td>
+    <td id="content">
         
         
+            <h3><span class="parent-name">Tab</span>.<span class="item-name">current</span>()</h3>
+            <p>Class method that returns the current, active tab.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Tab</span> &ndash; the active tab.
+            </p>
+            
+            
+            
+
         
         
-        <p class="returns">
-            <b>Returns</b> <span class="param-type">Tab</span> &ndash; the active tab.
-        </p>
-        
-    
-    
-        <h3>.<span class="item-name">window</span>()</h3>
-        <p>The window which the tab is part of</p>
-        
-        
-        
-        
-        <p class="returns">
-            <b>Returns</b> <span class="param-type">MainWindow</span> &ndash; the parent MainWindow.
-        </p>
-        
-    
-    
-        <h3>.<span class="item-name">editors</span>()</h3>
-        <p>Get a list of all visible editors in the tab.</p>
+            <h3>.<span class="item-name">window</span>()</h3>
+            <p>The window which the tab is part of</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">MainWindow</span> &ndash; the parent MainWindow.
+            </p>
+            
+            
+            
+
         
         
+            <h3>.<span class="item-name">editors</span>()</h3>
+            <p>Get a list of all visible editors in the tab.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Array</span> &ndash; an array of visible `Editor`s.
+            </p>
+            
+            
+            
+
         
         
-        <p class="returns">
-            <b>Returns</b> <span class="param-type">Array</span> &ndash; an array of visible `Editor`s.
-        </p>
-        
-    
-    
-        <h3>.<span class="item-name">currentEditor</span>()</h3>
-        <p>Get the active editor in this tab.</p>
-        
-        
-        
-        
-        <p class="returns">
-            <b>Returns</b> <span class="param-type">Editor</span> &ndash; the current editor.
-        </p>
-        
-    
-    
-        <h3>.<span class="item-name">activeDocuments</span>()</h3>
-        <p>Get a list of all the documents in the "Active" part of the sidebar.</p>
+            <h3>.<span class="item-name">currentEditor</span>()</h3>
+            <p>Get the active editor in this tab.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Editor</span> &ndash; the current editor.
+            </p>
+            
+            
+            
+
         
         
+            <h3>.<span class="item-name">activeDocuments</span>()</h3>
+            <p>Get a list of all the documents in the "Active" part of the sidebar.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Array</span> &ndash; an array containing the active `Document`s
+            </p>
+            
+            
+            
+
         
         
-        <p class="returns">
-            <b>Returns</b> <span class="param-type">Array</span> &ndash; an array containing the active `Document`s
-        </p>
-        
-    
-    
-        <h3>.<span class="item-name">visibleDocuments</span>()</h3>
-        <p>A list of all the <code>Document</code>s currently visible in this tab.</p>
-        
-        
-        
-        
-        <p class="returns">
-            <b>Returns</b> <span class="param-type">Array</span> &ndash; an array containing the visible `Document`s
-        </p>
-        
-    
-    
-        <h3>.<span class="item-name">storage</span>()</h3>
-        <p>Access the storage object of the Tab (see Storage class).</p>
+            <h3>.<span class="item-name">visibleDocuments</span>()</h3>
+            <p>A list of all the <code>Document</code>s currently visible in this tab.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Array</span> &ndash; an array containing the visible `Document`s
+            </p>
+            
+            
+            
+
         
         
+            <h3>.<span class="item-name">storage</span>()</h3>
+            <p>Access the storage object of the Tab (see Storage class).</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Storage</span> &ndash; the storage.
+            </p>
+            
+            
+            
+
         
-        
-        <p class="returns">
-            <b>Returns</b> <span class="param-type">Storage</span> &ndash; the storage.
-        </p>
-        
-    
-        
+    </td>
+</tr>
+</table>
         
 </body>
 </html>
