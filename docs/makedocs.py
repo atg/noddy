@@ -39,11 +39,14 @@ for path in os.listdir("../api"):
         
         params = []
         ret = None
+        isproperty = False
         for tag in item['tags']:
             if tag['type'] == 'param':
                 params.append(tag)
             if tag['type'] == 'return':
                 ret = tag
+            if tag['type'] == 'isproperty':
+                isproperty = True
         item['params'] = params
         item['returns'] = ret
                 
@@ -55,7 +58,12 @@ for path in os.listdir("../api"):
             parent = item['ctx']['name']
         
         headerstring = item['ctx']['string']
-        if item['ctx']['type'] == 'method':
+        if isproperty:
+            if '.prototype.' in item['ctx']['string']:
+                headerstring = '.<span class="item-name">%s</span>' % (item['ctx']['name'])
+            else:
+                headerstring = '<span class="parent-name">%s</span>.<span class="item-name">%s</span>' % (parent, item['ctx']['name'])
+        elif item['ctx']['type'] == 'method':
             if '.prototype.' in item['ctx']['string']:
                 headerstring = '.<span class="item-name">%s</span>(%s)' % (item['ctx']['name'], ', '.join('<var>' + param['name'] + '</var>' for param in params))
             else:
@@ -65,15 +73,14 @@ for path in os.listdir("../api"):
                 headerstring = '<span class="item-name">%s</span>(%s)' % (item['ctx']['name'], ', '.join('<var>' + param['name'] + '</var>' for param in params))
             else:
                 headerstring = '<span class="parent-name">%s</span>.<span class="item-name">%s</span>(%s)' % (parent, item['ctx']['name'], ', '.join('<var>' + param['name'] + '</var>' for param in params))
+        
         #elif item['ctx']['type'] == 'constructor':
         #    headerstring = '%s(%s)' % (item['ctx']['name'], ', '.join(param['name'] for param in params))
         else:
             print "Unknown type %s" % item['ctx']['type']
         
         item['headerstring'] = headerstring
-        #print item['ctx']['name']
-        #print item['ctx']['type']
-
+        
         if parent in pages:
             pages[parent].append(item)
         else:

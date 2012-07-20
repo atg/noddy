@@ -7,7 +7,7 @@ var Recipe = function() {
 global.Recipe = Recipe;
 
 /**
- * Run the recipe
+ * Run a text recipe.
  *
  * Example:
  *     Recipe.run(function(recipe) {
@@ -22,21 +22,15 @@ Recipe.run = function(callback) {
 };
 
 /**
- * Returns the editor's selected range.
+ * Get or set the editor's selected range.
  *
  * @return {Range} the selected character range.
  * @memberOf Recipe
+ * @isproperty
  */
 Recipe.prototype.selection = function() {
 
 };
-
-/**
- * Set the editor's selected range.
- *
- * @return {Range} the selected character range.
- * @memberOf Recipe
- */
 Recipe.prototype.setSelection = function(newText) {
 
 };
@@ -46,34 +40,30 @@ Recipe.prototype.__defineSetter__("selection", Recipe.prototype.setSelection);
 
 
 /**
- * Returns the length of the document.
+ * Get the length of the document.
  *
  * @return {Number} the length of the document.
  * @memberOf Recipe
+ * @isproperty
  */
 Recipe.prototype.length = function() {
     
 };
 
-// We actually want a property but dox doesn't know how to deal with those
 Recipe.prototype.__defineGetter__("length", Recipe.prototype.length);
 
+
 /**
- * Returns the text of the document.
+ * Get or set the text of the document.
  *
  * @return {String} the content of the document.
  * @memberOf Recipe
+ * @isproperty
  */
 Recipe.prototype.text = function() {
     
 };
 
-/**
- * Set the document's text.
- *
- * @return {String} the content of the document.
- * @memberOf Recipe
- */
 Recipe.prototype.setText = function(newText) {
     
 };
@@ -142,8 +132,18 @@ Recipe.prototype.lineMarkersForCharacterRange = function(rng) {
  * Execute function `f` on lines in character range `rng`. If no range is passed, execute the function
  * on all the lines in the document.
  *
- * @param {Function} f a function with a single argument: the a line marker. Return a string to replace it with (excluding the trailing newline) or null to delete it.
+ * Example:
+ *     // Wrap each line in brackets
+ *     Recipe.run(function(recipe) {
+ *             
+ *         recipe.foreachLine(function(marker) {
+ *             return "(" + marker.text + ")";
+ *         });
+ *     });
+ *
+ * @param {Function} f a function that is given a <a href="linemarker.html">LineMarker</a>. Return a new string to modify the line, null to delete the line, or undefined to keep the line the same.
  * @param {Range} rng an optional range. Defaults to the whole document if omitted.
+ * @return {Number} the total number of characters added or deleted (0 if nothing was changed).
  * @memberOf Recipe
  */
 Recipe.prototype.foreachLine = function(rng, f) {
@@ -155,7 +155,7 @@ Recipe.prototype.foreachLine = function(rng, f) {
  *
  * @param {Range} rng the range of text you want to replace.
  * @param {String} replacement the text to replace it with.
- * @param {Bool} recordUndo **Optional** whether or not to record the operation for undo (default is true).
+ * @param {Bool} recordUndo (optional) whether or not to record the operation for undo. The default is true.
  * @memberOf Recipe
  */
 Recipe.prototype.replaceTextInRange = function(rng, replacement, recordUndo) {
@@ -166,7 +166,7 @@ Recipe.prototype.replaceTextInRange = function(rng, replacement, recordUndo) {
  * Delete text in range `rng`, optionally recording the operation for undo.
  *
  * @param {Range} rng the range of text to delete.
- * @param {Bool} recordUndo whether or not to record the operation for undo (default is true).
+ * @param {Bool} recordUndo (optional) whether or not to record the operation for undo. The default is true.
  * @memberOf Recipe
  */
 Recipe.prototype.deleteTextInRange = function(rng, recordUndo) {
@@ -177,8 +177,8 @@ Recipe.prototype.deleteTextInRange = function(rng, recordUndo) {
  * Insert text at specified location, optionally recording the operation for undo.
  *
  * @param {Number} location the location at which to insert the new text.
- * @param {String} newText the text to insert at `location`.
- * @param {Bool} recordUndo whether or not to record the operation for undo (default is true).
+ * @param {String} newText the text to insert at <code>location</code>.
+ * @param {Bool} recordUndo (optional) whether or not to record the operation for undo. The default is true.
  * @memberOf Recipe
  */
 Recipe.prototype.insertTextAtLocation = function(location, newText, recordUndo) {

@@ -82,7 +82,7 @@
         
         
             <h3><span class="parent-name">Recipe</span>.<span class="item-name">run</span>(<var>callback</var>)</h3>
-            <p>Run the recipe</p>
+            <p>Run a text recipe.</p>
             
             
             <ul class="params">
@@ -103,8 +103,8 @@
 
         
         
-            <h3>.<span class="item-name">selection</span>()</h3>
-            <p>Returns the editor's selected range.</p>
+            <h3>.<span class="item-name">selection</span></h3>
+            <p>Get or set the editor's selected range.</p>
             
             
             
@@ -118,23 +118,8 @@
 
         
         
-            <h3>.<span class="item-name">setSelection</span>()</h3>
-            <p>Set the editor's selected range.</p>
-            
-            
-            
-            
-            <p class="returns">
-                <b>Returns</b> <span class="param-type">Range</span> &ndash; the selected character range.
-            </p>
-            
-            
-            
-
-        
-        
-            <h3>.<span class="item-name">length</span>()</h3>
-            <p>Returns the length of the document.</p>
+            <h3>.<span class="item-name">length</span></h3>
+            <p>Get the length of the document.</p>
             
             
             
@@ -148,23 +133,8 @@
 
         
         
-            <h3>.<span class="item-name">text</span>()</h3>
-            <p>Returns the text of the document.</p>
-            
-            
-            
-            
-            <p class="returns">
-                <b>Returns</b> <span class="param-type">String</span> &ndash; the content of the document.
-            </p>
-            
-            
-            
-
-        
-        
-            <h3>.<span class="item-name">setText</span>()</h3>
-            <p>Set the document's text.</p>
+            <h3>.<span class="item-name">text</span></h3>
+            <p>Get or set the text of the document.</p>
             
             
             
@@ -269,7 +239,7 @@
             
             <ul class="params">
                 
-                    <li class="param"><span class="param-name">f</span><span class="bigspace"> </span><span class="param-type">Function</span> &ndash; a function with a single argument: the a line marker. Return a string to replace it with (excluding the trailing newline) or null to delete it.</li>
+                    <li class="param"><span class="param-name">f</span><span class="bigspace"> </span><span class="param-type">Function</span> &ndash; a function that is given a <a href="linemarker.html">LineMarker</a>. Return a new string to modify the line, null to delete the line, or undefined to keep the line the same.</li>
                 
                     <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; an optional range. Defaults to the whole document if omitted.</li>
                 
@@ -277,8 +247,21 @@
             
             
             
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Number</span> &ndash; the total number of characters added or deleted (0 if nothing was changed).
+            </p>
             
             
+            <h2>Example</h2>
+
+<pre><code>// Wrap each line in brackets
+Recipe.run(function(recipe) {
+
+    recipe.foreachLine(function(marker) {
+        return "(" + marker.text + ")";
+    });
+});
+</code></pre>
 
         
         
@@ -292,7 +275,7 @@
                 
                     <li class="param"><span class="param-name">replacement</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the text to replace it with.</li>
                 
-                    <li class="param"><span class="param-name">recordUndo</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; **Optional** whether or not to record the operation for undo (default is true).</li>
+                    <li class="param"><span class="param-name">recordUndo</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; (optional) whether or not to record the operation for undo. The default is true.</li>
                 
             </ul>
             
@@ -311,7 +294,7 @@
                 
                     <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; the range of text to delete.</li>
                 
-                    <li class="param"><span class="param-name">recordUndo</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; whether or not to record the operation for undo (default is true).</li>
+                    <li class="param"><span class="param-name">recordUndo</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; (optional) whether or not to record the operation for undo. The default is true.</li>
                 
             </ul>
             
@@ -330,9 +313,9 @@
                 
                     <li class="param"><span class="param-name">location</span><span class="bigspace"> </span><span class="param-type">Number</span> &ndash; the location at which to insert the new text.</li>
                 
-                    <li class="param"><span class="param-name">newText</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the text to insert at `location`.</li>
+                    <li class="param"><span class="param-name">newText</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the text to insert at <code>location</code>.</li>
                 
-                    <li class="param"><span class="param-name">recordUndo</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; whether or not to record the operation for undo (default is true).</li>
+                    <li class="param"><span class="param-name">recordUndo</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; (optional) whether or not to record the operation for undo. The default is true.</li>
                 
             </ul>
             
