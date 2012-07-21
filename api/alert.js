@@ -11,7 +11,8 @@ global.Alert = Alert;
  *
  * @param {String} title the title of your alert.
  * @param {String} message the body of your alert message.
- * @param {Array} buttons an array of buttons to display.
+ * @param {Array} buttons an array of buttons to display. Buttons are displayed from right to left.
+ * @return {Number} the index of the button that was clicked. 0 is the right-most button. 
  * @memberOf Alert
  *
  */

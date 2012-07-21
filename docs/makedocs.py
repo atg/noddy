@@ -92,6 +92,14 @@ for category in categories:
         if item not in pages:
             categories[category].remove(item)
 
+misc = list(pages.keys())
+for category in categories:
+    for item in categories[category]:
+        if item in misc:
+            misc.remove(item)        
+if misc:
+    categories['Misc'] = misc
+
 for pagename in pages:
     with open(os.path.join('output', pagename.lower() + '.html'), 'w') as f:
         f.write(template.render(categories=categories, page=pages[pagename], pagename=pagename, pagenames=pages.keys()))
