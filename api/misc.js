@@ -12,7 +12,7 @@ global.Storage = Storage;
  * @memberOf Storage
  */
 Storage.prototype.get = function(k) {
-    return objc_msgSendSync(this.nid, "valueForKey", k);
+    return global.objc_msgSendSync(this.nid, "valueForKey", k);
 };
 
 /**
@@ -23,7 +23,7 @@ Storage.prototype.get = function(k) {
  * @memberOf Storage
  */
 Storage.prototype.set = function(k, v) {
-    objc_msgSend(this.nid, "setValue:forKey:", v, k);
+    global.objc_msgSend(this.nid, "setValue:forKey:", v, k);
 }
 
 /**
@@ -33,7 +33,7 @@ Storage.prototype.set = function(k, v) {
  * @memberOf Storage
  */
 Storage.prototype.count = function() {
-    return objc_msgSendSync(this.nid, "count");
+    return global.objc_msgSendSync(this.nid, "count");
 }
 
 /**
@@ -45,7 +45,7 @@ Storage.prototype.count = function() {
  * @memberOf Storage
  */
 Storage.prototype.forall = function(f) {
-    var storage = objc_msgSendSync(this.nid, "dictionary");
+    var storage = global.objc_msgSendSync(this.nid, "dictionary");
     for (var k in storage) {
         f(k, storage[k]);
     }

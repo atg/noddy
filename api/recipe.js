@@ -1,5 +1,6 @@
 // Implement the Recipe class
-var Recipe = function() {
+var Recipe = function(nid) {
+    this.nid = nid;
     this.jumpToShowSelection = false;
     this.showYellowIndicator = false;
 };
@@ -18,7 +19,9 @@ global.Recipe = Recipe;
  * @memberOf Recipe
  */
 Recipe.run = function(callback) {
-    
+    global.objc_msgSend(private_get_mixin(), "runRecipe:", function (nid) {
+        callback(new Recipe(nid));
+    });
 };
 
 /**
@@ -29,10 +32,10 @@ Recipe.run = function(callback) {
  * @isproperty
  */
 Recipe.prototype.selection = function() {
-
+    global.objc_msgSendSync(this.nid, "selectionValue");
 };
 Recipe.prototype.setSelection = function(newText) {
-
+    global.objc_msgSend(this.nid, "setSelectionValue:", newSelection);
 };
 
 Recipe.prototype.__defineGetter__("selection", Recipe.prototype.selection);
@@ -47,7 +50,7 @@ Recipe.prototype.__defineSetter__("selection", Recipe.prototype.setSelection);
  * @isproperty
  */
 Recipe.prototype.length = function() {
-    
+    return global.objc_msgSendSync(this.nid, "numberLength");
 };
 
 Recipe.prototype.__defineGetter__("length", Recipe.prototype.length);
@@ -61,11 +64,11 @@ Recipe.prototype.__defineGetter__("length", Recipe.prototype.length);
  * @isproperty
  */
 Recipe.prototype.text = function() {
-    
+    return global.objc_msgSendSync(this.nid, "text");
 };
 
 Recipe.prototype.setText = function(newText) {
-    
+    global.objc_msgSend(this.nid, "setText:", String(newText));
 };
 
 Recipe.prototype.__defineGetter__("text", Recipe.prototype.text);
@@ -79,7 +82,7 @@ Recipe.prototype.__defineSetter__("text", Recipe.prototype.setText);
  * @memberOf Recipe
  */
 Recipe.prototype.textInRange = function(rng) {
-    
+    return global.objc_msgSendSync(this.nid, "textInRange:", rng);
 };
 
 /**
@@ -89,7 +92,7 @@ Recipe.prototype.textInRange = function(rng) {
  * @memberOf Recipe
  */
 Recipe.prototype.rangeOfLinesInRange = function(rng){
-  
+    return global.objc_msgSendSync(this.nid, "rangeOfLinesInRange:", rng);
 };
 
 /**
@@ -99,7 +102,7 @@ Recipe.prototype.rangeOfLinesInRange = function(rng){
 * @memberOf Recipe
 */
 Recipe.prototype.contentRangeOfLinesInRange = function(rng){
-  
+    return global.objc_msgSendSync(this.nid, "contentRangeOfLinesInRange:", rng);
 };
 
 /**
@@ -109,7 +112,7 @@ Recipe.prototype.contentRangeOfLinesInRange = function(rng){
 * @memberOf Recipe
 */
 Recipe.prototype.lineIndexesForCharacterRange = function(rng){
-  
+    return global.objc_msgSendSync(this.nid, "lineIndexesForCharacterRange:", rng);
 };
 
 /**
@@ -119,7 +122,7 @@ Recipe.prototype.lineIndexesForCharacterRange = function(rng){
 * @memberOf Recipe
 */
 Recipe.prototype.characterRangeForLineIndexes = function(rng) {
-  
+    return global.objc_msgSendSync(this.nid, "characterRangeForLineIndexes:", rng);
 };
 
 /* Not sure we need this
@@ -147,7 +150,10 @@ Recipe.prototype.lineMarkersForCharacterRange = function(rng) {
  * @memberOf Recipe
  */
 Recipe.prototype.foreachLine = function(rng, f) {
-  
+    if (typeof rng === "undefined")
+        rng = Range(0, this.length);
+    
+    return global.objc_msgSendSync(this.nid, "foreachLineInRange:callback:", rng, f);
 };
 
 /**
@@ -159,7 +165,9 @@ Recipe.prototype.foreachLine = function(rng, f) {
  * @memberOf Recipe
  */
 Recipe.prototype.replaceTextInRange = function(rng, replacement, recordUndo) {
-  
+    if (typeof recordUndo === "undefined")
+        recordUndo = true;
+    global.objc_msgSend(this.nid, "replaceText:inRangeValue:recordUndo:", replacement, rng, recordUndo);
 };
 
 /**
@@ -170,7 +178,9 @@ Recipe.prototype.replaceTextInRange = function(rng, replacement, recordUndo) {
  * @memberOf Recipe
  */
 Recipe.prototype.deleteTextInRange = function(rng, recordUndo) {
-  
+    if (typeof recordUndo === "undefined")
+        recordUndo = true;
+    global.objc_msgSend(this.nid, "replaceText:inRangeValue:recordUndo:", "", rng, recordUndo);
 };
 
 /*
@@ -182,5 +192,7 @@ Recipe.prototype.deleteTextInRange = function(rng, recordUndo) {
  * @memberOf Recipe
  */
 Recipe.prototype.insertTextAtLocation = function(location, newText, recordUndo) {
-  
+    if (typeof recordUndo === "undefined")
+        recordUndo = true;
+    global.objc_msgSend(this.nid, "replaceText:inRangeValue:recordUndo:", newText, Range(location, 0), recordUndo);
 };
