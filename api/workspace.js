@@ -138,3 +138,144 @@ Tab.prototype.visibleDocuments = function() {
 Tab.prototype.storage = function() {
 
 };
+
+/**
+ * @api private
+ */
+var Document = function(nid) {
+  this.nid = nid;
+};
+
+global.Document = Document;
+
+/**
+ * Class method that returns the current Document.
+ *
+ * @return {Document} the active document.
+ * @memberOf Document
+ */
+Document.current = function() {
+
+};
+
+/**
+ * Get the display name of a document.
+ *
+ * @return {String} the display name of a document.
+ * @memberOf Document
+ */
+Document.prototype.displayName = function() {
+  
+};
+
+/**
+ * Get the file name of a document.
+ *
+ * @return {String} the filename of a document.
+ * @memberOf Document
+ */
+Document.prototype.filename = function() {
+
+};
+
+/**
+ * Get the path of a document.
+ *
+ * @return {String} the path of the file on disk, null if it's unsaved.
+ * @memberOf Document
+ */
+Document.prototype.path = function() {
+
+};
+
+/**
+ * Get the root scope of a document, e.g. source.objc or text.html
+ *
+ * @return {String} the root scope of the document.
+ * @memberOf Document
+ */
+Document.prototype.rootScope = function() {
+
+};
+
+/**
+ * Get the context (list of scopes) at a particular index.
+ *
+ * @param {Number} an index.
+ * @return {Array} a list of scopes for the given index.
+ * @memberOf Document
+ */
+Document.prototype.contextAtIndex = function(idx) {
+
+};
+
+/**
+ * Get an array of Editor objects for a document.
+ *
+ * @return {Array} an array of Editor objects.
+ * @memberOf Document
+ */
+Document.prototype.editors = function() {
+
+};
+
+/**
+ * Get the length of the document.
+ *
+ * @return {Number} the length of the document.
+ * @memberOf Document
+ * @isproperty
+ */
+Document.prototype.length = function() {
+    
+};
+Document.prototype.__defineGetter__("length", Document.prototype.length);
+
+/**
+ * Get or set the text of the document.
+ *
+ * @return {String} the content of the document.
+ * @memberOf Document
+ * @isproperty
+ */
+Document.prototype.text = function() {
+    
+};
+
+Document.prototype.setText = function(newText) {
+    
+};
+Document.prototype.__defineGetter__("text", Document.prototype.text);
+Document.prototype.__defineSetter__("text", Document.prototype.setText);
+
+/**
+ * Get the text in a given range
+ *
+ * @param {Range} a range.
+ * @return {String} the text at given range.
+ * @memberOf Document
+ */
+Document.prototype.textInRange = function(rng) {
+
+};
+
+/**
+ * Replace the text in `rng` with `replacement`.
+ *
+ * @param {Range} a range.
+ * @param {String} the replacement string.
+ * @memberOf Document
+ */
+Document.prototype.replaceTextInRange = function(rng, replacement) {
+
+};
+
+/**
+ * Access the storage object of the Document (see Storage class).
+ *
+ * @return {Storage} the storage.
+ * @memberOf Document
+ */
+Document.prototype.storage = function() {
+
+};
