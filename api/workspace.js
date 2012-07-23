@@ -201,7 +201,7 @@ Document.prototype.rootScope = function() {
 /**
  * Get the context (list of scopes) at a particular index.
  *
- * @param {Number} an index.
+ * @param {Number} idx an index.
  * @return {Array} a list of scopes for the given index.
  * @memberOf Document
  */
@@ -251,7 +251,7 @@ Document.prototype.__defineSetter__("text", Document.prototype.setText);
 /**
  * Get the text in a given range
  *
- * @param {Range} a range.
+ * @param {Range} rng a range.
  * @return {String} the text at given range.
  * @memberOf Document
  */
@@ -262,8 +262,8 @@ Document.prototype.textInRange = function(rng) {
 /**
  * Replace the text in `rng` with `replacement`.
  *
- * @param {Range} a range.
- * @param {String} the replacement string.
+ * @param {Range} rng a range.
+ * @param {String} replacement the replacement string.
  * @memberOf Document
  */
 Document.prototype.replaceTextInRange = function(rng, replacement) {
@@ -277,5 +277,94 @@ Document.prototype.replaceTextInRange = function(rng, replacement) {
  * @memberOf Document
  */
 Document.prototype.storage = function() {
+
+};
+
+
+/**
+ * @api private
+ */
+var Editor = function(nid) {
+  this.nid = nid;
+};
+
+global.Editor = Editor;
+
+/**
+ * Class method that returns the current Editor.
+ *
+ * @return {Editor} the active editor.
+ * @memberOf Editor
+ */
+Editor.current = function() {
+
+};
+
+/**
+ * The document edited by this editor.
+ *
+ * @return {Document} the document being edited.
+ * @memberOf Editor
+ */
+Editor.prototype.document = function() {
+  
+};
+
+/**
+ * Get or set the selected text in this editor.
+ * 
+ * @return {Range} the range of the selected text.
+ * @memberOf Editor
+ * @isproperty
+ */
+Editor.prototype.selection = function() {
+  
+};
+
+Editor.prototype.setSelection = function(rng) {
+  
+};
+
+Editor.prototype.__defineGetter__("selection", Editor.prototype.selection);
+Editor.prototype.__defineSetter__("selection", Editor.prototype.setSelection);
+
+
+/**
+ * Get the range of text that is visible in this editor.
+ *
+ * @return {Range} the range of visible text.
+ * @memberOf Editor
+ */
+Editor.prototype.visibleRange = function() {
+  
+};
+
+/**
+ * Get the context (list of scopes) at the editor's selection.
+ *
+ * @return {Array} a list of scopes for the selection.
+ * @memberOf Editor
+ */
+Editor.prototype.selectionContext = function() {
+  
+};
+
+/**
+ * Insert a snippet where the cursor is located.
+ *
+ * @param {String} snippet a snippet.
+ * @memberOf Editor
+ */
+Editor.prototype.insertSnippet = function(snippet) {
+
+};
+
+/**
+ * Access the storage object of the Editor (see Storage class).
+ *
+ * @return {Storage} the storage.
+ * @memberOf Editor
+ */
+Editor.prototype.storage = function() {
 
 };
