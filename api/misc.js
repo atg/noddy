@@ -50,3 +50,15 @@ Storage.prototype.forall = function(f) {
         f(k, storage[k]);
     }
 }
+
+var Util = function() {
+  
+};
+
+Util.indentation = function(str) {
+  
+};
+
+Util.spliceSubstring = function(str, part, loc, len) {
+  
+};
