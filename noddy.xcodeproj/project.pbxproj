@@ -84,6 +84,8 @@
 		7535578015AC7CBC006AFA43 /* libv8_nosnapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_nosnapshot.a; path = deps/libv8_nosnapshot.a; sourceTree = SOURCE_ROOT; };
 		7535578115AC7CBC006AFA43 /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = deps/libv8_snapshot.a; sourceTree = SOURCE_ROOT; };
 		7535578E15AC8770006AFA43 /* api.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = api.js; path = source/api.js; sourceTree = "<group>"; };
+		75AA8FBE15BB7C5600F986FC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		75AA8FC015BB7C5600F986FC /* node.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = node.1; sourceTree = "<group>"; };
 		75CD4A0515AC8F5600F97D8B /* r.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = r.js; path = libraries/r.js; sourceTree = "<group>"; };
 		75CD4A0615AC8F5600F97D8B /* underscore.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = underscore.js; path = libraries/underscore.js; sourceTree = "<group>"; };
 		75CD4A0715AC8F5600F97D8B /* underscore.string.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = underscore.string.js; path = libraries/underscore.string.js; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				7535578B15AC7CDF006AFA43 /* Source */,
 				7535578A15AC7CC4006AFA43 /* Libraries */,
 				7535573F15AC7BC0006AFA43 /* noddy */,
+				75AA8FBD15BB7C5500F986FC /* node */,
 				7535573815AC7BC0006AFA43 /* Frameworks */,
 				7535573615AC7BC0006AFA43 /* Products */,
 			);
@@ -213,6 +216,15 @@
 			);
 			name = Source;
 			path = noddy;
+			sourceTree = "<group>";
+		};
+		75AA8FBD15BB7C5500F986FC /* node */ = {
+			isa = PBXGroup;
+			children = (
+				75AA8FBE15BB7C5600F986FC /* main.cpp */,
+				75AA8FC015BB7C5600F986FC /* node.1 */,
+			);
+			path = node;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +356,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -358,6 +371,15 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/deps/node-headers/src\"",
+					"\"$(SRCROOT)/deps/node-headers/deps/v8/include\"",
+					"\"$(SRCROOT)/deps/node-headers/deps/uv/include\"",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/deps\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -370,6 +392,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -378,6 +401,15 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/deps/node-headers/src\"",
+					"\"$(SRCROOT)/deps/node-headers/deps/v8/include\"",
+					"\"$(SRCROOT)/deps/node-headers/deps/uv/include\"",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/deps\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 			};
@@ -389,16 +421,7 @@
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "source/noddy-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/deps/node-headers/src\"",
-					"\"$(SRCROOT)/deps/node-headers/deps/v8/include\"",
-					"\"$(SRCROOT)/deps/node-headers/deps/uv/include\"",
-				);
 				INFOPLIST_FILE = "source/noddy-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/deps\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -410,16 +433,7 @@
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "source/noddy-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/deps/node-headers/src\"",
-					"\"$(SRCROOT)/deps/node-headers/deps/v8/include\"",
-					"\"$(SRCROOT)/deps/node-headers/deps/uv/include\"",
-				);
 				INFOPLIST_FILE = "source/noddy-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/deps\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
