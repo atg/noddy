@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7507ADE115BDA53700B9118C /* NoddyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7507ADE015BDA53700B9118C /* NoddyStorage.m */; };
+		7507ADE515BDA55500B9118C /* NoddyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7507ADE415BDA55500B9118C /* NoddyWindow.m */; };
+		7507ADE815BDA56800B9118C /* NoddyRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 7507ADE715BDA56800B9118C /* NoddyRecipe.m */; };
 		750EAA1215B399290036EA4F /* NoddyMixin+NoddyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 750EAA1115B399290036EA4F /* NoddyMixin+NoddyAPI.m */; };
 		7535573A15AC7BC0006AFA43 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535573915AC7BC0006AFA43 /* Cocoa.framework */; };
 		7535577015AC7C72006AFA43 /* NoddyThread.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7535576F15AC7C6F006AFA43 /* NoddyThread.mm */; };
@@ -50,6 +53,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7507ADDF15BDA53700B9118C /* NoddyStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoddyStorage.h; path = source/NoddyStorage.h; sourceTree = SOURCE_ROOT; };
+		7507ADE015BDA53700B9118C /* NoddyStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoddyStorage.m; path = source/NoddyStorage.m; sourceTree = SOURCE_ROOT; };
+		7507ADE315BDA55500B9118C /* NoddyWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoddyWindow.h; path = source/NoddyWindow.h; sourceTree = SOURCE_ROOT; };
+		7507ADE415BDA55500B9118C /* NoddyWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoddyWindow.m; path = source/NoddyWindow.m; sourceTree = SOURCE_ROOT; };
+		7507ADE615BDA56800B9118C /* NoddyRecipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoddyRecipe.h; sourceTree = SOURCE_ROOT; };
+		7507ADE715BDA56800B9118C /* NoddyRecipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoddyRecipe.m; sourceTree = SOURCE_ROOT; };
 		750EAA1015B399290036EA4F /* NoddyMixin+NoddyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NoddyMixin+NoddyAPI.h"; path = "source/NoddyMixin+NoddyAPI.h"; sourceTree = SOURCE_ROOT; };
 		750EAA1115B399290036EA4F /* NoddyMixin+NoddyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NoddyMixin+NoddyAPI.m"; path = "source/NoddyMixin+NoddyAPI.m"; sourceTree = SOURCE_ROOT; };
 		750EAA1315B3A96E0036EA4F /* api */ = {isa = PBXFileReference; lastKnownFileType = folder; path = api; sourceTree = "<group>"; };
@@ -213,6 +222,12 @@
 				7535576F15AC7C6F006AFA43 /* NoddyThread.mm */,
 				750EAA1015B399290036EA4F /* NoddyMixin+NoddyAPI.h */,
 				750EAA1115B399290036EA4F /* NoddyMixin+NoddyAPI.m */,
+				7507ADDF15BDA53700B9118C /* NoddyStorage.h */,
+				7507ADE015BDA53700B9118C /* NoddyStorage.m */,
+				7507ADE315BDA55500B9118C /* NoddyWindow.h */,
+				7507ADE415BDA55500B9118C /* NoddyWindow.m */,
+				7507ADE615BDA56800B9118C /* NoddyRecipe.h */,
+				7507ADE715BDA56800B9118C /* NoddyRecipe.m */,
 			);
 			name = Source;
 			path = noddy;
@@ -317,6 +332,9 @@
 				7CEE72DF15AC949100C8C95A /* NoddyController.mm in Sources */,
 				7CEE72E215AC9D9100C8C95A /* NoddyMixin.mm in Sources */,
 				750EAA1215B399290036EA4F /* NoddyMixin+NoddyAPI.m in Sources */,
+				7507ADE115BDA53700B9118C /* NoddyStorage.m in Sources */,
+				7507ADE515BDA55500B9118C /* NoddyWindow.m in Sources */,
+				7507ADE815BDA56800B9118C /* NoddyRecipe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

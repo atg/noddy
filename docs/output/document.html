@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Chocolat API &rsaquo; Document</title>
+    
+    <link href="../apidocsstyle.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <h1><b>Document</b> &lsaquo; Chocolat API</h1>
+    <!--
+    <nav>
+        
+            <a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="editor.html">Editor</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="document.html">Document</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+            <a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+    </nav>
+-->
+<table>
+<tr>
+    <td id="nav">
+        <ul>
+        
+            <li>Text
+            <ul>
+                
+                <li><a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+            </ul>
+            </li>
+        
+            <li>Workspace
+            <ul>
+                
+                <li><a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="editor.html">Editor</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="document.html">Document</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+            </ul>
+            </li>
+        
+            <li>UI
+            <ul>
+                
+                <li><a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+            </ul>
+            </li>
+        
+            <li>Misc
+            <ul>
+                
+                <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+                <li><a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            
+            </ul>
+            </li>
+        
+        </ul>
+    </td>
+    <td id="content">
+        
+        
+            <h3><span class="parent-name">Document</span>.<span class="item-name">current</span>()</h3>
+            <p>Class method that returns the current Document.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Document</span> &ndash; the active document.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">displayName</span>()</h3>
+            <p>Get the display name of a document.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">String</span> &ndash; the display name of a document.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">filename</span>()</h3>
+            <p>Get the file name of a document.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">String</span> &ndash; the filename of a document.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">path</span>()</h3>
+            <p>Get the path of a document.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">String</span> &ndash; the path of the file on disk, null if it's unsaved.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">rootScope</span>()</h3>
+            <p>Get the root scope of a document, e.g. source.objc or text.html</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">String</span> &ndash; the root scope of the document.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">contextAtIndex</span>(<var>idx</var>)</h3>
+            <p>Get the context (list of scopes) at a particular index.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">idx</span><span class="bigspace"> </span><span class="param-type">Number</span> &ndash; an index.</li>
+                
+            </ul>
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Array</span> &ndash; a list of scopes for the given index.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">editors</span>()</h3>
+            <p>Get an array of Editor objects for a document.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Array</span> &ndash; an array of Editor objects.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">length</span></h3>
+            <p>Get the length of the document.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Number</span> &ndash; the length of the document.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">text</span></h3>
+            <p>Get or set the text of the document.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">String</span> &ndash; the content of the document.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">textInRange</span>(<var>rng</var>)</h3>
+            <p>Get the text in a given range</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; a range.</li>
+                
+            </ul>
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">String</span> &ndash; the text at given range.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">replaceTextInRange</span>(<var>rng</var>, <var>replacement</var>)</h3>
+            <p>Replace the text in <code>rng</code> with <code>replacement</code>.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">rng</span><span class="bigspace"> </span><span class="param-type">Range</span> &ndash; a range.</li>
+                
+                    <li class="param"><span class="param-name">replacement</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the replacement string.</li>
+                
+            </ul>
+            
+            
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">storage</span>()</h3>
+            <p>Access the storage object of the Document (see Storage class).</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Storage</span> &ndash; the storage.
+            </p>
+            
+            
+            
+
+        
+    </td>
+</tr>
+</table>
+        
+</body>
+</html>

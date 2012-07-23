@@ -289,17 +289,23 @@ Handle<Value> noddy_objc_msgSend(const Arguments& args) {
     return self;
 }
 - (v8::Local<v8::Value>)basicCall:(v8::Handle<v8::Object>)thisObject arguments:(v8::Handle<v8::Array>)args {
-    HandleScope scope;
+    HandleScope scope;    
     
-    // TODO: thisObject is not used
+    uint32_t count = args->Length();
+    v8::Handle<v8::Value>* argv = new v8::Handle<v8::Value>[count]();
+    for (NSUInteger i = 0; i < count; i++) {
+        argv[i] = args->Get(i);
+    }
     
-    v8::Handle<v8::Value> argv[1] = { args };
-    return scope.Close(func->Get(String::New("apply")).As<v8::Function>()->Call(func, 1, argv));
+    v8::Local<v8::Value> ret = func->Call(thisObject, count, argv);
+    delete[] argv;
+    
+    return scope.Close(ret);
 }
 - (id)call:(id)thisObject arguments:(NSArray*)args {
     HandleScope scope;
-    Local<Object> js_thisObject = cocoa_to_node(thisObject).As<Object>();
-    Local<Array> js_args = cocoa_to_node(args).As<Array>();
+    Local<Object> js_thisObject = (!thisObject || thisObject == [NSNull null]) ? Object::New() : cocoa_to_node(thisObject).As<Object>();
+    Local<Array> js_args = (!args) ? Array::New() : cocoa_to_node(args).As<Array>();
     return node_to_cocoa([self basicCall:js_thisObject arguments:js_args]);
 }
 - (v8::Local<v8::Function>)functionValue {

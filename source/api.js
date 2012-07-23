@@ -47,6 +47,44 @@ Clipboard.text = function() {
     return global.objc_msgSendSync(private_get_mixin(), "clipboard_paste");
 };
 
+// Implement the UI class
+var UI = {};
+global.UI = UI;
+
+/**
+ * Add a menu item at the given path.
+ * 
+ * @param {String} path the path of the new menu item.
+ * @param {String} shortcut keyboard shortcut, e.g. `ctrl-alt-cmd-b`.
+ * @param {Function} callback a callback to be executed when the menu item is selected.
+ * @memberOf UI
+ */
+UI.addMenuItem = function(path, shortcut, options, callback) {
+    
+};
+
+/**
+ * Add a keyboard shortcut.
+ *
+ * @param {String} shortcut the keyboard shortcut, e.g. `ctrl-alt-cmd-b`
+ * @param {Function} callback the callback function to execute.
+ * @memberOf UI
+ */
+UI.addKeyboardShortcut = function(shortcut, callback) {
+    
+};
+
+/**
+ * Add an item in the bottom status bar.
+ * @param {String} name the name of the item to add.
+ * @param {Function} valueFunction a function that will return the value to display in the status bar.
+ * @param {String} selector a scope selector e.g. `source.objc`
+ * @memberOf UI
+ */
+UI.addStatusItem = function (name, valueFunction, selector) {
+    
+};
+
 var Storage = function(nid) {
     this.nid = nid;
 };
@@ -526,44 +564,6 @@ Recipe.prototype.insertTextAtLocation = function(location, newText, recordUndo) 
         recordUndo = true;
     global.objc_msgSend(this.nid, "replaceText:inRangeValue:recordUndo:", newText, Range(location, 0), recordUndo);
 };
-// Implement the UI class
-var UI = {};
-global.UI = UI;
-
-/**
- * Add a menu item at the given path.
- * 
- * @param {String} path the path of the new menu item.
- * @param {String} shortcut keyboard shortcut, e.g. `ctrl-alt-cmd-b`.
- * @param {Function} callback a callback to be executed when the menu item is selected.
- * @memberOf UI
- */
-UI.addMenuItem = function(path, shortcut, options, callback) {
-    
-};
-
-/**
- * Add a keyboard shortcut.
- *
- * @param {String} shortcut the keyboard shortcut, e.g. `ctrl-alt-cmd-b`
- * @param {Function} callback the callback function to execute.
- * @memberOf UI
- */
-UI.addKeyboardShortcut = function(shortcut, callback) {
-    
-};
-
-/**
- * Add an item in the bottom status bar.
- * @param {String} name the name of the item to add.
- * @param {Function} valueFunction a function that will return the value to display in the status bar.
- * @param {String} selector a scope selector e.g. `source.objc`
- * @memberOf UI
- */
-UI.addStatusItem = function (name, valueFunction, selector) {
-    
-};
-
 /**
  * Create a new window.
  * @memberOf Window
@@ -801,5 +801,235 @@ Tab.prototype.visibleDocuments = function() {
  * @memberOf Tab
  */
 Tab.prototype.storage = function() {
+
+};
+
+/**
+ * @api private
+ */
+var Document = function(nid) {
+  this.nid = nid;
+};
+
+global.Document = Document;
+
+/**
+ * Class method that returns the current Document.
+ *
+ * @return {Document} the active document.
+ * @memberOf Document
+ */
+Document.current = function() {
+
+};
+
+/**
+ * Get the display name of a document.
+ *
+ * @return {String} the display name of a document.
+ * @memberOf Document
+ */
+Document.prototype.displayName = function() {
+  
+};
+
+/**
+ * Get the file name of a document.
+ *
+ * @return {String} the filename of a document.
+ * @memberOf Document
+ */
+Document.prototype.filename = function() {
+
+};
+
+/**
+ * Get the path of a document.
+ *
+ * @return {String} the path of the file on disk, null if it's unsaved.
+ * @memberOf Document
+ */
+Document.prototype.path = function() {
+
+};
+
+/**
+ * Get the root scope of a document, e.g. source.objc or text.html
+ *
+ * @return {String} the root scope of the document.
+ * @memberOf Document
+ */
+Document.prototype.rootScope = function() {
+
+};
+
+/**
+ * Get the context (list of scopes) at a particular index.
+ *
+ * @param {Number} idx an index.
+ * @return {Array} a list of scopes for the given index.
+ * @memberOf Document
+ */
+Document.prototype.contextAtIndex = function(idx) {
+
+};
+
+/**
+ * Get an array of Editor objects for a document.
+ *
+ * @return {Array} an array of Editor objects.
+ * @memberOf Document
+ */
+Document.prototype.editors = function() {
+
+};
+
+/**
+ * Get the length of the document.
+ *
+ * @return {Number} the length of the document.
+ * @memberOf Document
+ * @isproperty
+ */
+Document.prototype.length = function() {
+    
+};
+Document.prototype.__defineGetter__("length", Document.prototype.length);
+
+/**
+ * Get or set the text of the document.
+ *
+ * @return {String} the content of the document.
+ * @memberOf Document
+ * @isproperty
+ */
+Document.prototype.text = function() {
+    
+};
+
+Document.prototype.setText = function(newText) {
+    
+};
+Document.prototype.__defineGetter__("text", Document.prototype.text);
+Document.prototype.__defineSetter__("text", Document.prototype.setText);
+
+/**
+ * Get the text in a given range
+ *
+ * @param {Range} rng a range.
+ * @return {String} the text at given range.
+ * @memberOf Document
+ */
+Document.prototype.textInRange = function(rng) {
+
+};
+
+/**
+ * Replace the text in `rng` with `replacement`.
+ *
+ * @param {Range} rng a range.
+ * @param {String} replacement the replacement string.
+ * @memberOf Document
+ */
+Document.prototype.replaceTextInRange = function(rng, replacement) {
+
+};
+
+/**
+ * Access the storage object of the Document (see Storage class).
+ *
+ * @return {Storage} the storage.
+ * @memberOf Document
+ */
+Document.prototype.storage = function() {
+
+};
+
+
+/**
+ * @api private
+ */
+var Editor = function(nid) {
+  this.nid = nid;
+};
+
+global.Editor = Editor;
+
+/**
+ * Class method that returns the current Editor.
+ *
+ * @return {Editor} the active editor.
+ * @memberOf Editor
+ */
+Editor.current = function() {
+
+};
+
+/**
+ * The document edited by this editor.
+ *
+ * @return {Document} the document being edited.
+ * @memberOf Editor
+ */
+Editor.prototype.document = function() {
+  
+};
+
+/**
+ * Get or set the selected text in this editor.
+ * 
+ * @return {Range} the range of the selected text.
+ * @memberOf Editor
+ * @isproperty
+ */
+Editor.prototype.selection = function() {
+  
+};
+
+Editor.prototype.setSelection = function(rng) {
+  
+};
+
+Editor.prototype.__defineGetter__("selection", Editor.prototype.selection);
+Editor.prototype.__defineSetter__("selection", Editor.prototype.setSelection);
+
+
+/**
+ * Get the range of text that is visible in this editor.
+ *
+ * @return {Range} the range of visible text.
+ * @memberOf Editor
+ */
+Editor.prototype.visibleRange = function() {
+  
+};
+
+/**
+ * Get the context (list of scopes) at the editor's selection.
+ *
+ * @return {Array} a list of scopes for the selection.
+ * @memberOf Editor
+ */
+Editor.prototype.selectionContext = function() {
+  
+};
+
+/**
+ * Insert a snippet where the cursor is located.
+ *
+ * @param {String} snippet a snippet.
+ * @memberOf Editor
+ */
+Editor.prototype.insertSnippet = function(snippet) {
+
+};
+
+/**
+ * Access the storage object of the Editor (see Storage class).
+ *
+ * @return {Storage} the storage.
+ * @memberOf Editor
+ */
+Editor.prototype.storage = function() {
 
 };

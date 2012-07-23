@@ -2,12 +2,12 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Chocolat API &rsaquo; MainWindow</title>
+    <title>Chocolat API &rsaquo; Editor</title>
     
     <link href="../apidocsstyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h1><b>MainWindow</b> &lsaquo; Chocolat API</h1>
+    <h1><b>Editor</b> &lsaquo; Chocolat API</h1>
     <!--
     <nav>
         
@@ -99,14 +99,14 @@
     <td id="content">
         
         
-            <h3><span class="parent-name">MainWindow</span>.<span class="item-name">current</span>()</h3>
-            <p>Class method that returns the current window.</p>
+            <h3><span class="parent-name">Editor</span>.<span class="item-name">current</span>()</h3>
+            <p>Class method that returns the current Editor.</p>
             
             
             
             
             <p class="returns">
-                <b>Returns</b> <span class="param-type">MainWindow</span> &ndash; the current MainWindow.
+                <b>Returns</b> <span class="param-type">Editor</span> &ndash; the active editor.
             </p>
             
             
@@ -114,14 +114,14 @@
 
         
         
-            <h3>.<span class="item-name">tabs</span>()</h3>
-            <p>Returns and array of tabs in the main window.</p>
+            <h3>.<span class="item-name">document</span>()</h3>
+            <p>The document edited by this editor.</p>
             
             
             
             
             <p class="returns">
-                <b>Returns</b> <span class="param-type">Array</span> &ndash; tabs.
+                <b>Returns</b> <span class="param-type">Document</span> &ndash; the document being edited.
             </p>
             
             
@@ -129,14 +129,14 @@
 
         
         
-            <h3>.<span class="item-name">currentTab</span>()</h3>
-            <p>Get the current, active tab from the main window.</p>
+            <h3>.<span class="item-name">selection</span></h3>
+            <p>Get or set the selected text in this editor.</p>
             
             
             
             
             <p class="returns">
-                <b>Returns</b> <span class="param-type">Tab</span> &ndash; the active tab in the main window.
+                <b>Returns</b> <span class="param-type">Range</span> &ndash; the range of the selected text.
             </p>
             
             
@@ -144,15 +144,43 @@
 
         
         
-            <h3>.<span class="item-name">sendMessage</span>(<var>selector</var>, <var>arguments</var>)</h3>
-            <p>Send an objective-c message to the MainWindow.</p>
+            <h3>.<span class="item-name">visibleRange</span>()</h3>
+            <p>Get the range of text that is visible in this editor.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Range</span> &ndash; the range of visible text.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">selectionContext</span>()</h3>
+            <p>Get the context (list of scopes) at the editor's selection.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Array</span> &ndash; a list of scopes for the selection.
+            </p>
+            
+            
+            
+
+        
+        
+            <h3>.<span class="item-name">insertSnippet</span>(<var>snippet</var>)</h3>
+            <p>Insert a snippet where the cursor is located.</p>
             
             
             <ul class="params">
                 
-                    <li class="param"><span class="param-name">selector</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the message selector to send.</li>
-                
-                    <li class="param"><span class="param-name">arguments</span><span class="bigspace"> </span><span class="param-type">Array</span> &ndash; the arguments to send along with the message.</li>
+                    <li class="param"><span class="param-name">snippet</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; a snippet.</li>
                 
             </ul>
             
@@ -164,7 +192,7 @@
         
         
             <h3>.<span class="item-name">storage</span>()</h3>
-            <p>Access the storage object of the MainWindow (see Storage class).</p>
+            <p>Access the storage object of the Editor (see Storage class).</p>
             
             
             
