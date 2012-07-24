@@ -30,3 +30,4 @@ function inherit(sub, super) {
  newSubPrototype.constructor = sub; 
  sub.prototype = newSubPrototype;
 }
+

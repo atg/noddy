@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#ifdef __cplusplus
+extern "C"
+#endif
 void NoddyScheduleBlock(dispatch_block_t block);
 
 @interface NoddyThread : NSThread

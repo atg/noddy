@@ -111,7 +111,7 @@ Storage.prototype.get = function(k) {
  */
 Storage.prototype.set = function(k, v) {
     global.objc_msgSend(this.nid, "setValue:forKey:", v, k);
-}
+};
 
 /**
  * Returns the number of keys in the storage.
@@ -121,7 +121,7 @@ Storage.prototype.set = function(k, v) {
  */
 Storage.prototype.count = function() {
     return global.objc_msgSendSync(this.nid, "count");
-}
+};
 
 /**
  * Applies function `f` to every items in the storage. The function should
@@ -136,7 +136,21 @@ Storage.prototype.forall = function(f) {
     for (var k in storage) {
         f(k, storage[k]);
     }
-}/**
+};
+
+var Util = function() {
+  
+};
+
+Util.indentation = function(str) {
+  
+};
+
+Util.spliceSubstring = function(str, part, loc, len) {
+  
+};
+
+/**
  * @api private
  */
 function private_get_mixin() {
@@ -167,7 +181,9 @@ function inherit(sub, super) {
  var newSubPrototype = createObject(super.prototype); 
  newSubPrototype.constructor = sub; 
  sub.prototype = newSubPrototype;
-}// See https://github.com/fileability/chocolat/blob/master/code/multicursor/multicursor.hh#L6
+}
+
+// See https://github.com/fileability/chocolat/blob/master/code/multicursor/multicursor.hh#L6
 // and https://github.com/fileability/chocolat/blob/master/code/multicursor/multicursor.cc
 // for a well proven implementation.
 
@@ -366,6 +382,7 @@ Range.compare = function(a, b) {
     else if (a.length > b.length) return 1;
     else return 0;
 };
+
 // Implement the Recipe class
 var Recipe = function(nid) {
     this.nid = nid;
@@ -564,6 +581,7 @@ Recipe.prototype.insertTextAtLocation = function(location, newText, recordUndo) 
         recordUndo = true;
     global.objc_msgSend(this.nid, "replaceText:inRangeValue:recordUndo:", newText, Range(location, 0), recordUndo);
 };
+
 /**
  * Create a new window.
  * @memberOf Window
@@ -1033,3 +1051,4 @@ Editor.prototype.insertSnippet = function(snippet) {
 Editor.prototype.storage = function() {
 
 };
+

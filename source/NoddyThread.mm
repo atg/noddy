@@ -44,7 +44,7 @@ static volatile OSSpinLock NoddyMessageQueueLock = OS_SPINLOCK_INIT;
 static unsigned NoddyMessagesCount; // Avoid sending a -count message each poll
 static NSMutableArray* NoddyMessages;
 
-void NoddyScheduleBlock(dispatch_block_t block) {
+extern "C" void NoddyScheduleBlock(dispatch_block_t block) {
 
     OSSpinLockLock(&NoddyMessageQueueLock);
 

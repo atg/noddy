@@ -197,3 +197,4 @@ Range.compare = function(a, b) {
     else if (a.length > b.length) return 1;
     else return 0;
 };
+

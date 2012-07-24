@@ -196,3 +196,4 @@ Recipe.prototype.insertTextAtLocation = function(location, newText, recordUndo) 
         recordUndo = true;
     global.objc_msgSend(this.nid, "replaceText:inRangeValue:recordUndo:", newText, Range(location, 0), recordUndo);
 };
+

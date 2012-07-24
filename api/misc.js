@@ -24,7 +24,7 @@ Storage.prototype.get = function(k) {
  */
 Storage.prototype.set = function(k, v) {
     global.objc_msgSend(this.nid, "setValue:forKey:", v, k);
-}
+};
 
 /**
  * Returns the number of keys in the storage.
@@ -34,7 +34,7 @@ Storage.prototype.set = function(k, v) {
  */
 Storage.prototype.count = function() {
     return global.objc_msgSendSync(this.nid, "count");
-}
+};
 
 /**
  * Applies function `f` to every items in the storage. The function should
@@ -49,7 +49,7 @@ Storage.prototype.forall = function(f) {
     for (var k in storage) {
         f(k, storage[k]);
     }
-}
+};
 
 var Util = function() {
   
@@ -62,3 +62,4 @@ Util.indentation = function(str) {
 Util.spliceSubstring = function(str, part, loc, len) {
   
 };
+

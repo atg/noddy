@@ -368,3 +368,4 @@ Editor.prototype.insertSnippet = function(snippet) {
 Editor.prototype.storage = function() {
 
 };
+

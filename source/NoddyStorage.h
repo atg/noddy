@@ -10,4 +10,7 @@
 
 @interface NoddyStorage : NSObject
 
+@property (readonly) NSMutableDictionary* dictionary;
+@property (copy) NSString* noddyID;
+
 @end

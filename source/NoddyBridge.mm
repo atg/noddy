@@ -1,5 +1,6 @@
 #import "NoddyBridge.h"
 #import "NoddyIndirectObjects.h"
+#import "NoddyThread.h"
 
 using namespace v8;
 
@@ -313,7 +314,10 @@ Handle<Value> noddy_objc_msgSend(const Arguments& args) {
     return scope.Close(Local<Function>::New(func));
 }
 - (void)finalize {
-    func.Dispose();
+    NoddyScheduleBlock(^{
+        func.Dispose();
+    });
+    
     [super finalize];
 }
 
