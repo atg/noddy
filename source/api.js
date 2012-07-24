@@ -186,8 +186,8 @@ function createObject(parent) {
 /**
 * @api private
 */
-function inherit(sub, super) {
- var newSubPrototype = createObject(super.prototype); 
+function noddyInherit(sub, superObj) {
+ var newSubPrototype = createObject(superObj.prototype); 
  newSubPrototype.constructor = sub; 
  sub.prototype = newSubPrototype;
 }// See https://github.com/fileability/chocolat/blob/master/code/multicursor/multicursor.hh#L6
@@ -666,7 +666,7 @@ var Sheet = function(w) {
   this.parentWindow = w;
 }
 
-inherit(Sheet, Window);
+noddyInherit(Sheet, Window);
 
 global.Sheet = Sheet;
 
@@ -683,7 +683,7 @@ var Popover = function(range, editor) {
   this.editor = editor;
 };
 
-inherit(Popover, Window);
+noddyInherit(Popover, Window);
 global.Popover = Popover;
 
 // MainWindow, Tab, Document and Editor
