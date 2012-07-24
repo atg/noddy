@@ -62,3 +62,7 @@ Util.indentation = function(str) {
 Util.spliceSubstring = function(str, part, loc, len) {
   
 };
+
+Util.slugifyString = function(str) {
+    
+};

@@ -7,7 +7,7 @@ global.Clipboard = Clipboard;
  * @param {String} value the value to copy.
  */
 Clipboard.copy = function(value) {
-    global.objc_msgSend(private_get_mixin(), "clipboard_copy", value);
+    global.objc_msgSend(private_get_mixin(), "clipboard_copy:", value);
 };
 
 

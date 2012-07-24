@@ -76,7 +76,7 @@ NSString *CHDeveloperDirectory()
 
 + (NSString *)computerName
 {
-	return NSMakeCollectable(SCDynamicStoreCopyComputerName(NULL, NULL));
+	//return NSMakeCollectable(SCDynamicStoreCopyComputerName(NULL, NULL));
 }
 + (NSString *)volumeName
 {

@@ -16,5 +16,6 @@
 @property (assign) IBOutlet NSWindow *window;
 
 - (IBAction)helloButton:(id)sender;
+- (void)ui_addMenuItem:(NSDictionary *)options;
 
 @end

@@ -1,5 +1,6 @@
 #import "NoddyMixin+NoddyAPI.h"
 #import "NSString+Utilities.h"
+#import "NSArray+Utilities.h"
 
 static NSString* string_default(NSString* str, NSString* defaultStr) {
     if ([str length])
@@ -10,6 +11,12 @@ static id collection_default(id coll, id defaultColl) {
     if ([coll count])
         return coll;
     return defaultColl;
+}
+
+static NSString* sluggify(NSString *str) { 
+    NSCharacterSet *badChar = [[NSCharacterSet alphanumericCharacterSet] invertedSet];
+    NSString *rep = [[[[[str stringByTrimmingCharactersInSet:badChar] componentsSeparatedByCharactersInSet:badChar] arrayByRemovingObjectsEqualTo:@""] componentsJoinedByString:@"-"] lowercaseString];
+    return rep;
 }
 
 static NSDictionary *shortcut_for_string(NSString *str) {
@@ -99,6 +106,35 @@ static NSDictionary *shortcut_for_string(NSString *str) {
     
 }
 
+
+static NSMenuItem *menu_item_for_path(NSString *path)
+{
+    NSArray *menuItems = [path componentsSeparatedByString:@"/"];
+    int cnt = 0;
+    
+    NSMenu *rootMenu = [NSApp mainMenu];
+    NSMenuItem *lastItem = nil;
+    for (NSString *anItem in menuItems) {
+        for (NSMenuItem *aMenuItem in [rootMenu itemArray]) {
+            if ([sluggify(aMenuItem.title) isEqualToString:anItem] && aMenuItem.hasSubmenu) {
+                rootMenu = aMenuItem.submenu;
+                cnt++;
+                break;
+            } else if([sluggify(aMenuItem.title) isEqualToString:anItem] && !aMenuItem.hasSubmenu) {
+                lastItem = aMenuItem;
+                cnt++;
+                break;
+            }
+        }
+        // we should've found a menu for this:
+        
+    }
+    //CHDebug(@"Menu Item: %@", lastItem);
+    if (cnt == [menuItems count])
+        return lastItem;
+    return nil;
+}
+
 @implementation NoddyMixin (NoddyAPI)
 
 #pragma mark - Alert
@@ -133,5 +169,58 @@ static NSDictionary *shortcut_for_string(NSString *str) {
 
 #pragma mark - Hooks
 
+- (void)ui_addKeyboardShortcut:(NSDictionary *)options
+{
+    // make sure that shortcut is valid...
+    NSDictionary *shortcut = shortcut_for_string([options objectForKey:@"shortcut"]);
+    if (shortcut) {
+        // do something!
+    }
+}
+
+- (void)ui_addMenuItem:(NSDictionary *)options
+{
+    // make sure that shortcut is valid...
+    NSDictionary *shortcut = shortcut_for_string([options objectForKey:@"shortcut"]);
+    NSString *path = [options objectForKey:@"path"];
+    NSArray *menuItems = [path componentsSeparatedByString:@"/"];    
+    NSMenu *rootMenu = [NSApp mainMenu];
+    
+    for (int i = 0; i < [menuItems count]; i++) {
+        NSString *anItem = [menuItems objectAtIndex:i];
+        BOOL menuExists = NO;
+        if (i < [menuItems count] - 1) {
+            
+            for (NSMenuItem *aMenuItem in [rootMenu itemArray]) {
+                if ([aMenuItem.title caseInsensitiveCompare:anItem] == NSOrderedSame
+                    && aMenuItem.hasSubmenu) {
+                    rootMenu = aMenuItem.submenu;
+                    menuExists = YES;
+                }
+            }
+            if (!menuExists) {
+                // create it, and set as root?!
+                NSMenuItem *newItem = [[NSMenuItem alloc] initWithTitle:anItem
+                                                                 action:NULL
+                                                          keyEquivalent:@""];
+                NSMenu *newMenu = [[NSMenu alloc] initWithTitle:anItem];
+                newItem.submenu = newMenu;
+                [rootMenu addItem:newItem];
+                rootMenu = newItem.submenu;
+            }
+            
+            
+        } else {
+            // last item... insert here!
+            NSMenuItem *newItem = [[NSMenuItem alloc] initWithTitle:anItem
+                                                             action:NULL
+                                                      keyEquivalent:@""];
+            [rootMenu addItem:newItem];
+        }
+    }
+    
+    
+    
+}
 
 @end

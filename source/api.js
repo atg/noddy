@@ -34,7 +34,7 @@ global.Clipboard = Clipboard;
  * @param {String} value the value to copy.
  */
 Clipboard.copy = function(value) {
-    global.objc_msgSend(private_get_mixin(), "clipboard_copy", value);
+    global.objc_msgSend(private_get_mixin(), "clipboard_copy:", value);
 };
 
 
@@ -59,8 +59,12 @@ global.UI = UI;
  * @param {Function} callback a callback to be executed when the menu item is selected.
  * @memberOf UI
  */
-UI.addMenuItem = function(path, shortcut, options, callback) {
-    
+UI.addMenuItem = function(path, shortcut, callback) {
+    global.objc_msgSend(private_get_mixin(), "ui_addMenuItem:", {
+        "path": path,
+        "shortcut": shortcut,
+        "callback": callback
+    });
 };
 
 /**
@@ -71,7 +75,10 @@ UI.addMenuItem = function(path, shortcut, options, callback) {
  * @memberOf UI
  */
 UI.addKeyboardShortcut = function(shortcut, callback) {
-    
+    global.objc_msgSend(private_get_mixin(), "ui_addKeyboardShortcut:", {
+        "shortcut": shortcut,
+        "callback": callback
+    });
 };
 
 /**
@@ -136,7 +143,23 @@ Storage.prototype.forall = function(f) {
     for (var k in storage) {
         f(k, storage[k]);
     }
-}/**
+}
+
+var Util = function() {
+  
+};
+
+Util.indentation = function(str) {
+  
+};
+
+Util.spliceSubstring = function(str, part, loc, len) {
+  
+};
+
+Util.slugifyString = function(str) {
+    
+};/**
  * @api private
  */
 function private_get_mixin() {
