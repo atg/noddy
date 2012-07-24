@@ -34,7 +34,7 @@ global.Clipboard = Clipboard;
  * @param {String} value the value to copy.
  */
 Clipboard.copy = function(value) {
-    global.objc_msgSend(private_get_mixin(), "clipboard_copy", value);
+    global.objc_msgSend(private_get_mixin(), "clipboard_copy:", value);
 };
 
 
@@ -59,8 +59,12 @@ global.UI = UI;
  * @param {Function} callback a callback to be executed when the menu item is selected.
  * @memberOf UI
  */
-UI.addMenuItem = function(path, shortcut, options, callback) {
-    
+UI.addMenuItem = function(path, shortcut, callback) {
+    global.objc_msgSend(private_get_mixin(), "ui_addMenuItem:", {
+        "path": path,
+        "shortcut": shortcut,
+        "callback": callback
+    });
 };
 
 /**
@@ -71,7 +75,10 @@ UI.addMenuItem = function(path, shortcut, options, callback) {
  * @memberOf UI
  */
 UI.addKeyboardShortcut = function(shortcut, callback) {
-    
+    global.objc_msgSend(private_get_mixin(), "ui_addKeyboardShortcut:", {
+        "shortcut": shortcut,
+        "callback": callback
+    });
 };
 
 /**
@@ -150,6 +157,9 @@ Util.spliceSubstring = function(str, part, loc, len) {
   
 };
 
+Util.slugifyString = function(str) {
+    
+};
 /**
  * @api private
  */
@@ -173,12 +183,12 @@ function createObject(parent) {
  var child = new TempClass();
  return child;
 }
-
+f
 /**
 * @api private
 */
-function inherit(sub, super) {
- var newSubPrototype = createObject(super.prototype); 
+function noddyInherit(sub, superObj) {
+ var newSubPrototype = createObject(superObj.prototype); 
  newSubPrototype.constructor = sub; 
  sub.prototype = newSubPrototype;
 }
@@ -661,7 +671,7 @@ var Sheet = function(w) {
   this.parentWindow = w;
 }
 
-inherit(Sheet, Window);
+noddyInherit(Sheet, Window);
 
 global.Sheet = Sheet;
 
@@ -678,7 +688,7 @@ var Popover = function(range, editor) {
   this.editor = editor;
 };
 
-inherit(Popover, Window);
+noddyInherit(Popover, Window);
 global.Popover = Popover;
 
 // MainWindow, Tab, Document and Editor

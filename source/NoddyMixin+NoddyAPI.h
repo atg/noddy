@@ -8,4 +8,6 @@
 // Clipboard.js
 - (void)clipboard_copy:(NSString *)value;
 
+// UI/Hooks
+- (void)ui_addMenuItem:(NSDictionary *)options;
 @end

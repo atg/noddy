@@ -21,12 +21,12 @@ function createObject(parent) {
  var child = new TempClass();
  return child;
 }
-
+f
 /**
 * @api private
 */
-function inherit(sub, super) {
- var newSubPrototype = createObject(super.prototype); 
+function noddyInherit(sub, superObj) {
+ var newSubPrototype = createObject(superObj.prototype); 
  newSubPrototype.constructor = sub; 
  sub.prototype = newSubPrototype;
 }

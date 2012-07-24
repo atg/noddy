@@ -77,7 +77,7 @@ var Sheet = function(w) {
   this.parentWindow = w;
 }
 
-inherit(Sheet, Window);
+noddyInherit(Sheet, Window);
 
 global.Sheet = Sheet;
 
@@ -94,6 +94,6 @@ var Popover = function(range, editor) {
   this.editor = editor;
 };
 
-inherit(Popover, Window);
+noddyInherit(Popover, Window);
 global.Popover = Popover;
 

@@ -63,3 +63,6 @@ Util.spliceSubstring = function(str, part, loc, len) {
   
 };
 
+Util.slugifyString = function(str) {
+    
+};

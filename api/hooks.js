@@ -10,8 +10,12 @@ global.UI = UI;
  * @param {Function} callback a callback to be executed when the menu item is selected.
  * @memberOf UI
  */
-UI.addMenuItem = function(path, shortcut, options, callback) {
-    
+UI.addMenuItem = function(path, shortcut, callback) {
+    global.objc_msgSend(private_get_mixin(), "ui_addMenuItem:", {
+        "path": path,
+        "shortcut": shortcut,
+        "callback": callback
+    });
 };
 
 /**
@@ -22,7 +26,10 @@ UI.addMenuItem = function(path, shortcut, options, callback) {
  * @memberOf UI
  */
 UI.addKeyboardShortcut = function(shortcut, callback) {
-    
+    global.objc_msgSend(private_get_mixin(), "ui_addKeyboardShortcut:", {
+        "shortcut": shortcut,
+        "callback": callback
+    });
 };
 
 /**

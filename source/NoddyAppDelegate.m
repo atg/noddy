@@ -9,6 +9,8 @@
 #import "NoddyAppDelegate.h"
 #import "NoddyThread.h"
 #import "NoddyController.h"
+#import "NSString+Utilities.h"
+
 
 @implementation NoddyAppDelegate
 
@@ -21,5 +23,6 @@
 - (IBAction)helloButton:(id)sender {
     [NoddyThread callGlobalFunction:@"sayHelloTo" arguments:[NSArray arrayWithObject:NSFullUserName()]];
 }
+
 
 @end
