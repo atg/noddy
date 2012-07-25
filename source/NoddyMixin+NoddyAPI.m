@@ -118,11 +118,15 @@ static NSMenuItem *menu_item_for_path(NSString *path)
     NSMenuItem *lastItem = nil;
     for (NSString *anItem in menuItems) {
         for (NSMenuItem *aMenuItem in [rootMenu itemArray]) {
-            if ([sluggify(aMenuItem.title) isEqualToString:anItem] && aMenuItem.hasSubmenu) {
+            NSString *stringToCompare = [anItem stringByReplacingOccurrencesOfString:@"..."
+                                                                          withString:[NSString stringWithFormat:@"%C", (unichar)0x2026]];
+            if ([aMenuItem.title caseInsensitiveCompare:stringToCompare] == NSOrderedSame &&
+                aMenuItem.hasSubmenu) {
                 rootMenu = aMenuItem.submenu;
                 cnt++;
                 break;
-            } else if([sluggify(aMenuItem.title) isEqualToString:anItem] && !aMenuItem.hasSubmenu) {
+            } else if([aMenuItem.title caseInsensitiveCompare:stringToCompare] == NSOrderedSame &&
+                      !aMenuItem.hasSubmenu) {
                 lastItem = aMenuItem;
                 cnt++;
                 break;
@@ -233,6 +237,16 @@ static NSMenuItem *menu_item_for_path(NSString *path)
         }
     }
     
+}
+
+- (void)ui_setShortcutForMenuItem:(NSDictionary *)options
+{
+    NSDictionary *shortcut = shortcut_for_string([options objectForKey:@"shortcut"]);
+    NSMenuItem *menuItem = menu_item_for_path([options objectForKey:@"path"]);
+    if (menuItem && shortcut) {
+        [menuItem setKeyEquivalentModifierMask:[[shortcut objectForKey:@"Modifiers"] unsignedIntegerValue]];
+        [menuItem setKeyEquivalent:[shortcut objectForKey:@"KeyEquiv"]];
+    }
 }
 
 - (void)executeNoddyFunctionForMenuItem:(id)sender
