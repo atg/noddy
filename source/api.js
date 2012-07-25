@@ -183,7 +183,7 @@ function createObject(parent) {
  var child = new TempClass();
  return child;
 }
-f
+
 /**
 * @api private
 */
@@ -603,6 +603,8 @@ var Window = function() {
   this.canResize = true;
   this.onLoad = null;
   this.onMessage = null;
+    
+    this.nid = objc_msgSendSync(private_get_mixin(), "createWindow:", "Window");
 };
 
 global.Window = Window;
@@ -612,7 +614,7 @@ global.Window = Window;
  * @memberOf Window
  */
 Window.prototype.run = function() {
-
+    objc_msgSend(this.nid, "run");
 };
 
 /**
@@ -620,7 +622,7 @@ Window.prototype.run = function() {
  * @memberOf Window
  */
 Window.prototype.close = function() {
-
+    objc_msgSend(this.nid, "close");
 };
 
 /**
@@ -629,7 +631,7 @@ Window.prototype.close = function() {
  * @memberOf Window
  */
 Window.prototype.frame = function() {
-
+    return objc_msgSendSync(this.nid, "frame");
 };
 
 /**
@@ -640,9 +642,18 @@ Window.prototype.frame = function() {
  * @memberOf Window
  */
 Window.prototype.setFrame = function(newFrame, shouldAnimate) {
-  if (typeof shouldAnimate === 'undefined') {shouldAnimate = false;}
-
+    if (typeof shouldAnimate === 'undefined') {
+        shouldAnimate = false;
+    }
+    objc_msgSend(this.nid, "setFrame:animate:", newFrame, shouldAnimate);
 };
+
+Window.prototype.buttons = function(newButtons) {
+    objc_msgSend(this.nid, "buttons");
+}
+Window.prototype.setButtons = function(newButtons) {
+    objc_msgSend(this.nid, "setButtons:", newButtons);
+}
 
 Window.prototype.eval = function(str) {
 

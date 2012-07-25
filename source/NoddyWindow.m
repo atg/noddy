@@ -9,8 +9,11 @@
 #import "NoddyWindow.h"
 #import "NoddyBridge.h"
 #import "NoddyThread.h"
+#import "NoddyIndirectObjects.h"
 
 @implementation NoddyWindow
+
+@synthesize noddyID;
 
 @synthesize window;
 @synthesize webview;
@@ -29,7 +32,13 @@
     if (!self)
         return nil;
     
-    
+    noddyID = [[NoddyIndirectObjects globalContext] generateAndSetIDForObject:self];
+    buttonObjects = [NSMutableArray array];
+    canResize = [NSNumber numberWithBool:YES];
+    canClose = [NSNumber numberWithBool:YES];
+    canMiniaturize = [NSNumber numberWithBool:YES];
+    title = @"";
+    laterFrame = NSMakeRect(0, 0, 480, 270);
     
     return self;
 }
@@ -56,7 +65,8 @@
     
     
     // Construct the window
-    window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 480, 270 + [self buttonBarHeight])
+    laterFrame.size.height += [self buttonBarHeight];
+    window = [[NSWindow alloc] initWithContentRect:laterFrame
                                          styleMask:styleMask
                                            backing:NSBackingStoreBuffered
                                              defer:YES];
@@ -86,6 +96,13 @@
         }
     }
     
+    NSRect webviewFrame = [(NSView*)[window contentView] frame];
+    webviewFrame.size.height -= [self buttonBarHeight];
+    webviewFrame.origin.y += [self buttonBarHeight];
+    [webview setFrame:webviewFrame];
+    [webview setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+    [[window contentView] addSubview:webview];
+        
     [window makeKeyAndOrderFront:nil];
 }
 - (void)setTitle:(NSString *)newTitle {
@@ -207,7 +224,10 @@
         return;
     
     NSRect r = [frame rectValue];
-    [window setFrame:r display:YES animate:animate];
+    if (!window)
+        [window setFrame:r display:YES animate:animate];
+    else
+        laterFrame = r;
 }
 
 

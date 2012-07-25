@@ -14,9 +14,12 @@
     __weak NoddyMixin* mixin;
     IBOutlet NSWindow* window;
     IBOutlet WebView* webview;
+    NSRect laterFrame;
     
     BOOL hasRun;
 }
+
+@property (copy) NSString* noddyID;
 
 @property (readonly) NSWindow* window;
 @property (readonly) WebView* webview;
@@ -24,7 +27,7 @@
 @property (copy) NSString* html;
 @property (copy) NSString* htmlPath; // Instead of html, a path to show
 @property (copy) NSArray* buttons; // A list of buttons to display at the bottom of the window.
-@property (assign) NSArray* buttonObjects; // A list of buttons to display at the bottom of the window.
+@property (readonly) NSMutableArray* buttonObjects; // A list of buttons to display at the bottom of the window.
 @property (assign) NSNumber* canResize;
 @property (assign) NSNumber* canClose;
 @property (assign) NSNumber* canMiniaturize;

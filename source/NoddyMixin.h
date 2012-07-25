@@ -15,6 +15,8 @@
 // The contents of the info.json file
 @property (assign) NSDictionary* info;
 
+@property (assign) NSMutableArray* windows;
+
 - (id)initWithPath:(NSString*)p;
 
 // loading and reloading

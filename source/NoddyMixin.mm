@@ -4,6 +4,7 @@
 
 @implementation NoddyMixin
 
+@synthesize windows=_windows;
 @synthesize path=_path, info=_info, timestamp=_timestamp;
 @synthesize noddyID=_noddyID;
 
@@ -11,6 +12,7 @@
 {
     if (self = [super init]) {
         NSLog(@"Loading mixin %@", [p stringByAbbreviatingWithTildeInPath]);
+        self.windows = [NSMutableArray array];
         self.path = p;
         
         NSError *e = nil;

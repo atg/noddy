@@ -21,7 +21,7 @@ function createObject(parent) {
  var child = new TempClass();
  return child;
 }
-f
+
 /**
 * @api private
 */

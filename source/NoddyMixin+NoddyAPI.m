@@ -1,6 +1,7 @@
 #import "NoddyMixin+NoddyAPI.h"
 #import "NSString+Utilities.h"
 #import "NSArray+Utilities.h"
+#import "NoddyWindow.h"
 
 static NSString* string_default(NSString* str, NSString* defaultStr) {
     if ([str length])
@@ -221,6 +222,14 @@ static NSMenuItem *menu_item_for_path(NSString *path)
     
     
     
+}
+
+#pragma mark - Windows
+
+- (NoddyWindow*)createWindow:(NSString*)kind {
+    NSLog(@"classname = %@", [@"Noddy" stringByAppendingFormat:kind]);
+    NSLog(@"class = %@", NSClassFromString([@"Noddy" stringByAppendingFormat:kind]) );
+    return [[NSClassFromString([@"Noddy" stringByAppendingFormat:kind]) alloc] init];
 }
 
 @end
