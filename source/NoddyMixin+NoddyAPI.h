@@ -10,4 +10,5 @@
 
 // UI/Hooks
 - (void)ui_addMenuItem:(NSDictionary *)options;
+- (void)executeNoddyFunctionForMenuItem:(id)sender;
 @end

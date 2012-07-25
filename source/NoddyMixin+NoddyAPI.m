@@ -2,6 +2,7 @@
 #import "NSString+Utilities.h"
 #import "NSArray+Utilities.h"
 #import "NoddyWindow.h"
+#import "NoddyThread.h"
 
 static NSString* string_default(NSString* str, NSString* defaultStr) {
     if ([str length])
@@ -215,13 +216,24 @@ static NSMenuItem *menu_item_for_path(NSString *path)
             // last item... insert here!
             NSMenuItem *newItem = [[NSMenuItem alloc] initWithTitle:anItem
                                                              action:NULL
-                                                      keyEquivalent:@""];
+                                                      keyEquivalent:[shortcut objectForKey:@"KeyEquiv"]];
             [rootMenu addItem:newItem];
+            [newItem setKeyEquivalentModifierMask:[[shortcut objectForKey:@"Modifiers"] unsignedIntegerValue]];
+            // Set the mixin as the target, the function has the callback
+            [newItem setRepresentedObject:[options objectForKey:@"callback"]];
+            [newItem setTarget:self];
+            [newItem setAction:@selector(executeNoddyFunctionForMenuItem:)];
         }
     }
     
-    
-    
+}
+
+- (void)executeNoddyFunctionForMenuItem:(id)sender
+{
+    NoddyFunction *myCallback = [(NSMenuItem *)sender representedObject];
+     NoddyScheduleBlock(^ () {
+         [myCallback call:nil arguments:nil];
+     });
 }
 
 #pragma mark - Windows
