@@ -65,15 +65,29 @@ Window.prototype.__defineGetter__("buttons", Window.prototype.buttons);
 Window.prototype.__defineSetter__("buttons", Window.prototype.setButtons);
 
 
+Window.prototype.htmlPath = function() {
+    return objc_msgSendSync(this.nid, "htmlPath");
+};
+Window.prototype.setHtmlPath = function(newHtml) {
+    objc_msgSend(this.nid, "setHtmlPath:", (newHtml != null ? String(newHtml) : null));
+};
+
+Window.prototype.__defineGetter__("htmlPath", Window.prototype.htmlPath);
+Window.prototype.__defineSetter__("htmlPath", Window.prototype.setHtmlPath);
+
+
+
 Window.prototype.html = function() {
     return objc_msgSendSync(this.nid, "html");
 };
 Window.prototype.setHtml = function(newHtml) {
-    objc_msgSend(this.nid, "setHtml:", newHtml);
+    objc_msgSend(this.nid, "setHtml:", (newHtml != null ? String(newHtml) : null));
 };
 
 Window.prototype.__defineGetter__("html", Window.prototype.html);
 Window.prototype.__defineSetter__("html", Window.prototype.setHtml);
+
+
 
 
 Window.prototype.eval = function(str) {

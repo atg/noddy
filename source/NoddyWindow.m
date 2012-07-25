@@ -131,6 +131,11 @@
     buttons = [btts copy];
 }
 - (void)bottomButtonClicked:(id)sender {
+//    NSLog(@"sender = %@", sender);
+    NSLog(@"[buttonObjects indexOfObject:sender] = %@", [buttonObjects indexOfObject:sender]);
+    NSLog(@"[buttons objectAtIndex:[buttonObjects indexOfObject:sender]] = %@", [buttons objectAtIndex:[buttonObjects indexOfObject:sender]]);
+    NSLog(@"callback = %@", [[buttons objectAtIndex:[buttonObjects indexOfObject:sender]] objectForKey:@"callback"]);
+    
     NoddyFunction* callback = [[buttons objectAtIndex:[buttonObjects indexOfObject:sender]] objectForKey:@"callback"];
     NoddyScheduleBlock(^{
         [callback call:nil arguments:[NSArray array]];

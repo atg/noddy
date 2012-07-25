@@ -180,8 +180,6 @@ id node_to_cocoa(Handle<Value> val) {
         return [NSNumber numberWithBool:NO];
     if (val->IsArray())
         return node_array_to_cocoa(val.As<Array>());
-    if (val->IsObject())
-        return node_object_to_cocoa(val.As<Object>());
     if (val->IsString())
         return node_string_to_cocoa(val.As<String>());
     if (val->IsNumber())
@@ -210,6 +208,9 @@ id node_to_cocoa(Handle<Value> val) {
                 options:node_regex_flags_to_cocoa(val.As<RegExp>()->GetFlags())
                 error:NULL
                 ];
+    if (val->IsObject())
+        return node_object_to_cocoa(val.As<Object>());
+
 //    if (val.IsNativeError())
 //        return .. no idea;
     return nil;
