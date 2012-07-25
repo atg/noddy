@@ -1,9 +1,9 @@
 * {
     font-family: "Lucida Grande";
-    font-size: 13px;
     box-sizing: border-box;
 }
 html {
+    font-size: 13px;
     background-color:transparent;
 }
 html, body {

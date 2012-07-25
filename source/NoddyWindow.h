@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
 #import "NoddyMixin.h"
+#import "NoddyBridge.h"
 
 @interface NoddyWindow : NSObject<NSWindowDelegate> {
     __weak NoddyMixin* mixin;
@@ -29,6 +30,7 @@
 @property (copy) NSString* htmlPath; // Instead of html, a path to show
 @property (copy) NSArray* buttons; // A list of buttons to display at the bottom of the window.
 @property (readonly) NSMutableArray* buttonObjects; // A list of buttons to display at the bottom of the window.
+@property (assign) NoddyFunction* onButtonClick;
 @property (assign) NSNumber* canResize;
 @property (assign) NSNumber* canClose;
 @property (assign) NSNumber* canMiniaturize;

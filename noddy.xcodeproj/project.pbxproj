@@ -32,6 +32,8 @@
 		7535578815AC7CBC006AFA43 /* libv8_nosnapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535578015AC7CBC006AFA43 /* libv8_nosnapshot.a */; };
 		7535578915AC7CBC006AFA43 /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535578115AC7CBC006AFA43 /* libv8_snapshot.a */; };
 		7535578F15AC8770006AFA43 /* api.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7535578E15AC8770006AFA43 /* api.js */; };
+		75419F1315C02EED0050554A /* nodeui_default.css in Resources */ = {isa = PBXBuildFile; fileRef = 75419F1115C02EED0050554A /* nodeui_default.css */; };
+		75419F1415C02EED0050554A /* nodeui_default.html in Resources */ = {isa = PBXBuildFile; fileRef = 75419F1215C02EED0050554A /* nodeui_default.html */; };
 		75CD4A0915AC8F5600F97D8B /* underscore.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75CD4A0615AC8F5600F97D8B /* underscore.js */; };
 		75CD4A0A15AC8F5600F97D8B /* underscore.string.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75CD4A0715AC8F5600F97D8B /* underscore.string.js */; };
 		7C53DDE615BDA7FF00E91E04 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C53DDE515BDA7FF00E91E04 /* NSString+Utilities.m */; };
@@ -99,6 +101,8 @@
 		7535578015AC7CBC006AFA43 /* libv8_nosnapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_nosnapshot.a; path = deps/libv8_nosnapshot.a; sourceTree = SOURCE_ROOT; };
 		7535578115AC7CBC006AFA43 /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = deps/libv8_snapshot.a; sourceTree = SOURCE_ROOT; };
 		7535578E15AC8770006AFA43 /* api.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = api.js; path = source/api.js; sourceTree = "<group>"; };
+		75419F1115C02EED0050554A /* nodeui_default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = nodeui_default.css; path = resources/nodeui_default.css; sourceTree = SOURCE_ROOT; };
+		75419F1215C02EED0050554A /* nodeui_default.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nodeui_default.html; path = resources/nodeui_default.html; sourceTree = SOURCE_ROOT; };
 		75AA8FBE15BB7C5600F986FC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		75AA8FC015BB7C5600F986FC /* node.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = node.1; sourceTree = "<group>"; };
 		75CD4A0515AC8F5600F97D8B /* r.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = r.js; path = libraries/r.js; sourceTree = "<group>"; };
@@ -187,6 +191,8 @@
 				7535576515AC7C6F006AFA43 /* noddy-Prefix.pch */,
 				7535576615AC7C6F006AFA43 /* NoddyAppDelegate.h */,
 				7535576715AC7C6F006AFA43 /* NoddyAppDelegate.m */,
+				75419F1115C02EED0050554A /* nodeui_default.css */,
+				75419F1215C02EED0050554A /* nodeui_default.html */,
 			);
 			path = noddy;
 			sourceTree = "<group>";
@@ -316,6 +322,8 @@
 				7535577615AC7C87006AFA43 /* InfoPlist.strings in Resources */,
 				7535577715AC7C87006AFA43 /* MainMenu.xib in Resources */,
 				7519910215BF6EB900C7B7D3 /* NoddyWindow.xib in Resources */,
+				75419F1315C02EED0050554A /* nodeui_default.css in Resources */,
+				75419F1415C02EED0050554A /* nodeui_default.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

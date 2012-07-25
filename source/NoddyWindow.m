@@ -23,6 +23,7 @@
 @synthesize htmlPath; // Instead of html, a path to show
 @synthesize buttons; // A list of buttons to display at the bottom of the window.
 @synthesize buttonObjects;
+@synthesize onButtonClick;
 @synthesize canResize;
 @synthesize canClose;
 @synthesize canMiniaturize;
@@ -80,18 +81,22 @@
     if ([buttons count]) {
         [window setContentBorderThickness:32 forEdge:NSMinYEdge];
         
-        for (NSDictionary* buttonDescription in buttons) {
+        for (NSString* name in buttons) {
             
-            NSRect buttonFrame = NSMakeRect(0, 3, 1000, 25);
+            NSRect buttonFrame = NSMakeRect(0, 3, 3, 25);
             
             NSButton* button = [[NSButton alloc] initWithFrame:buttonFrame];
-            [button setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
-            [button setTitle:[[buttonDescription valueForKey:@"name"] copy]];
+            [button setAutoresizingMask:NSViewMaxXMargin | NSViewMaxYMargin];
+            [button setTitle:[name copy]];
             [button setTarget:self];
             [button setAction:@selector(bottomButtonClicked:)];
+            [button setBezelStyle:NSTexturedRoundedBezelStyle];
+            [button setFont:[NSFont systemFontOfSize:13]];
             [button sizeToFit];
             
+            buttonFrame = [button frame];
             buttonFrame.origin.x = [window frame].size.width - [button frame].size.width - 12;
+            [button setFrame:buttonFrame];
             [buttonObjects addObject:button];
             [[window contentView] addSubview:button];
         }
@@ -102,6 +107,7 @@
     webviewFrame.origin.y += [self buttonBarHeight];
     [webview setFrame:webviewFrame];
     [webview setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+    [webview setDrawsBackground:NO];
     [[window contentView] addSubview:webview];
         
     [window makeKeyAndOrderFront:nil];
@@ -111,9 +117,15 @@
         htmlstring = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:NULL];
     }
     if (![htmlstring length]) {
-        htmlstring = html ?: @"";
+        htmlstring = html;
+    }
+    if (![htmlstring length]) {
+        htmlstring = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"nodeui_default" ofType:@"html"] encoding:NSUTF8StringEncoding error:NULL];
     }
     
+    // Add default.css
+    htmlstring = [htmlstring stringByReplacingOccurrencesOfString:@"default.css" withString:[[NSBundle mainBundle] pathForResource:@"nodeui_default" ofType:@"css"]];
+    NSLog(@"htmlstring = %@", htmlstring);
     [[webview mainFrame] loadHTMLString:htmlstring baseURL:[NSURL URLWithString:mixin.path]];
 }
 - (void)setTitle:(NSString *)newTitle {
@@ -132,13 +144,16 @@
 }
 - (void)bottomButtonClicked:(id)sender {
 //    NSLog(@"sender = %@", sender);
-    NSLog(@"[buttonObjects indexOfObject:sender] = %@", [buttonObjects indexOfObject:sender]);
-    NSLog(@"[buttons objectAtIndex:[buttonObjects indexOfObject:sender]] = %@", [buttons objectAtIndex:[buttonObjects indexOfObject:sender]]);
-    NSLog(@"callback = %@", [[buttons objectAtIndex:[buttonObjects indexOfObject:sender]] objectForKey:@"callback"]);
+//    NSLog(@"[buttonObjects indexOfObject:sender] = %@", [buttonObjects indexOfObject:sender]);
+//    NSLog(@"[buttons objectAtIndex:[buttonObjects indexOfObject:sender]] = %@", [buttons objectAtIndex:[buttonObjects indexOfObject:sender]]);
+//    NSLog(@"callback = %@", [[buttons objectAtIndex:[buttonObjects indexOfObject:sender]] objectForKey:@"callback"]);
     
-    NoddyFunction* callback = [[buttons objectAtIndex:[buttonObjects indexOfObject:sender]] objectForKey:@"callback"];
-    NoddyScheduleBlock(^{
-        [callback call:nil arguments:[NSArray array]];
+    
+    NSLog(@"onButtonClick = %@", onButtonClick);
+    NoddyFunction* callback = onButtonClick;//[[buttons objectAtIndex:[buttonObjects indexOfObject:sender]] objectForKey:@"callback"];
+    
+    NoddyScheduleBlock(^ () {
+        [callback call:nil arguments:[NSArray arrayWithObject:[sender title]]];
     });
 }
 - (void)show {

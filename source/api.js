@@ -648,15 +648,25 @@ Window.prototype.setFrame = function(newFrame, shouldAnimate) {
     objc_msgSend(this.nid, "setFrame:animate:", newFrame, shouldAnimate);
 };
 
-Window.prototype.buttons = function(newButtons) {
-    objc_msgSend(this.nid, "buttons");
+Window.prototype.buttons = function() {
+    return objc_msgSendSync(this.nid, "buttons");
 };
 Window.prototype.setButtons = function(newButtons) {
     objc_msgSend(this.nid, "setButtons:", newButtons);
 };
-
 Window.prototype.__defineGetter__("buttons", Window.prototype.buttons);
 Window.prototype.__defineSetter__("buttons", Window.prototype.setButtons);
+
+
+Window.prototype.onButtonClick = function() {
+    return objc_msgSendSync(this.nid, "onButtonClick");
+};
+Window.prototype.setOnButtonClick = function(callback) {
+    objc_msgSend(this.nid, "setOnButtonClick:", callback);
+};
+Window.prototype.__defineGetter__("onButtonClick", Window.prototype.onButtonClick);
+Window.prototype.__defineSetter__("onButtonClick", Window.prototype.setOnButtonClick);
+
 
 
 Window.prototype.htmlPath = function() {
@@ -665,7 +675,6 @@ Window.prototype.htmlPath = function() {
 Window.prototype.setHtmlPath = function(newHtml) {
     objc_msgSend(this.nid, "setHtmlPath:", (newHtml != null ? String(newHtml) : null));
 };
-
 Window.prototype.__defineGetter__("htmlPath", Window.prototype.htmlPath);
 Window.prototype.__defineSetter__("htmlPath", Window.prototype.setHtmlPath);
 

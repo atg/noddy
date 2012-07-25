@@ -34,6 +34,45 @@ id node_to_cocoa(v8::Handle<v8::Value> val);
 @end
 
 #ifndef ENSUREERROR
+static inline BOOL IS_NULL(id x) {
+    return !x || x == [NSNull null];
+}
+static inline BOOL IS_STRING(id x) {
+    return [x isKindOfClass:[NSString class]];
+}
+static inline BOOL IS_NUMBER(id x) {
+    return [x isKindOfClass:[NSNumber class]];
+}
+static inline BOOL IS_DATE(id x) {
+    return [x isKindOfClass:[NSDate class]];
+}
+static inline BOOL IS_ARRAY(id x) {
+    return [x isKindOfClass:[NSArray class]];
+}
+static inline BOOL IS_ARRAY_OF(id x, BOOL(*f)(id v)) {
+    if (!IS_ARRAY(x))
+        return NO;
+    for (id v in x) {
+        if (!f(v))
+            return NO;
+    }
+    return YES;
+}
+static inline BOOL IS_DICTIONARY_OF(id x, BOOL(*f)(id v)) {
+    if (!IS_ARRAY(x))
+        return NO;
+    for (id k in x) {
+        if (!IS_STRING(k))
+            return NO;
+        id v = [x objectForKey:k];
+        if (!f(v))
+            return NO;
+    }
+    return YES;
+}
+
+
+    
     #define ENSUREERROR(value, name) { NSLog("Error in [%@ %@]: %s was %@", [self class], NSStringFromSelector(_cmd), name, value); return nil; }
     #define ENSURE_STRING(x) if (![x isKindOfClass:[NSString class]]) { ENSUREERROR(x, #x); }
     #define ENSURE_NUMBER(x) if (![x isKindOfClass:[NSNumber class]]) { ENSUREERROR(x, #x); }
