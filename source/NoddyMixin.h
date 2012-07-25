@@ -17,6 +17,7 @@
 
 @property (assign) NSMutableArray* windows;
 
+@property (assign) NSMutableArray *keyboardShortcuts;
 - (id)initWithPath:(NSString*)p;
 
 // loading and reloading

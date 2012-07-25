@@ -4,12 +4,14 @@
 @interface NoddyController : NSObject {
     NoddyThread* thread;
     NSMutableArray* mixins;
+    id eventMonitor;
 }
 
 @property (readonly) NoddyThread* thread;
 @property (readonly) NSMutableArray* mixins;
 
 + (id)sharedController;
+
 
 // Search for mixins on disk
 // Mixins can be in either

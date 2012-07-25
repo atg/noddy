@@ -1,7 +1,7 @@
 #import "NoddyController.h"
 #import "NoddyThread.h"
 #import "NoddyMixin.h"
-
+#import "NoddyBridge.h"
 @implementation NoddyController
 
 @synthesize thread=_thread, mixins=_mixins;
@@ -23,6 +23,27 @@
         _mixins = [[NSMutableArray alloc] init];
         [self.thread start];
         //[self reloadMixins];
+        // keyboard events...
+        eventMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSKeyUpMask
+                                                             handler:^NSEvent *(NSEvent *e) {
+                                                                 // loop v_v
+                                                                 for (NoddyMixin *aMixin in self.mixins) {
+                                                                     for (NSDictionary *sc in aMixin.keyboardShortcuts) {
+                                                                         NSNumber *lModifiers = [NSNumber numberWithUnsignedInteger:[e modifierFlags]];
+                                                                         NSUInteger lUFlags = ([lModifiers unsignedIntegerValue] & NSDeviceIndependentModifierFlagsMask);
+                                                                         NSString *lString = [e charactersIgnoringModifiers];
+                                                                         if ([[sc objectForKey:@"Modifiers"] unsignedIntegerValue] == lUFlags &&
+                                                                             [[sc objectForKey:@"KeyEquiv"] caseInsensitiveCompare:lString] == NSOrderedSame) {
+                                                                             
+                                                                             NoddyFunction *myCallback = [sc objectForKey:@"Callback"];
+                                                                             NoddyScheduleBlock(^ () {
+                                                                                 [myCallback call:nil arguments:nil];
+                                                                             });
+                                                                         }
+                                                                     }
+                                                                 }
+                                                                 return e;
+                                                             }];
     }
     
     return self;

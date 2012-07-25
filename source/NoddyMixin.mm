@@ -4,7 +4,9 @@
 
 @implementation NoddyMixin
 
-@synthesize windows=_windows;
+// storage for cleanup
+@synthesize windows=_windows, keyboardShortcuts=_keyboardShortcuts;
+// other prop...
 @synthesize path=_path, info=_info, timestamp=_timestamp;
 @synthesize noddyID=_noddyID;
 @synthesize name=_name;
@@ -14,6 +16,7 @@
     if (self = [super init]) {
         NSLog(@"Loading mixin %@", [p stringByAbbreviatingWithTildeInPath]);
         self.windows = [NSMutableArray array];
+        self.keyboardShortcuts = [NSMutableArray array];
         self.path = p;
         self.name = [[self.path lastPathComponent] stringByDeletingPathExtension];
         NSError *e = nil;

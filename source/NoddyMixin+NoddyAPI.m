@@ -179,8 +179,14 @@ static NSMenuItem *menu_item_for_path(NSString *path)
 {
     // make sure that shortcut is valid...
     NSDictionary *shortcut = shortcut_for_string([options objectForKey:@"shortcut"]);
+    NoddyFunction *callback = [options objectForKey:@"callback"];
     if (shortcut) {
-        // do something!
+        NSDictionary *sc = [NSDictionary dictionaryWithObjectsAndKeys:
+                            [shortcut objectForKey:@"KeyEquiv"], @"KeyEquiv",
+                            [shortcut objectForKey:@"Modifiers"], @"Modifiers",
+                            callback, @"Callback",
+                            nil];
+        [self.keyboardShortcuts addObject:sc];
     }
 }
 
