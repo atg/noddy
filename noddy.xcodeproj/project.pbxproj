@@ -11,6 +11,8 @@
 		7507ADE515BDA55500B9118C /* NoddyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7507ADE415BDA55500B9118C /* NoddyWindow.m */; };
 		7507ADE815BDA56800B9118C /* NoddyRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 7507ADE715BDA56800B9118C /* NoddyRecipe.m */; };
 		750EAA1215B399290036EA4F /* NoddyMixin+NoddyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 750EAA1115B399290036EA4F /* NoddyMixin+NoddyAPI.m */; };
+		7519910215BF6EB900C7B7D3 /* NoddyWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7519910015BF6EB900C7B7D3 /* NoddyWindow.xib */; };
+		7519910515BF6F0A00C7B7D3 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7519910415BF6F0A00C7B7D3 /* WebKit.framework */; };
 		7535573A15AC7BC0006AFA43 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535573915AC7BC0006AFA43 /* Cocoa.framework */; };
 		7535577015AC7C72006AFA43 /* NoddyThread.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7535576F15AC7C6F006AFA43 /* NoddyThread.mm */; };
 		7535577115AC7C75006AFA43 /* NoddyIndirectObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535576C15AC7C6F006AFA43 /* NoddyIndirectObjects.m */; };
@@ -64,6 +66,8 @@
 		750EAA1015B399290036EA4F /* NoddyMixin+NoddyAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NoddyMixin+NoddyAPI.h"; path = "source/NoddyMixin+NoddyAPI.h"; sourceTree = SOURCE_ROOT; };
 		750EAA1115B399290036EA4F /* NoddyMixin+NoddyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NoddyMixin+NoddyAPI.m"; path = "source/NoddyMixin+NoddyAPI.m"; sourceTree = SOURCE_ROOT; };
 		750EAA1315B3A96E0036EA4F /* api */ = {isa = PBXFileReference; lastKnownFileType = folder; path = api; sourceTree = "<group>"; };
+		7519910115BF6EB900C7B7D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = NoddyWindow.xib; sourceTree = "<group>"; };
+		7519910415BF6F0A00C7B7D3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		7535573515AC7BC0006AFA43 /* noddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = noddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7535573915AC7BC0006AFA43 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7535573C15AC7BC0006AFA43 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -113,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7519910515BF6F0A00C7B7D3 /* WebKit.framework in Frameworks */,
 				7535573A15AC7BC0006AFA43 /* Cocoa.framework in Frameworks */,
 				7535578215AC7CBC006AFA43 /* libchrome_zlib.a in Frameworks */,
 				7535578315AC7CBC006AFA43 /* libhttp_parser.a in Frameworks */,
@@ -156,6 +161,7 @@
 		7535573815AC7BC0006AFA43 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7519910415BF6F0A00C7B7D3 /* WebKit.framework */,
 				7535573915AC7BC0006AFA43 /* Cocoa.framework */,
 				7535573B15AC7BC0006AFA43 /* Other Frameworks */,
 			);
@@ -191,6 +197,7 @@
 				7535575D15AC7C6F006AFA43 /* Credits.rtf */,
 				7535575F15AC7C6F006AFA43 /* InfoPlist.strings */,
 				7535576115AC7C6F006AFA43 /* MainMenu.xib */,
+				7519910015BF6EB900C7B7D3 /* NoddyWindow.xib */,
 			);
 			name = en.lproj;
 			path = source/en.lproj;
@@ -308,6 +315,7 @@
 				7535577515AC7C87006AFA43 /* Credits.rtf in Resources */,
 				7535577615AC7C87006AFA43 /* InfoPlist.strings in Resources */,
 				7535577715AC7C87006AFA43 /* MainMenu.xib in Resources */,
+				7519910215BF6EB900C7B7D3 /* NoddyWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +361,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		7519910015BF6EB900C7B7D3 /* NoddyWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7519910115BF6EB900C7B7D3 /* en */,
+			);
+			name = NoddyWindow.xib;
+			sourceTree = "<group>";
+		};
 		7535575D15AC7C6F006AFA43 /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (

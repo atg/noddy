@@ -21,6 +21,7 @@
 
 @property (copy) NSString* noddyID;
 
+@property (assign) __weak NoddyMixin* mixin;
 @property (readonly) NSWindow* window;
 @property (readonly) WebView* webview;
 @property (copy) NSString* title;

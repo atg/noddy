@@ -229,7 +229,9 @@ static NSMenuItem *menu_item_for_path(NSString *path)
 - (NoddyWindow*)createWindow:(NSString*)kind {
     NSLog(@"classname = %@", [@"Noddy" stringByAppendingFormat:kind]);
     NSLog(@"class = %@", NSClassFromString([@"Noddy" stringByAppendingFormat:kind]) );
-    return [[NSClassFromString([@"Noddy" stringByAppendingFormat:kind]) alloc] init];
+    NoddyWindow* w = [[NSClassFromString([@"Noddy" stringByAppendingFormat:kind]) alloc] init];
+    w.mixin = self;
+    return w;
 }
 
 @end

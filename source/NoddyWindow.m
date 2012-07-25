@@ -15,6 +15,7 @@
 
 @synthesize noddyID;
 
+@synthesize mixin;
 @synthesize window;
 @synthesize webview;
 @synthesize title;
@@ -104,6 +105,16 @@
     [[window contentView] addSubview:webview];
         
     [window makeKeyAndOrderFront:nil];
+    
+    NSString* htmlstring = nil;
+    if ([htmlPath length]) {
+        htmlstring = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:NULL];
+    }
+    if (![htmlstring length]) {
+        htmlstring = html ?: @"";
+    }
+    
+    [[webview mainFrame] loadHTMLString:htmlstring baseURL:[NSURL URLWithString:mixin.path]];
 }
 - (void)setTitle:(NSString *)newTitle {
     [window setTitle:newTitle];
