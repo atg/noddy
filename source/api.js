@@ -650,10 +650,25 @@ Window.prototype.setFrame = function(newFrame, shouldAnimate) {
 
 Window.prototype.buttons = function(newButtons) {
     objc_msgSend(this.nid, "buttons");
-}
+};
 Window.prototype.setButtons = function(newButtons) {
     objc_msgSend(this.nid, "setButtons:", newButtons);
-}
+};
+
+Window.prototype.__defineGetter__("buttons", Window.prototype.buttons);
+Window.prototype.__defineSetter__("buttons", Window.prototype.setButtons);
+
+
+Window.prototype.html = function() {
+    return objc_msgSendSync(this.nid, "html");
+};
+Window.prototype.setHtml = function(newHtml) {
+    objc_msgSend(this.nid, "setHtml:", newHtml);
+};
+
+Window.prototype.__defineGetter__("html", Window.prototype.html);
+Window.prototype.__defineSetter__("html", Window.prototype.setHtml);
+
 
 Window.prototype.eval = function(str) {
 
