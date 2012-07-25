@@ -214,7 +214,14 @@ static NSMenuItem *menu_item_for_path(NSString *path)
             
         } else {
             // last item... insert here!
-            NSMenuItem *newItem = [[NSMenuItem alloc] initWithTitle:anItem
+            NSString *menuItemName = anItem;
+            // check if a menu item already exists with that name...
+            for (NSMenuItem *aMenuItem in [rootMenu itemArray]) {
+                if ([aMenuItem.title caseInsensitiveCompare:anItem] == NSOrderedSame) {
+                    menuItemName = [NSString stringWithFormat:@"%@ <%@>", anItem, self.name];
+                }
+            }
+            NSMenuItem *newItem = [[NSMenuItem alloc] initWithTitle:menuItemName
                                                              action:NULL
                                                       keyEquivalent:[shortcut objectForKey:@"KeyEquiv"]];
             [rootMenu addItem:newItem];

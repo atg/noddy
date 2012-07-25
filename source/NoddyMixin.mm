@@ -7,6 +7,7 @@
 @synthesize windows=_windows;
 @synthesize path=_path, info=_info, timestamp=_timestamp;
 @synthesize noddyID=_noddyID;
+@synthesize name=_name;
 
 - (id)initWithPath:(NSString *)p
 {
@@ -14,7 +15,7 @@
         NSLog(@"Loading mixin %@", [p stringByAbbreviatingWithTildeInPath]);
         self.windows = [NSMutableArray array];
         self.path = p;
-        
+        self.name = [[self.path lastPathComponent] stringByDeletingPathExtension];
         NSError *e = nil;
         NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfItemAtPath:self.path
                                                                                error:&e];
