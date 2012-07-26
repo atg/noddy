@@ -37,6 +37,8 @@
 		75CD4A0915AC8F5600F97D8B /* underscore.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75CD4A0615AC8F5600F97D8B /* underscore.js */; };
 		75CD4A0A15AC8F5600F97D8B /* underscore.string.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75CD4A0715AC8F5600F97D8B /* underscore.string.js */; };
 		7C53DDE615BDA7FF00E91E04 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C53DDE515BDA7FF00E91E04 /* NSString+Utilities.m */; };
+		7CB5D2F915C1C4B700C16058 /* CDEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB5D2F815C1C4B700C16058 /* CDEvents.framework */; };
+		7CB5D2FC15C1C4DB00C16058 /* CDEvents.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7CB5D2F815C1C4B700C16058 /* CDEvents.framework */; };
 		7CD8FB0B15BEEEA400F82F4D /* NSArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD8FB0A15BEEEA400F82F4D /* NSArray+Utilities.m */; };
 		7CEE72DF15AC949100C8C95A /* NoddyController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE72DE15AC949100C8C95A /* NoddyController.mm */; };
 		7CEE72E215AC9D9100C8C95A /* NoddyMixin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE72E115AC9D9100C8C95A /* NoddyMixin.mm */; };
@@ -53,6 +55,16 @@
 				7535578F15AC8770006AFA43 /* api.js in CopyFiles */,
 				75CD4A0915AC8F5600F97D8B /* underscore.js in CopyFiles */,
 				75CD4A0A15AC8F5600F97D8B /* underscore.string.js in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CB5D2FB15C1C4D200C16058 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7CB5D2FC15C1C4DB00C16058 /* CDEvents.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +122,7 @@
 		75CD4A0715AC8F5600F97D8B /* underscore.string.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = underscore.string.js; path = libraries/underscore.string.js; sourceTree = "<group>"; };
 		7C53DDE415BDA7FF00E91E04 /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Utilities.h"; path = "source/NSString+Utilities.h"; sourceTree = SOURCE_ROOT; };
 		7C53DDE515BDA7FF00E91E04 /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Utilities.m"; path = "source/NSString+Utilities.m"; sourceTree = SOURCE_ROOT; };
+		7CB5D2F815C1C4B700C16058 /* CDEvents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CDEvents.framework; path = deps/CDEvents.framework; sourceTree = "<group>"; };
 		7CD8FB0915BEEEA400F82F4D /* NSArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+Utilities.h"; path = "source/NSArray+Utilities.h"; sourceTree = SOURCE_ROOT; };
 		7CD8FB0A15BEEEA400F82F4D /* NSArray+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Utilities.m"; path = "source/NSArray+Utilities.m"; sourceTree = SOURCE_ROOT; };
 		7CEE72DE15AC949100C8C95A /* NoddyController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NoddyController.mm; path = source/NoddyController.mm; sourceTree = SOURCE_ROOT; };
@@ -131,6 +144,7 @@
 				7535578715AC7CBC006AFA43 /* libv8_base.a in Frameworks */,
 				7535578815AC7CBC006AFA43 /* libv8_nosnapshot.a in Frameworks */,
 				7535578915AC7CBC006AFA43 /* libv8_snapshot.a in Frameworks */,
+				7CB5D2F915C1C4B700C16058 /* CDEvents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +179,7 @@
 		7535573815AC7BC0006AFA43 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7CB5D2F815C1C4B700C16058 /* CDEvents.framework */,
 				7519910415BF6F0A00C7B7D3 /* WebKit.framework */,
 				7535573915AC7BC0006AFA43 /* Cocoa.framework */,
 				7535573B15AC7BC0006AFA43 /* Other Frameworks */,
@@ -277,6 +292,7 @@
 				7535573215AC7BC0006AFA43 /* Frameworks */,
 				7535573315AC7BC0006AFA43 /* Resources */,
 				7535577815AC7C93006AFA43 /* CopyFiles */,
+				7CB5D2FB15C1C4D200C16058 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -472,6 +488,10 @@
 		7535575415AC7BC1006AFA43 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/deps\"",
+				);
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "source/noddy-Prefix.pch";
@@ -484,6 +504,10 @@
 		7535575515AC7BC1006AFA43 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/deps\"",
+				);
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "source/noddy-Prefix.pch";

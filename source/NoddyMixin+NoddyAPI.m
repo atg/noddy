@@ -240,6 +240,7 @@ static NSMenuItem *menu_item_for_path(NSString *path)
             [newItem setRepresentedObject:[options objectForKey:@"callback"]];
             [newItem setTarget:self];
             [newItem setAction:@selector(executeNoddyFunctionForMenuItem:)];
+            [self.menuItems addObject:newItem];
         }
     }
     

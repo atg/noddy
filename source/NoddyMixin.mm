@@ -5,7 +5,7 @@
 @implementation NoddyMixin
 
 // storage for cleanup
-@synthesize windows=_windows, keyboardShortcuts=_keyboardShortcuts;
+@synthesize windows=_windows, keyboardShortcuts=_keyboardShortcuts, menuItems=_menuItems;
 // other prop...
 @synthesize path=_path, info=_info, timestamp=_timestamp;
 @synthesize noddyID=_noddyID;
@@ -17,6 +17,7 @@
         NSLog(@"Loading mixin %@", [p stringByAbbreviatingWithTildeInPath]);
         self.windows = [NSMutableArray array];
         self.keyboardShortcuts = [NSMutableArray array];
+        self.menuItems = [NSMutableArray array];
         self.path = p;
         self.name = [[self.path lastPathComponent] stringByDeletingPathExtension];
         NSError *e = nil;
@@ -50,7 +51,13 @@
 
 - (void)unload
 {
-    
+    // remove our menu items
+    for (NSMenuItem *anItem in self.menuItems) {
+        [anItem.menu removeItem:anItem];
+    }
+    [self.menuItems removeAllObjects];
+    [self.keyboardShortcuts removeAllObjects];
+    [self.windows removeAllObjects];
 }
 
 @end

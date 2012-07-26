@@ -16,7 +16,7 @@
 @property (assign) NSDictionary* info;
 
 @property (assign) NSMutableArray* windows;
-
+@property (assign) NSMutableArray *menuItems;
 @property (assign) NSMutableArray *keyboardShortcuts;
 - (id)initWithPath:(NSString*)p;
 
