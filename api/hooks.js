@@ -43,3 +43,17 @@ UI.addStatusItem = function (name, valueFunction, selector) {
     
 };
 
+
+/**
+ * Remap a menu item to a new keyboard shortcut.
+ * 
+ * @param {String} path the path of the new menu item.
+ * @param {String} shortcut keyboard shortcut, e.g. `ctrl-alt-cmd-b`.
+ * @memberOf UI
+ */
+UI.setShortcutForMenuItem = function(path, shortcut) {
+    global.objc_msgSend(private_get_mixin(), "ui_setShortcutForMenuItem:", {
+        "shortcut": shortcut,
+        "path": path
+    });
+};

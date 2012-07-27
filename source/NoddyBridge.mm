@@ -325,9 +325,12 @@ Handle<Value> noddy_objc_msgSend(const Arguments& args) {
     return scope.Close(Local<Function>::New(func));
 }
 - (void)finalize {
-    NoddyScheduleBlock(^{
-        func.Dispose();
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NoddyScheduleBlock(^{
+            func.Dispose();
+        });
     });
+    
     
     [super finalize];
 }

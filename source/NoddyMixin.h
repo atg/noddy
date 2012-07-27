@@ -2,7 +2,7 @@
 
 // The location of the mixin on disk
 @property (assign) NSString* path;
-
+@property (assign) NSString *name;
 // Not needed yet. Mixins that use txtar will need to be expanded into a temporary directory
 // @property (assign) NSString* expandedPath;
 
@@ -16,7 +16,8 @@
 @property (assign) NSDictionary* info;
 
 @property (assign) NSMutableArray* windows;
-
+@property (assign) NSMutableArray *menuItems;
+@property (assign) NSMutableArray *keyboardShortcuts;
 - (id)initWithPath:(NSString*)p;
 
 // loading and reloading

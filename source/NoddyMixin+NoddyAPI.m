@@ -2,6 +2,7 @@
 #import "NSString+Utilities.h"
 #import "NSArray+Utilities.h"
 #import "NoddyWindow.h"
+#import "NoddyThread.h"
 
 static NSString* string_default(NSString* str, NSString* defaultStr) {
     if ([str length])
@@ -117,11 +118,15 @@ static NSMenuItem *menu_item_for_path(NSString *path)
     NSMenuItem *lastItem = nil;
     for (NSString *anItem in menuItems) {
         for (NSMenuItem *aMenuItem in [rootMenu itemArray]) {
-            if ([sluggify(aMenuItem.title) isEqualToString:anItem] && aMenuItem.hasSubmenu) {
+            NSString *stringToCompare = [anItem stringByReplacingOccurrencesOfString:@"..."
+                                                                          withString:[NSString stringWithFormat:@"%C", (unichar)0x2026]];
+            if ([aMenuItem.title caseInsensitiveCompare:stringToCompare] == NSOrderedSame &&
+                aMenuItem.hasSubmenu) {
                 rootMenu = aMenuItem.submenu;
                 cnt++;
                 break;
-            } else if([sluggify(aMenuItem.title) isEqualToString:anItem] && !aMenuItem.hasSubmenu) {
+            } else if([aMenuItem.title caseInsensitiveCompare:stringToCompare] == NSOrderedSame &&
+                      !aMenuItem.hasSubmenu) {
                 lastItem = aMenuItem;
                 cnt++;
                 break;
@@ -174,8 +179,14 @@ static NSMenuItem *menu_item_for_path(NSString *path)
 {
     // make sure that shortcut is valid...
     NSDictionary *shortcut = shortcut_for_string([options objectForKey:@"shortcut"]);
+    NoddyFunction *callback = [options objectForKey:@"callback"];
     if (shortcut) {
-        // do something!
+        NSDictionary *sc = [NSDictionary dictionaryWithObjectsAndKeys:
+                            [shortcut objectForKey:@"KeyEquiv"], @"KeyEquiv",
+                            [shortcut objectForKey:@"Modifiers"], @"Modifiers",
+                            callback, @"Callback",
+                            nil];
+        [self.keyboardShortcuts addObject:sc];
     }
 }
 
@@ -213,15 +224,44 @@ static NSMenuItem *menu_item_for_path(NSString *path)
             
         } else {
             // last item... insert here!
-            NSMenuItem *newItem = [[NSMenuItem alloc] initWithTitle:anItem
+            NSString *menuItemName = anItem;
+            // check if a menu item already exists with that name...
+            for (NSMenuItem *aMenuItem in [rootMenu itemArray]) {
+                if ([aMenuItem.title caseInsensitiveCompare:anItem] == NSOrderedSame) {
+                    menuItemName = [NSString stringWithFormat:@"%@ <%@>", anItem, self.name];
+                }
+            }
+            NSMenuItem *newItem = [[NSMenuItem alloc] initWithTitle:menuItemName
                                                              action:NULL
-                                                      keyEquivalent:@""];
+                                                      keyEquivalent:[shortcut objectForKey:@"KeyEquiv"]];
             [rootMenu addItem:newItem];
+            [newItem setKeyEquivalentModifierMask:[[shortcut objectForKey:@"Modifiers"] unsignedIntegerValue]];
+            // Set the mixin as the target, the function has the callback
+            [newItem setRepresentedObject:[options objectForKey:@"callback"]];
+            [newItem setTarget:self];
+            [newItem setAction:@selector(executeNoddyFunctionForMenuItem:)];
+            [self.menuItems addObject:newItem];
         }
     }
     
-    
-    
+}
+
+- (void)ui_setShortcutForMenuItem:(NSDictionary *)options
+{
+    NSDictionary *shortcut = shortcut_for_string([options objectForKey:@"shortcut"]);
+    NSMenuItem *menuItem = menu_item_for_path([options objectForKey:@"path"]);
+    if (menuItem && shortcut) {
+        [menuItem setKeyEquivalentModifierMask:[[shortcut objectForKey:@"Modifiers"] unsignedIntegerValue]];
+        [menuItem setKeyEquivalent:[shortcut objectForKey:@"KeyEquiv"]];
+    }
+}
+
+- (void)executeNoddyFunctionForMenuItem:(id)sender
+{
+    NoddyFunction *myCallback = [(NSMenuItem *)sender representedObject];
+     NoddyScheduleBlock(^ () {
+         [myCallback call:nil arguments:nil];
+     });
 }
 
 #pragma mark - Windows
