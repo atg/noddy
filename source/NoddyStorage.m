@@ -13,6 +13,7 @@
 
 @synthesize noddyID;
 @synthesize dictionary;
+@synthesize persistent;
 
 - (id)init {
     
@@ -21,6 +22,7 @@
         return nil;
     
     noddyID = [[NoddyIndirectObjects globalContext] generateAndSetIDForObject:self];
+    dictionary = [NSMutableDictionary dictionary];
     return self;
 }
 
@@ -31,11 +33,25 @@
     return [dictionary objectForKey:key ?: [NSNull null]];
 }
 - (void)setValue:(id)value forKey:(NSString *)key {
-    if (value && key)
-        return [dictionary setObject:value forKey:key];
+    if (value && key) {
+        [dictionary setObject:value forKey:key];
+        if (self.persistent) {
+            [[NSUserDefaults standardUserDefaults] setValue:[NSDictionary dictionaryWithDictionary:self.dictionary]
+                                                     forKey:@"NoddyStorage"];
+        }
+    }
 }
 - (NSNumber*)count {
     return [NSNumber numberWithInteger:(NSInteger)[dictionary count]];
+}
+
+- (void)setPersistent:(BOOL)npersistent
+{
+    persistent = npersistent;
+    if (persistent) {
+        // load!
+        dictionary = [[[NSUserDefaults standardUserDefaults] valueForKey:@"NoddyStorage"] mutableCopy];
+    }
 }
 
 @end

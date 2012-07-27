@@ -12,5 +12,5 @@
 
 @property (readonly) NSMutableDictionary* dictionary;
 @property (copy) NSString* noddyID;
-
+@property BOOL persistent;
 @end

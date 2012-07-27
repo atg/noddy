@@ -28,7 +28,7 @@ Storage.prototype.set = function(k, v) {
 
 /**
  * Returns the number of keys in the storage.
- *
+ *s
  * @return {Number} number of keys in storage.
  * @memberOf Storage
  */
