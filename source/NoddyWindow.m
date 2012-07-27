@@ -11,6 +11,36 @@
 #import "NoddyThread.h"
 #import "NoddyIndirectObjects.h"
 
+// What we need to do is receive json and convert to json
+
+/*
+static id webkit_to_cocoa(id x) {
+    if ([x isKindOfClass:[WebScriptObject class]]) {
+        NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+        NSPointerArray* array = [NSPointerArray pointerArrayWithStrongObjects];
+        for (id k in x) {
+            NSLog(@"k = %@", k);
+            if ([k isKindOfClass:[NSNumber class]]) {
+                long idx = [k integerValue];
+                if (idx < 0)
+                    continue;
+                [array insertPointer:webkit_to_cocoa([x valueForKey:k]) atIndex:idx];
+            }
+            else {
+                [dict setObject:webkit_to_cocoa([x valueForKey:k]) forKey:k];
+            }
+        }
+        
+        [array compact];
+        if ([array count])
+            return [array allObjects];
+        if ([dict count])
+            return dict;
+    }
+    return x;
+}
+*/
+
 @implementation NoddyWindow
 
 @synthesize noddyID;
@@ -24,6 +54,7 @@
 @synthesize buttons; // A list of buttons to display at the bottom of the window.
 @synthesize buttonObjects;
 @synthesize onButtonClick;
+@synthesize onMessage;
 @synthesize canResize;
 @synthesize canClose;
 @synthesize canMiniaturize;
@@ -77,6 +108,8 @@
     [window setDelegate:self];
     [window center];
     
+    [webview setFrameLoadDelegate:self];
+    
     // Load buttons
     if ([buttons count]) {
         [window setContentBorderThickness:32 forEdge:NSMinYEdge];
@@ -86,7 +119,7 @@
             NSRect buttonFrame = NSMakeRect(0, 3, 3, 25);
             
             NSButton* button = [[NSButton alloc] initWithFrame:buttonFrame];
-            [button setAutoresizingMask:NSViewMaxXMargin | NSViewMaxYMargin];
+            [button setAutoresizingMask:NSViewMinXMargin | NSViewMaxYMargin];
             [button setTitle:[name copy]];
             [button setTarget:self];
             [button setAction:@selector(bottomButtonClicked:)];
@@ -110,11 +143,12 @@
     [webview setDrawsBackground:NO];
     [[window contentView] addSubview:webview];
         
+    [window setMinSize:NSMakeSize(50, 22 + 10 + [self buttonBarHeight])];
     [window makeKeyAndOrderFront:nil];
     
     NSString* htmlstring = nil;
     if ([htmlPath length]) {
-        htmlstring = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:NULL];
+        htmlstring = [NSString stringWithContentsOfFile:[mixin.path stringByAppendingPathComponent:htmlPath] encoding:NSUTF8StringEncoding error:NULL];
     }
     if (![htmlstring length]) {
         htmlstring = html;
@@ -127,6 +161,8 @@
     htmlstring = [htmlstring stringByReplacingOccurrencesOfString:@"default.css" withString:[[NSBundle mainBundle] pathForResource:@"nodeui_default" ofType:@"css"]];
     NSLog(@"htmlstring = %@", htmlstring);
     [[webview mainFrame] loadHTMLString:htmlstring baseURL:[NSURL URLWithString:mixin.path]];
+    NSLog(@"[webview windowScriptObject] = %@", [webview windowScriptObject]);
+    
 }
 - (void)setTitle:(NSString *)newTitle {
     [window setTitle:newTitle];
@@ -151,6 +187,7 @@
     
     NSLog(@"onButtonClick = %@", onButtonClick);
     NoddyFunction* callback = onButtonClick;//[[buttons objectAtIndex:[buttonObjects indexOfObject:sender]] objectForKey:@"callback"];
+    callback.mixin = mixin;
     
     NoddyScheduleBlock(^ () {
         [callback call:nil arguments:[NSArray arrayWithObject:[sender title]]];
@@ -222,8 +259,9 @@
 
 - (void)server_callFunctionNamed:(NSString*)functionName arguments:(NSArray*)arguments {
     
+//    NSString* mixinName = [[mixin.path lastPathComponent] stringByDeletingPathExtension];
 //    [NoddyThread callGlobalFunction:@"call_function_as"
-//                          arguments:[NSArray arrayWithObjects:[mixin noddyID], functionName, arguments, nil]];
+//                          arguments:[NSArray arrayWithObjects:mixinName, functionName, arguments, nil]];
 }
 - (void)server_callFunctionCode:(NSString*)functionString arguments:(NSArray*)arguments {
     
@@ -240,7 +278,48 @@
 //    [NoddyThread callGlobalFunction:@"run_code_as"
 //                          arguments:[NSArray arrayWithObjects:[mixin noddyID], functionName, arguments, nil]];    
 }
+- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
+    NSLog(@"[webview windowScriptObject] = %@", [webview windowScriptObject]);
+}
+- (void)webView:(WebView *)webView didClearWindowObject:(WebScriptObject *)windowObject forFrame:(WebFrame *)frame {
+    static NSString* nodeui_default_js;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        nodeui_default_js = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"nodeui_default" ofType:@"js"] encoding:NSUTF8StringEncoding error:NULL];
+    });
+    
+    [windowObject setValue:self forKey:@"chocprivate"];
+    NSLog(@"chocprivate = %@", [windowObject valueForKey:@"chocprivate"]);
+    [windowObject evaluateWebScript:nodeui_default_js];
+}
 
+- (void)privateSendMessage:(NSString*)messagename arguments:(id)jsargs {
+    NSLog(@"messagename = %@, args = %@", messagename, jsargs);
+    /*
+    NSMutableArray* arguments = [[NSMutableArray alloc] init];
+    @try {
+        
+//        for (int i = 0; i < [[jsargs valueForKey:@"length"] integerValue]; i++) {
+//            id obj = [jsargs webScriptValueAtIndex:i];
+//            if (obj)
+//                [arguments addObject:obj];
+//        }
+    }
+    @catch (NSException *exception) {
+        // Web script objects can throw exceptions
+    }
+
+    NSLog(@"parsed args = %@", webkit_to_cocoa(jsargs));
+    [self server_sendMessage:messagename arguments:webkit_to_cocoa(jsargs)];
+    NSLog(@"args = %@", arguments);
+     */
+}
++ (BOOL)isSelectorExcludedFromWebScript:(SEL)selector {
+    return NO;
+}
++ (BOOL)isKeyExcludedFromWebScript:(const char *)name {
+    return NO;
+}
 
 
 - (NSValue*)frame {
@@ -268,6 +347,15 @@
                          arguments:[NSArray arrayWithObjects:message, arguments, nil]];
 }
 - (void)server_sendMessage:(NSString*)message arguments:(NSArray*)arguments {
+    
+    NSLog(@"got message: %@, arguments = %@", message, arguments);
+    if (onMessage) {
+        onMessage.mixin = mixin;
+        NoddyScheduleBlock(^{
+            [onMessage call:nil arguments:[NSArray arrayWithObjects:message, arguments, nil]];
+        });
+    }
+    
 //    [self server_callFunctionNamed:@"window_received_message" arguments:[NSArray arrayWithObjects:[mixin noddyID], message, arguments, nil]];
 
 }

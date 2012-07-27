@@ -52,7 +52,7 @@ Storage.prototype.forall = function(f) {
 };
 
 var Util = function() {
-  
+    
 };
 
 Util.indentation = function(str) {

@@ -2,3 +2,6 @@ Hooks
 
   addToEditorContextMenu
   addToProjectContextMenu
+
+function Tab.prototype.openFile(string path, bool addSplit, bool );
+function Editor.prototype.hide(); // Hide the editor from view

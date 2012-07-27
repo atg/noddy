@@ -36,6 +36,7 @@
 		75419F1415C02EED0050554A /* nodeui_default.html in Resources */ = {isa = PBXBuildFile; fileRef = 75419F1215C02EED0050554A /* nodeui_default.html */; };
 		75CD4A0915AC8F5600F97D8B /* underscore.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75CD4A0615AC8F5600F97D8B /* underscore.js */; };
 		75CD4A0A15AC8F5600F97D8B /* underscore.string.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75CD4A0715AC8F5600F97D8B /* underscore.string.js */; };
+		75E9D7BC15C076DC0020EB8D /* nodeui_default.js in Resources */ = {isa = PBXBuildFile; fileRef = 75E9D7B915C074D10020EB8D /* nodeui_default.js */; };
 		7C53DDE615BDA7FF00E91E04 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C53DDE515BDA7FF00E91E04 /* NSString+Utilities.m */; };
 		7CD8FB0B15BEEEA400F82F4D /* NSArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD8FB0A15BEEEA400F82F4D /* NSArray+Utilities.m */; };
 		7CEE72DF15AC949100C8C95A /* NoddyController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE72DE15AC949100C8C95A /* NoddyController.mm */; };
@@ -108,6 +109,7 @@
 		75CD4A0515AC8F5600F97D8B /* r.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = r.js; path = libraries/r.js; sourceTree = "<group>"; };
 		75CD4A0615AC8F5600F97D8B /* underscore.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = underscore.js; path = libraries/underscore.js; sourceTree = "<group>"; };
 		75CD4A0715AC8F5600F97D8B /* underscore.string.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = underscore.string.js; path = libraries/underscore.string.js; sourceTree = "<group>"; };
+		75E9D7B915C074D10020EB8D /* nodeui_default.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = nodeui_default.js; path = resources/nodeui_default.js; sourceTree = SOURCE_ROOT; };
 		7C53DDE415BDA7FF00E91E04 /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Utilities.h"; path = "source/NSString+Utilities.h"; sourceTree = SOURCE_ROOT; };
 		7C53DDE515BDA7FF00E91E04 /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Utilities.m"; path = "source/NSString+Utilities.m"; sourceTree = SOURCE_ROOT; };
 		7CD8FB0915BEEEA400F82F4D /* NSArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+Utilities.h"; path = "source/NSArray+Utilities.h"; sourceTree = SOURCE_ROOT; };
@@ -193,6 +195,7 @@
 				7535576715AC7C6F006AFA43 /* NoddyAppDelegate.m */,
 				75419F1115C02EED0050554A /* nodeui_default.css */,
 				75419F1215C02EED0050554A /* nodeui_default.html */,
+				75E9D7B915C074D10020EB8D /* nodeui_default.js */,
 			);
 			path = noddy;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75E9D7BC15C076DC0020EB8D /* nodeui_default.js in Resources */,
 				7535577515AC7C87006AFA43 /* Credits.rtf in Resources */,
 				7535577615AC7C87006AFA43 /* InfoPlist.strings in Resources */,
 				7535577715AC7C87006AFA43 /* MainMenu.xib in Resources */,

@@ -3,6 +3,8 @@ var os = require('os');
 var fs = require('fs');
 var path = require('path');
 
+global.current_mixin_name = null;
+
 console.log("Bite my shiny metal ass [" + os.platform() + " " + os.release() + "]");
 
 // Temporary way to stop node.js quitting immediately until we add an events.EventEmitter
@@ -18,7 +20,6 @@ process.on('uncaughtException', function () {
 var api = require('api.js');
 var loadedMixins = [];
 
-
 // Keep the event loop running until uv_async is less buggy
 setInterval(function () {}, 500);
 
@@ -32,6 +33,17 @@ global.objc_msgSendSync = function() {
 
 global.sayHelloTo = function(person) {
     console.log("Hello, " + person + "!");
+}
+
+
+global.call_function_as = function(mixinname, func, args) {
+    try {
+        global.current_mixin_name = mixinname;
+        func.apply({}, args);
+    }
+    finally {
+        global.current_mixin_name = null;
+    }
 }
 
 global.load_initjs = function(mixinPath, mixinID) {

@@ -146,7 +146,7 @@ Storage.prototype.forall = function(f) {
 };
 
 var Util = function() {
-  
+    
 };
 
 Util.indentation = function(str) {
@@ -168,9 +168,10 @@ function private_get_mixin() {
     
     // Find things named /X.chocmixin
     var m = new RegExp("/([^/]+)\\.chocmixin", "i").exec(stacktrace);
-    if (m.length >= 2)
+    if (m.length >= 2 && m[1].length)
         return "NODDYID$$MIXIN$$" + m[1];
-    
+    if (current_mixin_name != null)
+        return "NODDYID$$MIXIN$$" + global.current_mixin_name;
     return null;
 }
 
@@ -604,7 +605,7 @@ var Window = function() {
   this.onLoad = null;
   this.onMessage = null;
     
-    this.nid = objc_msgSendSync(private_get_mixin(), "createWindow:", "Window");
+    this.nid = global.objc_msgSendSync(private_get_mixin(), "createWindow:", "Window");
 };
 
 global.Window = Window;
@@ -614,7 +615,7 @@ global.Window = Window;
  * @memberOf Window
  */
 Window.prototype.run = function() {
-    objc_msgSend(this.nid, "run");
+    global.objc_msgSend(this.nid, "run");
 };
 
 /**
@@ -622,7 +623,7 @@ Window.prototype.run = function() {
  * @memberOf Window
  */
 Window.prototype.close = function() {
-    objc_msgSend(this.nid, "close");
+    global.objc_msgSend(this.nid, "close");
 };
 
 /**
@@ -631,7 +632,7 @@ Window.prototype.close = function() {
  * @memberOf Window
  */
 Window.prototype.frame = function() {
-    return objc_msgSendSync(this.nid, "frame");
+    return global.objc_msgSendSync(this.nid, "frame");
 };
 
 /**
@@ -645,35 +646,56 @@ Window.prototype.setFrame = function(newFrame, shouldAnimate) {
     if (typeof shouldAnimate === 'undefined') {
         shouldAnimate = false;
     }
-    objc_msgSend(this.nid, "setFrame:animate:", newFrame, shouldAnimate);
+    global.objc_msgSend(this.nid, "setFrame:animate:", newFrame, shouldAnimate);
 };
 
 Window.prototype.buttons = function() {
-    return objc_msgSendSync(this.nid, "buttons");
+    return global.objc_msgSendSync(this.nid, "buttons");
 };
 Window.prototype.setButtons = function(newButtons) {
-    objc_msgSend(this.nid, "setButtons:", newButtons);
+    global.objc_msgSend(this.nid, "setButtons:", newButtons);
 };
 Window.prototype.__defineGetter__("buttons", Window.prototype.buttons);
 Window.prototype.__defineSetter__("buttons", Window.prototype.setButtons);
 
 
 Window.prototype.onButtonClick = function() {
-    return objc_msgSendSync(this.nid, "onButtonClick");
+    return global.objc_msgSendSync(this.nid, "onButtonClick");
 };
 Window.prototype.setOnButtonClick = function(callback) {
-    objc_msgSend(this.nid, "setOnButtonClick:", callback);
+    global.objc_msgSend(this.nid, "setOnButtonClick:", callback);
 };
 Window.prototype.__defineGetter__("onButtonClick", Window.prototype.onButtonClick);
 Window.prototype.__defineSetter__("onButtonClick", Window.prototype.setOnButtonClick);
 
 
+Window.prototype.onMessage = function() {
+    return global.objc_msgSendSync(this.nid, "onMessage");
+};
+Window.prototype.setOnMessage = function(callback) {
+    global.objc_msgSend(this.nid, "setOnMessage:", callback);
+};
+Window.prototype.__defineGetter__("onMessage", Window.prototype.onMessage);
+Window.prototype.__defineSetter__("onMessage", Window.prototype.setOnMessage);
+
+
+
+Window.prototype.title = function() {
+    return global.objc_msgSendSync(this.nid, "title");
+};
+Window.prototype.setTitle = function(callback) {
+    global.objc_msgSend(this.nid, "setTitle:", callback);
+};
+Window.prototype.__defineGetter__("title", Window.prototype.title);
+Window.prototype.__defineSetter__("title", Window.prototype.setTitle);
+
+
 
 Window.prototype.htmlPath = function() {
-    return objc_msgSendSync(this.nid, "htmlPath");
+    return global.objc_msgSendSync(this.nid, "htmlPath");
 };
 Window.prototype.setHtmlPath = function(newHtml) {
-    objc_msgSend(this.nid, "setHtmlPath:", (newHtml != null ? String(newHtml) : null));
+    global.objc_msgSend(this.nid, "setHtmlPath:", (newHtml != null ? String(newHtml) : null));
 };
 Window.prototype.__defineGetter__("htmlPath", Window.prototype.htmlPath);
 Window.prototype.__defineSetter__("htmlPath", Window.prototype.setHtmlPath);
@@ -681,10 +703,10 @@ Window.prototype.__defineSetter__("htmlPath", Window.prototype.setHtmlPath);
 
 
 Window.prototype.html = function() {
-    return objc_msgSendSync(this.nid, "html");
+    return global.objc_msgSendSync(this.nid, "html");
 };
 Window.prototype.setHtml = function(newHtml) {
-    objc_msgSend(this.nid, "setHtml:", (newHtml != null ? String(newHtml) : null));
+    global.objc_msgSend(this.nid, "setHtml:", (newHtml != null ? String(newHtml) : null));
 };
 
 Window.prototype.__defineGetter__("html", Window.prototype.html);

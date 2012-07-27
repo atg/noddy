@@ -1,6 +1,7 @@
 #import "NoddyBridge.h"
 #import "NoddyIndirectObjects.h"
 #import "NoddyThread.h"
+#import "NoddyMixin.h"
 
 using namespace v8;
 
@@ -282,6 +283,8 @@ Handle<Value> noddy_objc_msgSend(const Arguments& args) {
 
 @implementation NoddyFunction
 
+@synthesize mixin;
+
 - (id)initWithFunction:(v8::Handle<v8::Function>)funcHandle {
     self = [super init];
     if (!self)
@@ -291,7 +294,7 @@ Handle<Value> noddy_objc_msgSend(const Arguments& args) {
     return self;
 }
 - (v8::Local<v8::Value>)basicCall:(v8::Handle<v8::Object>)thisObject arguments:(v8::Handle<v8::Array>)args {
-    HandleScope scope;    
+    HandleScope scope;
     
     uint32_t count = args->Length();
     v8::Handle<v8::Value>* argv = new v8::Handle<v8::Value>[count]();
@@ -299,8 +302,15 @@ Handle<Value> noddy_objc_msgSend(const Arguments& args) {
         argv[i] = args->Get(i);
     }
     
+    NSString* mixinName = [[mixin.path lastPathComponent] stringByDeletingPathExtension];
+    if (mixinName)
+        Context::GetCurrent()->Global()->Set(String::New("current_mixin_name"), cocoa_to_node(mixinName));
+    
     v8::Local<v8::Value> ret = func->Call(thisObject, count, argv);
     delete[] argv;
+    
+    if (mixinName)
+        Context::GetCurrent()->Global()->Set(String::New("current_mixin_name"), cocoa_to_node(nil));
     
     return scope.Close(ret);
 }

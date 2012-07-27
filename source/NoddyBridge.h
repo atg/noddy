@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-
+@class NoddyMixin;
 
 #ifdef __cplusplus
 #import <node.h>
@@ -22,6 +22,8 @@ id node_to_cocoa(v8::Handle<v8::Value> val);
     v8::Persistent<v8::Function> func;
 #endif
 }
+
+@property (assign) __weak NoddyMixin* mixin;
 
 #ifdef __cplusplus
 - (id)initWithFunction:(v8::Handle<v8::Function>)funcHandle;
@@ -49,6 +51,9 @@ static inline BOOL IS_DATE(id x) {
 static inline BOOL IS_ARRAY(id x) {
     return [x isKindOfClass:[NSArray class]];
 }
+static inline BOOL IS_FUNCTION(id x) {
+    return [x isKindOfClass:[NoddyFunction class]];
+}
 static inline BOOL IS_ARRAY_OF(id x, BOOL(*f)(id v)) {
     if (!IS_ARRAY(x))
         return NO;
@@ -68,6 +73,42 @@ static inline BOOL IS_DICTIONARY_OF(id x, BOOL(*f)(id v)) {
         if (!f(v))
             return NO;
     }
+    return YES;
+}
+static inline BOOL IS_RANGE(NSValue* x) {
+    if (!x || ![x isKindOfClass:[NSValue class]])
+        return NO;
+    
+    const char* objctype = [x objCType];
+    if (strcmp(objctype, @encode(NSRect)) != 0)
+        return NO;
+    return YES;
+}
+static inline BOOL IS_SIZE(NSValue* x) {
+    if (!x || ![x isKindOfClass:[NSValue class]])
+        return NO;
+    
+    const char* objctype = [x objCType];
+    if (strcmp(objctype, @encode(NSSize)) != 0)
+        return NO;
+    return YES;
+}
+static inline BOOL IS_POINT(NSValue* x) {
+    if (!x || ![x isKindOfClass:[NSValue class]])
+        return NO;
+    
+    const char* objctype = [x objCType];
+    if (strcmp(objctype, @encode(NSPoint)) != 0)
+        return NO;
+    return YES;
+}
+static inline BOOL IS_RECT(NSValue* x) {
+    if (!x || ![x isKindOfClass:[NSValue class]])
+        return NO;
+    
+    const char* objctype = [x objCType];
+    if (strcmp(objctype, @encode(NSRect)) != 0)
+        return NO;
     return YES;
 }
 

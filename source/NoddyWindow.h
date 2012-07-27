@@ -31,6 +31,7 @@
 @property (copy) NSArray* buttons; // A list of buttons to display at the bottom of the window.
 @property (readonly) NSMutableArray* buttonObjects; // A list of buttons to display at the bottom of the window.
 @property (assign) NoddyFunction* onButtonClick;
+@property (assign) NoddyFunction* onMessage;
 @property (assign) NSNumber* canResize;
 @property (assign) NSNumber* canClose;
 @property (assign) NSNumber* canMiniaturize;
