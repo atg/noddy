@@ -47,6 +47,7 @@ global.call_function_as = function(mixinname, func, args) {
 }
 
 global.load_initjs = function(mixinPath, mixinID) {
+    
     // Look in loadedMixins for this mixin
     // Remove any that match mixinPath
     loadedMixins = loadedMixins.filter(function (aMixin) { return aMixin.path !== mixinPath; });
@@ -58,10 +59,13 @@ global.load_initjs = function(mixinPath, mixinID) {
     loadedMixins.push({ path:mixinPath, id:mixinID });
     
     // Remove from the module cache
-    for (var key in Object.keys(require.cache)) {
+    var keys = Object.keys(require.cache);
+    for (var i = 0; i < keys.length; i++) {
+        var key = keys[i];
         delete require.cache[key];
     }
-
+    
     // Run the code!
     require(pathToInitjs);
+
 }

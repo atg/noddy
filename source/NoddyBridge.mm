@@ -324,13 +324,18 @@ Handle<Value> noddy_objc_msgSend(const Arguments& args) {
     HandleScope scope;
     return scope.Close(Local<Function>::New(func));
 }
-- (void)finalize {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NoddyScheduleBlock(^{
-            func.Dispose();
-        });
+
+static void dispose_persistent(void* ctx) {
+    NoddyScheduleBlock(^{
+        Persistent<Function>* p = reinterpret_cast<Persistent<Function>*>(ctx);
+        p->Dispose();
+        delete p;
     });
+}
+- (void)finalize {
     
+    Persistent<Function>* p = new Persistent<Function>(func);
+    dispatch_async_f(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), reinterpret_cast<void*>(p), dispose_persistent);
     
     [super finalize];
 }
