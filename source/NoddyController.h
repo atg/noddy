@@ -1,5 +1,6 @@
 
 @class NoddyThread;
+@class CDEvents;
 
 @interface NoddyController : NSObject {
     NoddyThread* thread;
@@ -9,6 +10,7 @@
 
 @property (readonly) NoddyThread* thread;
 @property (readonly) NSMutableArray* mixins;
+@property (assign) CDEvents *events;
 
 + (id)sharedController;
 

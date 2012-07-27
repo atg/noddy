@@ -2,9 +2,11 @@
 #import "NoddyThread.h"
 #import "NoddyMixin.h"
 #import "NoddyBridge.h"
+#import <CDEvents/CDEvents.h>
+
 @implementation NoddyController
 
-@synthesize thread=_thread, mixins=_mixins;
+@synthesize thread=_thread, mixins=_mixins, events=_events;
 
 + (id)sharedController
 {
@@ -53,6 +55,9 @@
 
 - (void)reloadMixins
 {
+    // an URL watcher...
+    NSMutableArray *urlsToWatch = [[NSMutableArray alloc] init];
+    
     // load mixins from disk...
     // first, sharedsupport
     NSString *sharedSupportPath = [[[NSBundle mainBundle] sharedSupportPath] stringByAppendingPathComponent:@"Mixins"];
@@ -71,6 +76,7 @@
             NoddyMixin *newMixin = [[NoddyMixin alloc] initWithPath:[sharedSupportPath stringByAppendingPathComponent:aPath]];
             [newMixin reload];
             [self.mixins addObject:newMixin];
+            [urlsToWatch addObject:[sharedSupportPath stringByAppendingPathComponent:aPath]];
         }
     }
     
@@ -79,6 +85,7 @@
             NoddyMixin *newMixin = [[NoddyMixin alloc] initWithPath:[appSupportPath stringByAppendingPathComponent:aPath]];
             [newMixin reload];
             [self.mixins addObject:newMixin];
+            [urlsToWatch addObject:[appSupportPath stringByAppendingPathComponent:aPath]];
         }
     }
     
@@ -87,9 +94,25 @@
             NoddyMixin *newMixin = [[NoddyMixin alloc] initWithPath:[homePath stringByAppendingPathComponent:aPath]];
             [newMixin reload];
             [self.mixins addObject:newMixin];
+            
+            [urlsToWatch addObject:[NSURL fileURLWithPath:[homePath stringByAppendingPathComponent:aPath]]];
+            
         }
     }
     
+    // add a watch for those urls
+    self.events = [[CDEvents alloc] initWithURLs:urlsToWatch
+                                           block:[^(CDEvents *watcher, CDEvent *event) {
+                                               // a change! reload that mixin...
+                                               //NSLog(@"URLWatcher: %@\n%@", event, self);
+                                               for (NoddyMixin *aMixin in self.mixins) {
+                                                   if([[NSURL fileURLWithPath:aMixin.path] isEqualTo:event.URL]) {
+                                                       NSLog(@"Found the culprit!");
+                                                       [aMixin reload];
+                                                   }
+                                               }
+                                               
+                                           } copy]];
 }
 
 

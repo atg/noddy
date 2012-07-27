@@ -42,12 +42,7 @@
     [NoddyThread callGlobalFunction:@"load_initjs" arguments:[NSArray arrayWithObjects:self.path, self.noddyID, nil]];
 
 }
-
-- (void)reload
-{
-    [self unload];
-    [self load];
-}
+ 
 
 - (void)unload
 {
