@@ -1,3 +1,4 @@
+var _ = require("underscore.js");
 /**
  * @api private
  */

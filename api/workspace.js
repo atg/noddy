@@ -16,7 +16,8 @@ global.MainWindow = MainWindow;
  * @memberOf MainWindow
  */
 MainWindow.current = function() {
-  
+    var someNid = global.objc_msgSendSync(private_get_mixin(), "mainwindow_current");
+    return new MainWindow(someNid);
 };
 
 /**
@@ -26,7 +27,7 @@ MainWindow.current = function() {
  * @memberOf MainWindow
  */
 MainWindow.prototype.tabs = function() {
-  
+  return global.objc_msgSendSync(this.nid, "mainwindow_tabs");
 };
 
 /**
@@ -36,7 +37,7 @@ MainWindow.prototype.tabs = function() {
  * @memberOf MainWindow
  */
 MainWindow.prototype.currentTab = function() {
-  
+  return global.objc_msgSendSync(this.nid, "mainwindow_currentTab");
 };
 
 /**
@@ -47,7 +48,10 @@ MainWindow.prototype.currentTab = function() {
  * @memberOf MainWindow
  */
 MainWindow.prototype.sendMessage = function(selector, arguments) {
-  
+    global.objc_msgSend(this.nid, "mainwindow_current", {
+        "selector": selector,
+        "arguments": arguments
+    });
 };
 
 /**
@@ -57,7 +61,7 @@ MainWindow.prototype.sendMessage = function(selector, arguments) {
  * @memberOf MainWindow
  */
 MainWindow.prototype.storage = function() {
-  
+    return new Storage(global.objc_msgSendSync(this.nid, "mainwindow_storage"));
 };
 
 /**
@@ -76,7 +80,8 @@ global.Tab = Tab;
  * @memberOf Tab
  */
 Tab.current = function() {
-  
+    var tabNid = global.objc_msgSendSync(private_get_mixin(), "tab_current");
+    return new Tab(someNid);
 };
 
 /**
@@ -86,7 +91,7 @@ Tab.current = function() {
  * @memberOf Tab
  */
 Tab.prototype.window = function() {
-  
+    return new MainWindow(global.objc_msgSendSync(this.nid, "tab_window"));
 };
 
 /**
@@ -96,7 +101,8 @@ Tab.prototype.window = function() {
 * @memberOf Tab
 */
 Tab.prototype.editors = function() {
-  
+    var myEditors = global.objc_msgSendSync(this.nid, "tab_editors");
+    return _.map(myEditors, function(editorId){ return new Editor(editorId);});
 };
 
 /**
@@ -106,7 +112,7 @@ Tab.prototype.editors = function() {
 * @memberOf Tab
 */
 Tab.prototype.currentEditor = function() {
-  
+  return new Editor(global.objc_msgSendSync(this.nid, "tab_currentEditor"));
 };
 
 /**
@@ -116,7 +122,8 @@ Tab.prototype.currentEditor = function() {
 * @memberOf Tab
 */
 Tab.prototype.activeDocuments = function() {
-  
+    var activeDocs = global.objc_msgSendSync(this.nid, "tab_activeDocuments");
+    return _.map(activeDocs, function(docId){ return new Document(docId);});
 };
 
 /**
@@ -126,7 +133,8 @@ Tab.prototype.activeDocuments = function() {
 * @memberOf Tab
 */
 Tab.prototype.visibleDocuments = function() {
-  
+    var visibleDocs = global.objc_msgSendSync(this.nid, "tab_visibleDocuments");
+    return _.map(visibleDocs, function(docId){ return new Document(docId);});
 };
 
 /**
@@ -136,7 +144,7 @@ Tab.prototype.visibleDocuments = function() {
  * @memberOf Tab
  */
 Tab.prototype.storage = function() {
-
+    return new Storage(global.objc_msgSendSync(this.nid, "tab_storage"));
 };
 
 /**
@@ -155,7 +163,7 @@ global.Document = Document;
  * @memberOf Document
  */
 Document.current = function() {
-
+    return new Document(global.objc_msgSendSync(private_get_mixin(), "document_current"));
 };
 
 /**
@@ -165,7 +173,7 @@ Document.current = function() {
  * @memberOf Document
  */
 Document.prototype.displayName = function() {
-  
+    return global.objc_msgSendSync(this.nid, "document_displayName");
 };
 
 /**
@@ -175,7 +183,7 @@ Document.prototype.displayName = function() {
  * @memberOf Document
  */
 Document.prototype.filename = function() {
-
+    return global.objc_msgSendSync(this.nid, "document_filename");
 };
 
 /**
@@ -185,7 +193,7 @@ Document.prototype.filename = function() {
  * @memberOf Document
  */
 Document.prototype.path = function() {
-
+    return global.objc_msgSendSync(this.nid, "document_path");
 };
 
 /**
@@ -195,7 +203,7 @@ Document.prototype.path = function() {
  * @memberOf Document
  */
 Document.prototype.rootScope = function() {
-
+    return global.objc_msgSendSync(this.nid, "document_rootScope");
 };
 
 /**
@@ -206,7 +214,7 @@ Document.prototype.rootScope = function() {
  * @memberOf Document
  */
 Document.prototype.contextAtIndex = function(idx) {
-
+    return global.objc_msgSendSync(this.nid, "document_contextAtIndex:", idx);
 };
 
 /**
@@ -216,7 +224,8 @@ Document.prototype.contextAtIndex = function(idx) {
  * @memberOf Document
  */
 Document.prototype.editors = function() {
-
+    var myEditors = global.objc_msgSendSync(this.nid, "document_editors");
+    return _.map(myEditors, function(editorId){ return new Editor(editorId);});
 };
 
 /**
@@ -227,7 +236,7 @@ Document.prototype.editors = function() {
  * @isproperty
  */
 Document.prototype.length = function() {
-    
+    return global.objc_msgSendSync(this.nid, "document_length");
 };
 Document.prototype.__defineGetter__("length", Document.prototype.length);
 
@@ -239,11 +248,11 @@ Document.prototype.__defineGetter__("length", Document.prototype.length);
  * @isproperty
  */
 Document.prototype.text = function() {
-    
+    return global.objc_msgSendSync(this.nid, "document_text");
 };
 
 Document.prototype.setText = function(newText) {
-    
+    global.objc_msgSend(this.nid, "document_setText:", newText);
 };
 Document.prototype.__defineGetter__("text", Document.prototype.text);
 Document.prototype.__defineSetter__("text", Document.prototype.setText);
@@ -256,7 +265,7 @@ Document.prototype.__defineSetter__("text", Document.prototype.setText);
  * @memberOf Document
  */
 Document.prototype.textInRange = function(rng) {
-
+    return global.objc_msgSendSync(this.nid, "document_textInRange:", rng);
 };
 
 /**
@@ -267,7 +276,7 @@ Document.prototype.textInRange = function(rng) {
  * @memberOf Document
  */
 Document.prototype.replaceTextInRange = function(rng, replacement) {
-
+    global.objc_msgSend(this.nid, "document_replaceTextInRange:", {"rng": rng, "replacement": replacement});
 };
 
 /**
@@ -277,7 +286,7 @@ Document.prototype.replaceTextInRange = function(rng, replacement) {
  * @memberOf Document
  */
 Document.prototype.storage = function() {
-
+    return new Storage(global.objc_msgSendSync(this.nid, "document_storage"));
 };
 
 

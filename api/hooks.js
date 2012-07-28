@@ -1,6 +1,6 @@
 // Implement the UI class
-var UI = {};
-global.UI = UI;
+var Hooks = {};
+global.Hooks = Hooks;
 
 /**
  * Add a menu item at the given path.
@@ -8,9 +8,9 @@ global.UI = UI;
  * @param {String} path the path of the new menu item.
  * @param {String} shortcut keyboard shortcut, e.g. `ctrl-alt-cmd-b`.
  * @param {Function} callback a callback to be executed when the menu item is selected.
- * @memberOf UI
+ * @memberOf Hooks
  */
-UI.addMenuItem = function(path, shortcut, callback) {
+Hooks.addMenuItem = function(path, shortcut, callback) {
     global.objc_msgSend(private_get_mixin(), "ui_addMenuItem:", {
         "path": path,
         "shortcut": shortcut,
@@ -23,9 +23,9 @@ UI.addMenuItem = function(path, shortcut, callback) {
  *
  * @param {String} shortcut the keyboard shortcut, e.g. `ctrl-alt-cmd-b`
  * @param {Function} callback the callback function to execute.
- * @memberOf UI
+ * @memberOf Hooks
  */
-UI.addKeyboardShortcut = function(shortcut, callback) {
+Hooks.addKeyboardShortcut = function(shortcut, callback) {
     global.objc_msgSend(private_get_mixin(), "ui_addKeyboardShortcut:", {
         "shortcut": shortcut,
         "callback": callback
@@ -37,9 +37,9 @@ UI.addKeyboardShortcut = function(shortcut, callback) {
  * @param {String} name the name of the item to add.
  * @param {Function} valueFunction a function that will return the value to display in the status bar.
  * @param {String} selector a scope selector e.g. `source.objc`
- * @memberOf UI
+ * @memberOf Hooks
  */
-UI.addStatusItem = function (name, valueFunction, selector) {
+Hooks.addStatusItem = function (name, valueFunction, selector) {
     
 };
 
@@ -47,11 +47,15 @@ UI.addStatusItem = function (name, valueFunction, selector) {
 /**
  * Remap a menu item to a new keyboard shortcut.
  * 
- * @param {String} path the path of the new menu item.
+ * Example:
+ * 
+ *     UI.setShortcutForMenuItem("Go/Go To File...", "cmd-t");
+ *
+ * @param {String} path the path of the menu item to change.
  * @param {String} shortcut keyboard shortcut, e.g. `ctrl-alt-cmd-b`.
- * @memberOf UI
+ * @memberOf Hooks
  */
-UI.setShortcutForMenuItem = function(path, shortcut) {
+Hooks.setShortcutForMenuItem = function(path, shortcut) {
     global.objc_msgSend(private_get_mixin(), "ui_setShortcutForMenuItem:", {
         "shortcut": shortcut,
         "path": path
