@@ -27,7 +27,7 @@ MainWindow.current = function() {
  * @memberOf MainWindow
  */
 MainWindow.prototype.tabs = function() {
-  return global.objc_msgSendSync(this.nid, "mainwindow_tabs");
+    return global.objc_msgSendSync(this.nid, "mainwindow_tabs");
 };
 
 /**
@@ -37,7 +37,7 @@ MainWindow.prototype.tabs = function() {
  * @memberOf MainWindow
  */
 MainWindow.prototype.currentTab = function() {
-  return global.objc_msgSendSync(this.nid, "mainwindow_currentTab");
+    return global.objc_msgSendSync(this.nid, "mainwindow_currentTab");
 };
 
 /**
@@ -306,7 +306,7 @@ global.Editor = Editor;
  * @memberOf Editor
  */
 Editor.current = function() {
-
+    return new Editor(global.objc_msgSendSync(private_get_mixin(), "editor_current"));
 };
 
 /**
@@ -316,7 +316,7 @@ Editor.current = function() {
  * @memberOf Editor
  */
 Editor.prototype.document = function() {
-  
+    return new Document(global.objc_msgSendSync(this.nid, "editor_document"));
 };
 
 /**
@@ -327,11 +327,11 @@ Editor.prototype.document = function() {
  * @isproperty
  */
 Editor.prototype.selection = function() {
-  
+    return global.objc_msgSendSync(this.nid, "editor_selection");
 };
 
 Editor.prototype.setSelection = function(rng) {
-  
+    global.objc_msgSend(this.nid, "editor_setSelection:", rng);
 };
 
 Editor.prototype.__defineGetter__("selection", Editor.prototype.selection);
@@ -345,7 +345,7 @@ Editor.prototype.__defineSetter__("selection", Editor.prototype.setSelection);
  * @memberOf Editor
  */
 Editor.prototype.visibleRange = function() {
-  
+  return global.objc_msgSendSync(this.nid, "editor_visibleRange");
 };
 
 /**
@@ -355,7 +355,7 @@ Editor.prototype.visibleRange = function() {
  * @memberOf Editor
  */
 Editor.prototype.selectionContext = function() {
-  
+  return global.objc_msgSendSync(this.nid, "editor_selectionContext");
 };
 
 /**
@@ -365,7 +365,7 @@ Editor.prototype.selectionContext = function() {
  * @memberOf Editor
  */
 Editor.prototype.insertSnippet = function(snippet) {
-
+    global.objc_msgSend(this.nid, "editor_insertSnippet:", snippet);
 };
 
 /**
@@ -375,6 +375,6 @@ Editor.prototype.insertSnippet = function(snippet) {
  * @memberOf Editor
  */
 Editor.prototype.storage = function() {
-
+    return new Storage(global.objc_msgSendSync(this.nid, "editor_storage"));
 };
 
