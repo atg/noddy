@@ -13,7 +13,7 @@
         
             <a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
-            <a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="hooks.html">Hooks</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
             <a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
@@ -21,11 +21,11 @@
         
             <a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
+            <a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
             <a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
             <a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
-        
-            <a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
             <a href="editor.html">Editor</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
@@ -87,9 +87,9 @@
             <li>Misc
             <ul>
                 
-                <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li><a href="hooks.html">Hooks</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
             
-                <li><a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
             
             </ul>
             </li>
@@ -98,8 +98,12 @@
     </td>
     <td id="content">
         
-        
-            <h3><span class="item-name">Window</span>()</h3>
+            
+            
+                <h2 class="section-header">Setup</h2>
+            
+            
+            <h3 class="noline"><span class="item-name">Window</span>()</h3>
             <p>Create a new window.</p>
             
             
@@ -109,51 +113,140 @@
             
 
         
-        
-            <h3>.<span class="item-name">run</span>()</h3>
-            <p>Display the window.</p>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">run</span>()</h3>
+            <p>Set up and display the window.</p>
             
             
             
             
             
-            
+            <h2>Example</h2>
+
+<pre><code>var win = new Window();
+win.html = "&lt;!DOCTYPE html&gt;&lt;h1&gt;Test&lt;/h1&gt;";
+win.buttons = ["OK"];
+win.onButtonClick = function() { win.close(); }
+win.run();
+win.maximize();
+</code></pre>
 
         
-        
-            <h3>.<span class="item-name">close</span>()</h3>
-            <p>Close the window.</p>
             
             
             
-            
-            
-            
-
-        
-        
-            <h3>.<span class="item-name">frame</span>()</h3>
-            <p>Get the window's frame.</p>
+            <h3 class="line">.<span class="item-name">buttons</span></h3>
+            <p>Get or set an <code>Array</code> of button names to be shown at the bottom of the window. Buttons are shown from right-to-left.</p>
             
             
             
             
             <p class="returns">
-                <b>Returns</b> <span class="param-type">the</span> &ndash; window's frame.
+                <b>Returns</b> <span class="param-type">Array</span> &ndash; the names of the buttons. Note that you cannot mutate the return value of this property, you must set it for it to be updated.
+            </p>
+            
+            
+            <h2>Example</h2>
+
+<pre><code>var win = new Window();
+win.buttons = ["OK", "Cancel"];
+</code></pre>
+
+        
+            
+            
+            
+            <h3 class="line">.<span class="item-name">htmlPath</span></h3>
+            <p>Get or set a path to the HTML file that will be shown in the window. Can be either absolute or relative. Relative paths are relative to the mixin's directory.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">String</span> &ndash; the path to the HTML file.
+            </p>
+            
+            
+            <h2>Example</h2>
+
+<pre><code>var win = new Window();
+win.htmlPath = "index.html";
+</code></pre>
+
+        
+            
+            
+            
+            <h3 class="line">.<span class="item-name">html</span></h3>
+            <p>Set the source of HTML file that will be shown in the window. Mutually exclusive with <code>.htmlPath</code>.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">String</span> &ndash; the path to the HTML file.
+            </p>
+            
+            
+            <h2>Example</h2>
+
+<pre><code>var win = new Window();
+win.html = "&lt;!DOCTYPE html&gt;&lt;h1&gt;Test&lt;/h1&gt;";
+</code></pre>
+
+        
+            
+            
+                <h2 class="section-header">Basics</h2>
+            
+            
+            <h3 class="noline">.<span class="item-name">title</span></h3>
+            <p>Get or set the title of the window.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">String</span> &ndash; the title of the window.
+            </p>
+            
+            
+            <h2>Example</h2>
+
+<pre><code>var win = new Window();
+win.title = "My window";
+</code></pre>
+
+        
+            
+            
+            
+            <h3 class="line">.<span class="item-name">frame</span></h3>
+            <p>Get or set the window's frame. Setter is equivalent to <code>.setFrame(rect, false)</code>.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Rect</span> &ndash; the window's frame.
             </p>
             
             
             
 
         
-        
-            <h3>.<span class="item-name">setFrame</span>(<var>newFrame</var>, <var>shouldAnimate</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">setFrame</span>(<var>newFrame</var>, <var>shouldAnimate</var>)</h3>
             <p>Set the window's frame. The frame should be an object with the x, y, width and<br />height properties. e.g. <code>{x: 0, y: 0, width: 250, height: 300}</code></p>
             
             
             <ul class="params">
                 
-                    <li class="param"><span class="param-name">newFrame</span><span class="bigspace"> </span><span class="param-type">Object</span> &ndash; the new window's frame.</li>
+                    <li class="param"><span class="param-name">newFrame</span><span class="bigspace"> </span><span class="param-type">Rect</span> &ndash; the new window's frame.</li>
                 
                     <li class="param"><span class="param-name">shouldAnimate</span><span class="bigspace"> </span><span class="param-type">Bool</span> &ndash; optional, whether to animate the resizing or not (default: false)</li>
                 
@@ -165,8 +258,313 @@
             
 
         
+            
+            
+            
+            <h3 class="line">.<span class="item-name">center</span>()</h3>
+            <p>Center the window on screen. Must be called after run() has been invoked.</p>
+            
+            
+            
+            
+            
+            
+
         
-            <h3>.<span class="item-name">sendMessage</span>(<var>msg</var>, <var>arg</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">maximize</span>()</h3>
+            <p>Maximize the window so that it takes up the entire size of the screen.</p>
+            
+            
+            
+            
+            
+            
+
+        
+            
+            
+                <h2 class="section-header">Visibility</h2>
+            
+            
+            <h3 class="noline">.<span class="item-name">close</span>()</h3>
+            <p>Permanently close the window. After a window is closed all resources are freed. Use <code>.hide()</code> to temporarily hide a window.</p>
+            
+            
+            
+            
+            
+            
+
+        
+            
+            
+            
+            <h3 class="line">.<span class="item-name">show</span>()</h3>
+            <p>Show the window if it was previously hidden.</p>
+            
+            
+            
+            
+            
+            
+
+        
+            
+            
+            
+            <h3 class="line">.<span class="item-name">hide</span>()</h3>
+            <p>Hide the window offscreen but don't close it.</p>
+            
+            
+            
+            
+            
+            
+
+        
+            
+            
+            
+            <h3 class="line">.<span class="item-name">toggleShown</span>()</h3>
+            <p>Hides a visible window or show a hidden window.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Boolean</span> &ndash; whether the window is *now* onscreen.
+            </p>
+            
+            
+            
+
+        
+            
+            
+            
+            <h3 class="line">.<span class="item-name">isVisible</span>()</h3>
+            <p>Is this window onscreen?</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Boolean</span> &ndash; whether the window is onscreen.
+            </p>
+            
+            
+            
+
+        
+            
+            
+            
+            <h3 class="line">.<span class="item-name">isKeyWindow</span>()</h3>
+            <p>Is this the key window? The key window receives key events.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Boolean</span> &ndash; whether the window is the key window.
+            </p>
+            
+            
+            
+
+        
+            
+            
+            
+            <h3 class="line">.<span class="item-name">isMainWindow</span>()</h3>
+            <p>Is this the main window?</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Boolean</span> &ndash; whether the window is the main window.
+            </p>
+            
+            
+            
+
+        
+            
+            
+                <h2 class="section-header">Minimization</h2>
+            
+            
+            <h3 class="noline">.<span class="item-name">minimize</span>()</h3>
+            <p>Minimize the window into the dock.</p>
+            
+            
+            
+            
+            
+            
+
+        
+            
+            
+            
+            <h3 class="line">.<span class="item-name">unminimize</span>()</h3>
+            <p>Unminimize the window out of the dock.</p>
+            
+            
+            
+            
+            
+            
+
+        
+            
+            
+            
+            <h3 class="line">.<span class="item-name">isMinimized</span>()</h3>
+            <p>Return whether the window is minimized.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Boolean</span> &ndash; whether the window is minimized.
+            </p>
+            
+            
+            
+
+        
+            
+            
+                <h2 class="section-header">Events</h2>
+            
+            
+            <h3 class="noline">.<span class="item-name">onButtonClick</span></h3>
+            <p>Get or set a callback function that will be called when a button is clicked.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Function(String)</span> &ndash; a callback function with one argument: the name of the button that was clicked.
+            </p>
+            
+            
+            <h2>Example</h2>
+
+<pre><code>var win = new Window();
+win.buttons = ["OK", "Cancel"];
+win.onButtonClick = function (buttonName) {
+    console.log("Clicked " + buttonName);
+}
+</code></pre>
+
+        
+            
+            
+            
+            <h3 class="line">.<span class="item-name">onMessage</span></h3>
+            <p>Get or set a callback function that will be called when the client JS sends a message.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Function(String or </span> &ndash; Array or Object)} a callback function with two arguments: the first is the name of the message, the second is the arguments passed to it
+            </p>
+            
+            
+            <h2>Example</h2>
+
+<pre><code>// Client code
+window.sendMessage("hello", [1, 2, 3]);
+
+// Server code
+win.onMessage = function (name, arguments) {
+    // name == "hello", arguments == [1, 2, 3]
+}
+</code></pre>
+
+        
+            
+            
+            
+            <h3 class="line">.<span class="item-name">onLoad</span></h3>
+            <p>Get or set a function that will be called <em>in the client context</em> when the page loads. Equivalent to setting an onload attribute. Useful if using default.html to build up the page exclusively in JS.</p>
+            
+            
+            
+            
+            <p class="returns">
+                <b>Returns</b> <span class="param-type">Function</span> &ndash; a function that will run in the client JS. Referencing anything in the server JS won't work.
+            </p>
+            
+            
+            <h2>Example</h2>
+
+<pre><code>var win = new Window()
+win.htmlPath = "default.html";
+win.onLoad = function () {
+    document.body.innerHTML = "&lt;h1&gt;Hello World&lt;/h1&gt;";
+};
+win.run();
+</code></pre>
+
+        
+            
+            
+                <h2 class="section-header">Communication</h2>
+            
+            
+            <h3 class="noline">.<span class="item-name">eval</span>(<var>code</var>)</h3>
+            <p>Eval some code on the client-side.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">code</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; some code to evaluate on the client-side.</li>
+                
+            </ul>
+            
+            
+            
+            
+            <h2>Example</h2>
+
+<pre><code>win.eval("document.write('Some text')");
+</code></pre>
+
+        
+            
+            
+            
+            <h3 class="line">.<span class="item-name">addFunction</span>(<var>code</var>)</h3>
+            <p>Add a function to the client-side JS.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">code</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; some code to evaluate on the client-side.</li>
+                
+            </ul>
+            
+            
+            
+            
+            <h2>Example</h2>
+
+<pre><code>win.eval("document.write('Some text')");
+</code></pre>
+
+        
+            
+            
+            
+            <h3 class="line">.<span class="item-name">sendMessage</span>(<var>msg</var>, <var>args</var>)</h3>
             <p>Send a message to the window that you can catch with the window.onMessage attribute.</p>
             
             
@@ -174,14 +572,45 @@
                 
                     <li class="param"><span class="param-name">msg</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the name of the message to send.</li>
                 
-                    <li class="param"><span class="param-name">arg</span><span class="bigspace"> </span><span class="param-type">Value</span> &ndash; an argument to pass to the callback function.</li>
+                    <li class="param"><span class="param-name">args</span><span class="bigspace"> </span><span class="param-type">Value</span> &ndash; an argument to pass to the callback function.</li>
                 
             </ul>
             
             
             
             
+            <h2>Example</h2>
+
+<pre><code>win.sendMessage("I'm sending a message", [42]);
+</code></pre>
+
+        
             
+            
+            
+            <h3 class="line">.<span class="item-name">applyFunction</span>(<var>f</var>, <var>args</var>)</h3>
+            <p>Call a named function or a function literal on the client side.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">f</span><span class="bigspace"> </span><span class="param-type">String or Function</span> &ndash; either the name of a client function, or a function literal to call in the client context.</li>
+                
+                    <li class="param"><span class="param-name">args</span><span class="bigspace"> </span><span class="param-type">Array</span> &ndash; a list of arguments to pass to the function.</li>
+                
+            </ul>
+            
+            
+            
+            
+            <h2>Example</h2>
+
+<pre><code>win.applyFunction("updateData", [42, 3.14, 2.71828]);
+
+win.applyFunction(function(data) {
+    document.write(data.join("&lt;br&gt;"));
+}, [42, 3.14, 2.71828]);
+</code></pre>
 
         
     </td>

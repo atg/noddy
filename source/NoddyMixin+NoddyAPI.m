@@ -259,6 +259,7 @@ static NSMenuItem *menu_item_for_path(NSString *path)
 - (void)executeNoddyFunctionForMenuItem:(id)sender
 {
     NoddyFunction *myCallback = [(NSMenuItem *)sender representedObject];
+    myCallback.mixin = self;
      NoddyScheduleBlock(^ () {
          [myCallback call:nil arguments:nil];
      });

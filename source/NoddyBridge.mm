@@ -45,6 +45,7 @@ Local<Value> cocoa_to_node(id x) {
         if (strcmp(objctype, @encode(NSRange)) == 0) {
             Local<Object> obj = Object::New();
             NSRange range = [x rangeValue];
+            obj->SetPrototype(Context::GetCurrent()->Global()->Get(String::New("Range")));
             obj->Set(String::New("location"), Number::New(range.location));
             obj->Set(String::New("length"),   Number::New(range.length));
             return scope.Close(obj);

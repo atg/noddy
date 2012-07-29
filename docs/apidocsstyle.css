@@ -40,6 +40,12 @@ h2 {
     color: #666;
     font-size: 16px;
 }
+h2.section-header {
+    padding-top: 30px;
+    text-align: left;
+    font-size: 20px;
+    text-indent: -30px;
+}
 h3, code, var, .param-name, .param-type {
     font-family: "Menlo", "Monaco", mono;
 }
@@ -55,9 +61,14 @@ h3 {
     font-size: 18px;
     font-weight: normal;
     color: gray;
-    padding-top: 10px;
     margin-bottom: -3px;
+}
+h3.line {
+    padding-top: 10px;
     border-top: 3px #eee solid;
+}
+h3.noline {
+    padding-top: 3px;
 }
 pre {
     margin: 15px -20px 15px -20px;

@@ -53,6 +53,7 @@ static id webkit_to_cocoa(id x) {
 @synthesize htmlPath; // Instead of html, a path to show
 @synthesize buttons; // A list of buttons to display at the bottom of the window.
 @synthesize buttonObjects;
+@synthesize onLoad;
 @synthesize onButtonClick;
 @synthesize onMessage;
 @synthesize canResize;
@@ -194,6 +195,7 @@ static id webkit_to_cocoa(id x) {
     });
 }
 - (void)show {
+    [window deminiaturize:nil];
     [window makeKeyAndOrderFront:nil];
 }
 - (void)hide {
@@ -238,14 +240,14 @@ static id webkit_to_cocoa(id x) {
 }
 
 
-- (void)client_callFunctionNamed:(NSString*)functionName arguments:(NSArray*)arguments {
+- (void)client_callFunctionNamed:(NSString*)functionName jsonArguments:(NSString*)jsonedArguments {
     WebScriptObject* wso = [webview windowScriptObject];
     [wso callWebScriptMethod:functionName withArguments:arguments];
 }
-- (void)client_callFunctionCode:(NSString*)functionString jsonArguments:(NSArray*)jsonedArguments {
+- (void)client_callFunctionCode:(NSString*)functionString jsonArguments:(NSString*)jsonedArguments {
     
-    NSString* argumentsString = [jsonedArguments componentsJoinedByString:@", "];
-    [self client_eval:[NSString stringWithFormat:@"(%@)(%@)", functionString, argumentsString]];
+//    NSString* argumentsString = [jsonedArguments componentsJoinedByString:@", "];
+    [self client_eval:[NSString stringWithFormat:@"(%@).apply(%@)", functionString, argumentsString]];
 }
 - (void)client_eval:(NSString*)code {
     WebScriptObject* wso = [webview windowScriptObject];
@@ -291,6 +293,10 @@ static id webkit_to_cocoa(id x) {
     [windowObject setValue:self forKey:@"chocprivate"];
     NSLog(@"chocprivate = %@", [windowObject valueForKey:@"chocprivate"]);
     [windowObject evaluateWebScript:nodeui_default_js];
+    
+    if (onLoad) {
+        [self client_callFunctionCode:onLoad jsonArguments:[NSArray array]];
+    }
 }
 
 - (void)privateSendMessage:(NSString*)messagename arguments:(id)jsargs {
@@ -342,11 +348,11 @@ static id webkit_to_cocoa(id x) {
 
 
 // Messaging
-- (void)client_sendMessage:(NSString*)message arguments:(NSArray*)arguments {
+- (void)client_sendMessage:(NSString*)message arguments:(NSString*)arguments {
     [self client_callFunctionNamed:@"noddy_private_receivedMessage"
                          arguments:[NSArray arrayWithObjects:message, arguments, nil]];
 }
-- (void)server_sendMessage:(NSString*)message arguments:(NSArray*)arguments {
+- (void)server_sendMessage:(NSString*)message arguments:(NSString*)arguments {
     
     NSLog(@"got message: %@, arguments = %@", message, arguments);
     if (onMessage) {

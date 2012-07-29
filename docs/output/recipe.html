@@ -13,7 +13,7 @@
         
             <a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
-            <a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="hooks.html">Hooks</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
             <a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
@@ -21,11 +21,11 @@
         
             <a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
+            <a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
             <a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
             <a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
-        
-            <a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
             <a href="editor.html">Editor</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
@@ -87,9 +87,9 @@
             <li>Misc
             <ul>
                 
-                <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li><a href="hooks.html">Hooks</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
             
-                <li><a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
             
             </ul>
             </li>
@@ -98,8 +98,10 @@
     </td>
     <td id="content">
         
-        
-            <h3><span class="parent-name">Recipe</span>.<span class="item-name">run</span>(<var>callback</var>)</h3>
+            
+            
+            
+            <h3 class="line"><span class="parent-name">Recipe</span>.<span class="item-name">run</span>(<var>callback</var>)</h3>
             <p>Run a text recipe.</p>
             
             
@@ -120,8 +122,10 @@
 </code></pre>
 
         
-        
-            <h3>.<span class="item-name">selection</span></h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">selection</span></h3>
             <p>Get or set the editor's selected range.</p>
             
             
@@ -135,8 +139,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">length</span></h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">length</span></h3>
             <p>Get the length of the document.</p>
             
             
@@ -150,8 +156,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">text</span></h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">text</span></h3>
             <p>Get or set the text of the document.</p>
             
             
@@ -165,8 +173,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">textInRange</span>(<var>rng</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">textInRange</span>(<var>rng</var>)</h3>
             <p>Returns text in range.</p>
             
             
@@ -182,8 +192,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">rangeOfLinesInRange</span>(<var>rng</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">rangeOfLinesInRange</span>(<var>rng</var>)</h3>
             <p>Expands a given range to cover the entire range of each line, <em>including</em> ending newlines.</p>
             
             
@@ -199,8 +211,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">contentRangeOfLinesInRange</span>(<var>rng</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">contentRangeOfLinesInRange</span>(<var>rng</var>)</h3>
             <p>Expands a given range to cover the entire range of each line, <em>excluding</em> ending newlines.</p>
             
             
@@ -216,8 +230,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">lineIndexesForCharacterRange</span>(<var>rng</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">lineIndexesForCharacterRange</span>(<var>rng</var>)</h3>
             <p>Gives a range of line indexes (line numbers starting from zero) for the given character range.</p>
             
             
@@ -233,8 +249,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">characterRangeForLineIndexes</span>(<var>rng</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">characterRangeForLineIndexes</span>(<var>rng</var>)</h3>
             <p>Gives a character range for the given range of line indexes (line numbers starting from zero).</p>
             
             
@@ -250,8 +268,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">foreachLine</span>(<var>f</var>, <var>rng</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">foreachLine</span>(<var>f</var>, <var>rng</var>)</h3>
             <p>Execute function <code>f</code> on lines in character range <code>rng</code>. If no range is passed, execute the function<br />on all the lines in the document.</p>
             
             
@@ -282,8 +302,10 @@ Recipe.run(function(recipe) {
 </code></pre>
 
         
-        
-            <h3>.<span class="item-name">replaceTextInRange</span>(<var>rng</var>, <var>replacement</var>, <var>recordUndo</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">replaceTextInRange</span>(<var>rng</var>, <var>replacement</var>, <var>recordUndo</var>)</h3>
             <p>Replace text in <code>rng</code> with <code>replacement</code>, optionally recording the operation for undo.</p>
             
             
@@ -303,8 +325,10 @@ Recipe.run(function(recipe) {
             
 
         
-        
-            <h3>.<span class="item-name">deleteTextInRange</span>(<var>rng</var>, <var>recordUndo</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">deleteTextInRange</span>(<var>rng</var>, <var>recordUndo</var>)</h3>
             <p>Delete text in range <code>rng</code>, optionally recording the operation for undo.</p>
             
             
@@ -322,8 +346,10 @@ Recipe.run(function(recipe) {
             
 
         
-        
-            <h3>.<span class="item-name">insertTextAtLocation</span>(<var>location</var>, <var>newText</var>, <var>recordUndo</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">insertTextAtLocation</span>(<var>location</var>, <var>newText</var>, <var>recordUndo</var>)</h3>
             <p>Insert text at specified location, optionally recording the operation for undo.</p>
             
             

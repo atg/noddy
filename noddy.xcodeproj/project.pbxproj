@@ -13,6 +13,7 @@
 		750EAA1215B399290036EA4F /* NoddyMixin+NoddyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 750EAA1115B399290036EA4F /* NoddyMixin+NoddyAPI.m */; };
 		7519910215BF6EB900C7B7D3 /* NoddyWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7519910015BF6EB900C7B7D3 /* NoddyWindow.xib */; };
 		7519910515BF6F0A00C7B7D3 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7519910415BF6F0A00C7B7D3 /* WebKit.framework */; };
+		752E37B315C459C5009B6A59 /* prelude.js in Sources */ = {isa = PBXBuildFile; fileRef = 752E37B215C459C5009B6A59 /* prelude.js */; };
 		7535573A15AC7BC0006AFA43 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7535573915AC7BC0006AFA43 /* Cocoa.framework */; };
 		7535577015AC7C72006AFA43 /* NoddyThread.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7535576F15AC7C6F006AFA43 /* NoddyThread.mm */; };
 		7535577115AC7C75006AFA43 /* NoddyIndirectObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535576C15AC7C6F006AFA43 /* NoddyIndirectObjects.m */; };
@@ -83,6 +84,7 @@
 		750EAA1315B3A96E0036EA4F /* api */ = {isa = PBXFileReference; lastKnownFileType = folder; path = api; sourceTree = "<group>"; };
 		7519910115BF6EB900C7B7D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = NoddyWindow.xib; sourceTree = "<group>"; };
 		7519910415BF6F0A00C7B7D3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		752E37B215C459C5009B6A59 /* prelude.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = prelude.js; path = source/prelude.js; sourceTree = SOURCE_ROOT; };
 		7535573515AC7BC0006AFA43 /* noddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = noddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7535573915AC7BC0006AFA43 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7535573C15AC7BC0006AFA43 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -269,6 +271,7 @@
 				7507ADE415BDA55500B9118C /* NoddyWindow.m */,
 				7507ADE615BDA56800B9118C /* NoddyRecipe.h */,
 				7507ADE715BDA56800B9118C /* NoddyRecipe.m */,
+				752E37B215C459C5009B6A59 /* prelude.js */,
 			);
 			name = Source;
 			path = noddy;
@@ -361,7 +364,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "cat api/* >source/api.js";
+			shellScript = "cat source/prelude.js api/* >source/api.js";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -383,6 +386,7 @@
 				7507ADE815BDA56800B9118C /* NoddyRecipe.m in Sources */,
 				7C53DDE615BDA7FF00E91E04 /* NSString+Utilities.m in Sources */,
 				7CD8FB0B15BEEEA400F82F4D /* NSArray+Utilities.m in Sources */,
+				752E37B315C459C5009B6A59 /* prelude.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

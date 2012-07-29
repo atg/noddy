@@ -2,12 +2,12 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Chocolat API &rsaquo; Storage</title>
+    <title>Chocolat API &rsaquo; Hooks</title>
     
     <link href="../apidocsstyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h1><b>Storage</b> &lsaquo; Chocolat API</h1>
+    <h1><b>Hooks</b> &lsaquo; Chocolat API</h1>
     <!--
     <nav>
         
@@ -101,38 +101,17 @@
             
             
             
-            <h3 class="line">.<span class="item-name">get</span>(<var>k</var>)</h3>
-            <p>Retrieves a value in the storage.</p>
+            <h3 class="line"><span class="parent-name">Hooks</span>.<span class="item-name">addMenuItem</span>(<var>path</var>, <var>shortcut</var>, <var>callback</var>)</h3>
+            <p>Add a menu item at the given path.</p>
             
             
             <ul class="params">
                 
-                    <li class="param"><span class="param-name">k</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the key to retrieve.</li>
+                    <li class="param"><span class="param-name">path</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the path of the new menu item.</li>
                 
-            </ul>
-            
-            
-            
-            <p class="returns">
-                <b>Returns</b> <span class="param-type">Object</span> &ndash; the value for the given key.
-            </p>
-            
-            
-            
-
-        
-            
-            
-            
-            <h3 class="line">.<span class="item-name">set</span>(<var>k</var>, <var>v</var>)</h3>
-            <p>Sets a value in the storage.</p>
-            
-            
-            <ul class="params">
+                    <li class="param"><span class="param-name">shortcut</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; keyboard shortcut, e.g. `ctrl-alt-cmd-b`.</li>
                 
-                    <li class="param"><span class="param-name">k</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the key to set.</li>
-                
-                    <li class="param"><span class="param-name">v</span><span class="bigspace"> </span><span class="param-type">Object</span> &ndash; the value to set it to (can be anything).</li>
+                    <li class="param"><span class="param-name">callback</span><span class="bigspace"> </span><span class="param-type">Function</span> &ndash; a callback to be executed when the menu item is selected.</li>
                 
             </ul>
             
@@ -145,15 +124,19 @@
             
             
             
-            <h3 class="line">.<span class="item-name">count</span>()</h3>
-            <p>Returns the number of keys in the storage.<br />s</p>
+            <h3 class="line"><span class="parent-name">Hooks</span>.<span class="item-name">addKeyboardShortcut</span>(<var>shortcut</var>, <var>callback</var>)</h3>
+            <p>Add a keyboard shortcut.</p>
             
             
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">shortcut</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the keyboard shortcut, e.g. `ctrl-alt-cmd-b`</li>
+                
+                    <li class="param"><span class="param-name">callback</span><span class="bigspace"> </span><span class="param-type">Function</span> &ndash; the callback function to execute.</li>
+                
+            </ul>
             
             
-            <p class="returns">
-                <b>Returns</b> <span class="param-type">Number</span> &ndash; number of keys in storage.
-            </p>
             
             
             
@@ -162,13 +145,17 @@
             
             
             
-            <h3 class="line">.<span class="item-name">forall</span>(<var>f</var>)</h3>
-            <p>Applies function <code>f</code> to every items in the storage. The function should<br />have the following signature: <code>f(k, v)</code> where k is the key for the item<br />and v is its value.</p>
+            <h3 class="line"><span class="parent-name">Hooks</span>.<span class="item-name">addStatusItem</span>(<var>name</var>, <var>valueFunction</var>, <var>selector</var>)</h3>
+            <p>Add an item in the bottom status bar.</p>
             
             
             <ul class="params">
                 
-                    <li class="param"><span class="param-name">f</span><span class="bigspace"> </span><span class="param-type">Function</span> &ndash; the function to apply to each items `f(k,v)`.</li>
+                    <li class="param"><span class="param-name">name</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the name of the item to add.</li>
+                
+                    <li class="param"><span class="param-name">valueFunction</span><span class="bigspace"> </span><span class="param-type">Function</span> &ndash; a function that will return the value to display in the status bar.</li>
+                
+                    <li class="param"><span class="param-name">selector</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; a scope selector e.g. `source.objc`</li>
                 
             </ul>
             
@@ -176,6 +163,30 @@
             
             
             
+
+        
+            
+            
+            
+            <h3 class="line"><span class="parent-name">Hooks</span>.<span class="item-name">setShortcutForMenuItem</span>(<var>path</var>, <var>shortcut</var>)</h3>
+            <p>Remap a menu item to a new keyboard shortcut.</p>
+            
+            
+            <ul class="params">
+                
+                    <li class="param"><span class="param-name">path</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; the path of the menu item to change.</li>
+                
+                    <li class="param"><span class="param-name">shortcut</span><span class="bigspace"> </span><span class="param-type">String</span> &ndash; keyboard shortcut, e.g. `ctrl-alt-cmd-b`.</li>
+                
+            </ul>
+            
+            
+            
+            
+            <h2>Example</h2>
+
+<pre><code>UI.setShortcutForMenuItem("Go/Go To File...", "cmd-t");
+</code></pre>
 
         
     </td>

@@ -38,6 +38,7 @@
                                                                              [[sc objectForKey:@"KeyEquiv"] caseInsensitiveCompare:lString] == NSOrderedSame) {
                                                                              
                                                                              NoddyFunction *myCallback = [sc objectForKey:@"Callback"];
+                                                                             myCallback.mixin = aMixin;
                                                                              NoddyScheduleBlock(^ () {
                                                                                  [myCallback call:nil arguments:nil];
                                                                              });

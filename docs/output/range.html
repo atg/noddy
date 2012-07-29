@@ -13,7 +13,7 @@
         
             <a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
-            <a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="hooks.html">Hooks</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
             <a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
@@ -21,11 +21,11 @@
         
             <a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
+            <a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
             <a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
             <a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;
-        
-            <a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
             <a href="editor.html">Editor</a>&nbsp;&nbsp;&nbsp;&nbsp;
         
@@ -87,9 +87,9 @@
             <li>Misc
             <ul>
                 
-                <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li><a href="hooks.html">Hooks</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
             
-                <li><a href="ui.html">UI</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
             
             </ul>
             </li>
@@ -98,8 +98,10 @@
     </td>
     <td id="content">
         
-        
-            <h3><span class="item-name">Range</span>(<var>loc</var>, <var>len</var>)</h3>
+            
+            
+            
+            <h3 class="line"><span class="item-name">Range</span>(<var>loc</var>, <var>len</var>)</h3>
             <p>Creates a new Range.</p>
             
             
@@ -117,8 +119,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">isValid</span>(<var>documentLength</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">isValid</span>(<var>documentLength</var>)</h3>
             <p>Is the range valid?</p>
             
             
@@ -142,8 +146,10 @@
 </ul>
 
         
-        
-            <h3>.<span class="item-name">isEmpty</span>()</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">isEmpty</span>()</h3>
             <p>Is the range's length 0?</p>
             
             
@@ -157,8 +163,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">max</span>()</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">max</span>()</h3>
             <p>Returns the end of the range (i.e. location + length)</p>
             
             
@@ -172,8 +180,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">min</span>()</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">min</span>()</h3>
             <p>Returns the range's location</p>
             
             
@@ -187,8 +197,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">lastIndex</span>()</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">lastIndex</span>()</h3>
             <p>Returns the last index in the range (<code>length + location - 1</code>), or <code>location</code> if the range is empty.</p>
             
             
@@ -202,8 +214,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">hasIndex</span>(<var>idx</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">hasIndex</span>(<var>idx</var>)</h3>
             <p>Test whether the range has a given index. <em>If the range is empty (<code>length</code> is 0), then returns <code>false</code>.</em></p>
             
             
@@ -223,8 +237,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">containsIndex</span>(<var>idx</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">containsIndex</span>(<var>idx</var>)</h3>
             <p>Test whether the range has a given index. <em>If the range is empty (<code>length</code> is 0), then it treats it as a range of <code>length == 1</code>.</em></p>
             
             
@@ -244,8 +260,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">overlapsWith</span>(<var>rng</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">overlapsWith</span>(<var>rng</var>)</h3>
             <p>Checks if two ranges's indexes overlap. <em>If either range is empty, returns <code>false</code>.</em></p>
             
             
@@ -265,8 +283,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">intersectsWith</span>(<var>rng</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">intersectsWith</span>(<var>rng</var>)</h3>
             <p>Checks if two ranges's indexes overlap. <em>Considers empty ranges as if they were of length <code>1</code>.</em></p>
             
             
@@ -286,8 +306,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">containsRange</span>(<var>rng</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">containsRange</span>(<var>rng</var>)</h3>
             <p>Checks if all indexes of a given range are contained in this range.</p>
             
             
@@ -307,8 +329,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">equals</span>(<var>rng</var>)</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">equals</span>(<var>rng</var>)</h3>
             <p>Checks if both ranges are equal (treats any two invalid ranges as equal).</p>
             
             
@@ -328,8 +352,10 @@
             
 
         
-        
-            <h3>.<span class="item-name">toString</span>()</h3>
+            
+            
+            
+            <h3 class="line">.<span class="item-name">toString</span>()</h3>
             <p>Returns a string in the form of <code>{loc, len}</code>. For debugging only, do not attempt to parse this string.</p>
             
             
@@ -343,8 +369,10 @@
             
 
         
-        
-            <h3><span class="parent-name">Range</span>.<span class="item-name">compare</span>(<var>a</var>, <var>b</var>)</h3>
+            
+            
+            
+            <h3 class="line"><span class="parent-name">Range</span>.<span class="item-name">compare</span>(<var>a</var>, <var>b</var>)</h3>
             <p>Compare first by <code>location</code>, then by <code>length</code>. Treats any two invalid ranges as equal.</p>
             
             

@@ -5,3 +5,16 @@ Hooks
 
 function Tab.prototype.openFile(string path, bool addSplit, bool );
 function Editor.prototype.hide(); // Hide the editor from view
+
+
+
+// Drudge says: needs some way of showing that breakpoints are active
+Hooks.clickedLineNumber({ selector: "c" }, function (linenum) {
+    Editor.addMarker("breakpoint", linenum, function (marker) {
+        marker.remove();
+        unset_breakpoint(marker.line);
+    });
+    set_breakpoint(marker.line);
+});
+
+

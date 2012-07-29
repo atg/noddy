@@ -32,8 +32,12 @@
     </td>
     <td id="content">
         {% for item in page %}
-        
-            <h3>{{ item.headerstring }}</h3>
+            
+            {% if item.isFirstOfSection %}
+                <h2 class="section-header">{{ item.sectionName }}</h2>
+            {% endif %}
+            
+            <h3 class="{% if item.isFirstOfSection %}noline{% else %}line{% endif %}">{{ item.headerstring }}</h3>
             {{item.description.summary|safe}}
             
             {% if item.params %}

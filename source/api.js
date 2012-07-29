@@ -1,3 +1,4 @@
+var _ = require("underscore.js");
 var Alert = {};
 global.Alert = Alert;
 
@@ -48,8 +49,8 @@ Clipboard.text = function() {
 };
 
 // Implement the UI class
-var UI = {};
-global.UI = UI;
+var Hooks = {};
+global.Hooks = Hooks;
 
 /**
  * Add a menu item at the given path.
@@ -57,9 +58,9 @@ global.UI = UI;
  * @param {String} path the path of the new menu item.
  * @param {String} shortcut keyboard shortcut, e.g. `ctrl-alt-cmd-b`.
  * @param {Function} callback a callback to be executed when the menu item is selected.
- * @memberOf UI
+ * @memberOf Hooks
  */
-UI.addMenuItem = function(path, shortcut, callback) {
+Hooks.addMenuItem = function(path, shortcut, callback) {
     global.objc_msgSend(private_get_mixin(), "ui_addMenuItem:", {
         "path": path,
         "shortcut": shortcut,
@@ -72,9 +73,9 @@ UI.addMenuItem = function(path, shortcut, callback) {
  *
  * @param {String} shortcut the keyboard shortcut, e.g. `ctrl-alt-cmd-b`
  * @param {Function} callback the callback function to execute.
- * @memberOf UI
+ * @memberOf Hooks
  */
-UI.addKeyboardShortcut = function(shortcut, callback) {
+Hooks.addKeyboardShortcut = function(shortcut, callback) {
     global.objc_msgSend(private_get_mixin(), "ui_addKeyboardShortcut:", {
         "shortcut": shortcut,
         "callback": callback
@@ -86,9 +87,9 @@ UI.addKeyboardShortcut = function(shortcut, callback) {
  * @param {String} name the name of the item to add.
  * @param {Function} valueFunction a function that will return the value to display in the status bar.
  * @param {String} selector a scope selector e.g. `source.objc`
- * @memberOf UI
+ * @memberOf Hooks
  */
-UI.addStatusItem = function (name, valueFunction, selector) {
+Hooks.addStatusItem = function (name, valueFunction, selector) {
     
 };
 
@@ -96,11 +97,15 @@ UI.addStatusItem = function (name, valueFunction, selector) {
 /**
  * Remap a menu item to a new keyboard shortcut.
  * 
- * @param {String} path the path of the new menu item.
+ * Example:
+ * 
+ *     UI.setShortcutForMenuItem("Go/Go To File...", "cmd-t");
+ *
+ * @param {String} path the path of the menu item to change.
  * @param {String} shortcut keyboard shortcut, e.g. `ctrl-alt-cmd-b`.
- * @memberOf UI
+ * @memberOf Hooks
  */
-UI.setShortcutForMenuItem = function(path, shortcut) {
+Hooks.setShortcutForMenuItem = function(path, shortcut) {
     global.objc_msgSend(private_get_mixin(), "ui_setShortcutForMenuItem:", {
         "shortcut": shortcut,
         "path": path
@@ -135,7 +140,7 @@ Storage.prototype.set = function(k, v) {
 
 /**
  * Returns the number of keys in the storage.
- *
+ *s
  * @return {Number} number of keys in storage.
  * @memberOf Storage
  */
@@ -611,12 +616,12 @@ Recipe.prototype.insertTextAtLocation = function(location, newText, recordUndo) 
  * @memberOf Window
  */
 var Window = function() {
-  this.resourcePath = '';
-  this.indexPath = '';
-  this.generateHTML = '';
-  this.canResize = true;
+//  this.resourcePath = '';
+//  this.indexPath = '';
+//  this.generateHTML = '';
+//  this.canResize = true;
   this.onLoad = null;
-  this.onMessage = null;
+//  this.onMessage = null;
     
     this.nid = global.objc_msgSendSync(private_get_mixin(), "createWindow:", "Window");
 };
@@ -648,6 +653,41 @@ Window.prototype.frame = function() {
     return global.objc_msgSendSync(this.nid, "frame");
 };
 
+
+
+Window.prototype.show = function() {
+    global.objc_msgSend(this.nid, "show");
+}
+Window.prototype.hide = function() {
+    global.objc_msgSend(this.nid, "hide");
+}
+Window.prototype.toggle = function() {
+    return global.objc_msgSendSync(this.nid, "toggle");
+}
+Window.prototype.isVisible = function() {
+    return global.objc_msgSendSync(this.nid, "isVisible");
+}
+
+Window.prototype.isKeyWindow = function() {
+    return global.objc_msgSendSync(this.nid, "isKeyWindow");
+}
+Window.prototype.isMainWindow = function() {
+    return global.objc_msgSendSync(this.nid, "isMainWindow");
+}
+
+Window.prototype.center = function() {
+    global.objc_msgSend(this.nid, "center");
+}
+Window.prototype.maximize = function() {
+    global.objc_msgSend(this.nid, "maximize");
+}
+Window.prototype.minimize = function() {
+    global.objc_msgSend(this.nid, "minimize");
+}
+Window.prototype.isMinimized = function() {
+    return global.objc_msgSendSync(this.nid, "isMinimized");
+}
+
 /**
  * Set the window's frame. The frame should be an object with the x, y, width and
  * height properties. e.g. `{x: 0, y: 0, width: 250, height: 300}`
@@ -662,6 +702,16 @@ Window.prototype.setFrame = function(newFrame, shouldAnimate) {
     global.objc_msgSend(this.nid, "setFrame:animate:", newFrame, shouldAnimate);
 };
 
+/**
+ * Get or set an `Array` of button names to be shown at the bottom of the window. Buttons are shown from right-to-left.
+ * 
+ * Example:
+ *     var win = new Window();
+ *     win.buttons = ["OK", "Cancel"];
+ * 
+ * @return {Array} the names of the buttons. Note that you cannot mutate the return value of this property, you must set it for it to be updated.
+ * @memberOf Window
+ */
 Window.prototype.buttons = function() {
     return global.objc_msgSendSync(this.nid, "buttons");
 };
@@ -671,7 +721,19 @@ Window.prototype.setButtons = function(newButtons) {
 Window.prototype.__defineGetter__("buttons", Window.prototype.buttons);
 Window.prototype.__defineSetter__("buttons", Window.prototype.setButtons);
 
-
+/**
+ * Get or set a callback function that will be called when a button is clicked.
+ * 
+ * Example:
+ *     var win = new Window();
+ *     win.buttons = ["OK", "Cancel"];
+ *     win.onButtonClick = function (buttonName) {
+ *         console.log("Clicked " + buttonName);
+ *     }
+ * 
+ * @return {Function(String)} a callback function with one argument: the name of the button that was clicked.
+ * @memberOf Window
+ */
 Window.prototype.onButtonClick = function() {
     return global.objc_msgSendSync(this.nid, "onButtonClick");
 };
@@ -681,7 +743,21 @@ Window.prototype.setOnButtonClick = function(callback) {
 Window.prototype.__defineGetter__("onButtonClick", Window.prototype.onButtonClick);
 Window.prototype.__defineSetter__("onButtonClick", Window.prototype.setOnButtonClick);
 
-
+/**
+ * Get or set a callback function that will be called when the client JS sends a message.
+ * 
+ * Example:
+ *     // Client code
+ *     window.sendMessage("hello", [1, 2, 3]);
+ *     
+ *     // Server code
+ *     win.onMessage = function (name, arguments) {
+ *         // name == "hello", arguments == [1, 2, 3]
+ *     }
+ * 
+ * @return {Function(String, Array or Object)} a callback function with two arguments: the first is the name of the message, the second is the arguments passed to it
+ * @memberOf Window
+ */
 Window.prototype.onMessage = function() {
     return global.objc_msgSendSync(this.nid, "onMessage");
 };
@@ -692,7 +768,25 @@ Window.prototype.__defineGetter__("onMessage", Window.prototype.onMessage);
 Window.prototype.__defineSetter__("onMessage", Window.prototype.setOnMessage);
 
 
+Window.prototype.onLoad = function() {
+    return global.objc_msgSendSync(this.nid, "onLoad");
+};
+Window.prototype.setOnLoad = function(callback) {
+    global.objc_msgSend(this.nid, "setOnLoad:", callback.toString());
+};
+Window.prototype.__defineGetter__("onLoad", Window.prototype.onLoad);
+Window.prototype.__defineSetter__("onLoad", Window.prototype.setOnLoad);
 
+/**
+ * Get or set the title of the window.
+ * 
+ * Example:
+ *     var win = new Window();
+ *     win.title = "My window";
+ * 
+ * @return {String} the title of the window.
+ * @memberOf Window
+ */
 Window.prototype.title = function() {
     return global.objc_msgSendSync(this.nid, "title");
 };
@@ -704,6 +798,16 @@ Window.prototype.__defineSetter__("title", Window.prototype.setTitle);
 
 
 
+/**
+ * Get or set a path to the HTML file that will be shown in the window. Can be either absolute or relative. Relative paths are relative to the mixin's directory.
+ * 
+ * Example:
+ *     var win = new Window();
+ *     win.htmlPath = "index.html";
+ * 
+ * @return {String} the path to the HTML file.
+ * @memberOf Window
+ */
 Window.prototype.htmlPath = function() {
     return global.objc_msgSendSync(this.nid, "htmlPath");
 };
@@ -714,7 +818,16 @@ Window.prototype.__defineGetter__("htmlPath", Window.prototype.htmlPath);
 Window.prototype.__defineSetter__("htmlPath", Window.prototype.setHtmlPath);
 
 
-
+/**
+ * Set the source of HTML file that will be shown in the window. Mutually exclusive with `.htmlPath`.
+ * 
+ * Example:
+ *     var win = new Window();
+ *     win.html = "<!DOCTYPE html><h1>Test</h1>";
+ * 
+ * @return {String} the path to the HTML file.
+ * @memberOf Window
+ */
 Window.prototype.html = function() {
     return global.objc_msgSendSync(this.nid, "html");
 };
@@ -727,11 +840,28 @@ Window.prototype.__defineSetter__("html", Window.prototype.setHtml);
 
 
 
-
-Window.prototype.eval = function(str) {
+/**
+ * Eval some code on the client-side.
+ * 
+ * Example:
+ *     win.eval("document.write('Some text')");
+ * 
+ * @param {String} code some code to evaluate on the client-side.
+ * @memberOf Window
+ */
+Window.prototype.eval = function(code) {
 
 };
 
+/**
+ * Add a function to the client-side JS.
+ * 
+ * Example:
+ *     win.eval("document.write('Some text')");
+ * 
+ * @param {String} code some code to evaluate on the client-side.
+ * @memberOf Window
+ */
 Window.prototype.addFunction = function(name, f) {
 
 };
@@ -793,7 +923,8 @@ global.MainWindow = MainWindow;
  * @memberOf MainWindow
  */
 MainWindow.current = function() {
-  
+    var someNid = global.objc_msgSendSync(private_get_mixin(), "mainwindow_current");
+    return new MainWindow(someNid);
 };
 
 /**
@@ -803,7 +934,7 @@ MainWindow.current = function() {
  * @memberOf MainWindow
  */
 MainWindow.prototype.tabs = function() {
-  
+  return global.objc_msgSendSync(this.nid, "mainwindow_tabs");
 };
 
 /**
@@ -813,7 +944,7 @@ MainWindow.prototype.tabs = function() {
  * @memberOf MainWindow
  */
 MainWindow.prototype.currentTab = function() {
-  
+  return global.objc_msgSendSync(this.nid, "mainwindow_currentTab");
 };
 
 /**
@@ -824,7 +955,10 @@ MainWindow.prototype.currentTab = function() {
  * @memberOf MainWindow
  */
 MainWindow.prototype.sendMessage = function(selector, arguments) {
-  
+    global.objc_msgSend(this.nid, "mainwindow_current", {
+        "selector": selector,
+        "arguments": arguments
+    });
 };
 
 /**
@@ -834,7 +968,7 @@ MainWindow.prototype.sendMessage = function(selector, arguments) {
  * @memberOf MainWindow
  */
 MainWindow.prototype.storage = function() {
-  
+    return new Storage(global.objc_msgSendSync(this.nid, "mainwindow_storage"));
 };
 
 /**
@@ -853,7 +987,8 @@ global.Tab = Tab;
  * @memberOf Tab
  */
 Tab.current = function() {
-  
+    var tabNid = global.objc_msgSendSync(private_get_mixin(), "tab_current");
+    return new Tab(someNid);
 };
 
 /**
@@ -863,7 +998,7 @@ Tab.current = function() {
  * @memberOf Tab
  */
 Tab.prototype.window = function() {
-  
+    return new MainWindow(global.objc_msgSendSync(this.nid, "tab_window"));
 };
 
 /**
@@ -873,7 +1008,8 @@ Tab.prototype.window = function() {
 * @memberOf Tab
 */
 Tab.prototype.editors = function() {
-  
+    var myEditors = global.objc_msgSendSync(this.nid, "tab_editors");
+    return _.map(myEditors, function(editorId){ return new Editor(editorId);});
 };
 
 /**
@@ -883,7 +1019,7 @@ Tab.prototype.editors = function() {
 * @memberOf Tab
 */
 Tab.prototype.currentEditor = function() {
-  
+  return new Editor(global.objc_msgSendSync(this.nid, "tab_currentEditor"));
 };
 
 /**
@@ -893,7 +1029,8 @@ Tab.prototype.currentEditor = function() {
 * @memberOf Tab
 */
 Tab.prototype.activeDocuments = function() {
-  
+    var activeDocs = global.objc_msgSendSync(this.nid, "tab_activeDocuments");
+    return _.map(activeDocs, function(docId){ return new Document(docId);});
 };
 
 /**
@@ -903,7 +1040,8 @@ Tab.prototype.activeDocuments = function() {
 * @memberOf Tab
 */
 Tab.prototype.visibleDocuments = function() {
-  
+    var visibleDocs = global.objc_msgSendSync(this.nid, "tab_visibleDocuments");
+    return _.map(visibleDocs, function(docId){ return new Document(docId);});
 };
 
 /**
@@ -913,7 +1051,7 @@ Tab.prototype.visibleDocuments = function() {
  * @memberOf Tab
  */
 Tab.prototype.storage = function() {
-
+    return new Storage(global.objc_msgSendSync(this.nid, "tab_storage"));
 };
 
 /**
@@ -932,7 +1070,7 @@ global.Document = Document;
  * @memberOf Document
  */
 Document.current = function() {
-
+    return new Document(global.objc_msgSendSync(private_get_mixin(), "document_current"));
 };
 
 /**
@@ -942,7 +1080,7 @@ Document.current = function() {
  * @memberOf Document
  */
 Document.prototype.displayName = function() {
-  
+    return global.objc_msgSendSync(this.nid, "document_displayName");
 };
 
 /**
@@ -952,7 +1090,7 @@ Document.prototype.displayName = function() {
  * @memberOf Document
  */
 Document.prototype.filename = function() {
-
+    return global.objc_msgSendSync(this.nid, "document_filename");
 };
 
 /**
@@ -962,7 +1100,7 @@ Document.prototype.filename = function() {
  * @memberOf Document
  */
 Document.prototype.path = function() {
-
+    return global.objc_msgSendSync(this.nid, "document_path");
 };
 
 /**
@@ -972,7 +1110,7 @@ Document.prototype.path = function() {
  * @memberOf Document
  */
 Document.prototype.rootScope = function() {
-
+    return global.objc_msgSendSync(this.nid, "document_rootScope");
 };
 
 /**
@@ -983,7 +1121,7 @@ Document.prototype.rootScope = function() {
  * @memberOf Document
  */
 Document.prototype.contextAtIndex = function(idx) {
-
+    return global.objc_msgSendSync(this.nid, "document_contextAtIndex:", idx);
 };
 
 /**
@@ -993,7 +1131,8 @@ Document.prototype.contextAtIndex = function(idx) {
  * @memberOf Document
  */
 Document.prototype.editors = function() {
-
+    var myEditors = global.objc_msgSendSync(this.nid, "document_editors");
+    return _.map(myEditors, function(editorId){ return new Editor(editorId);});
 };
 
 /**
@@ -1004,7 +1143,7 @@ Document.prototype.editors = function() {
  * @isproperty
  */
 Document.prototype.length = function() {
-    
+    return global.objc_msgSendSync(this.nid, "document_length");
 };
 Document.prototype.__defineGetter__("length", Document.prototype.length);
 
@@ -1016,11 +1155,11 @@ Document.prototype.__defineGetter__("length", Document.prototype.length);
  * @isproperty
  */
 Document.prototype.text = function() {
-    
+    return global.objc_msgSendSync(this.nid, "document_text");
 };
 
 Document.prototype.setText = function(newText) {
-    
+    global.objc_msgSend(this.nid, "document_setText:", newText);
 };
 Document.prototype.__defineGetter__("text", Document.prototype.text);
 Document.prototype.__defineSetter__("text", Document.prototype.setText);
@@ -1033,7 +1172,7 @@ Document.prototype.__defineSetter__("text", Document.prototype.setText);
  * @memberOf Document
  */
 Document.prototype.textInRange = function(rng) {
-
+    return global.objc_msgSendSync(this.nid, "document_textInRange:", rng);
 };
 
 /**
@@ -1044,7 +1183,7 @@ Document.prototype.textInRange = function(rng) {
  * @memberOf Document
  */
 Document.prototype.replaceTextInRange = function(rng, replacement) {
-
+    global.objc_msgSend(this.nid, "document_replaceTextInRange:", {"rng": rng, "replacement": replacement});
 };
 
 /**
@@ -1054,7 +1193,7 @@ Document.prototype.replaceTextInRange = function(rng, replacement) {
  * @memberOf Document
  */
 Document.prototype.storage = function() {
-
+    return new Storage(global.objc_msgSendSync(this.nid, "document_storage"));
 };
 
 
