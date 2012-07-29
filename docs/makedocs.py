@@ -81,21 +81,30 @@ for path in os.listdir("../api"):
             item['isFirstOfSection'] = isFirstOfSection if len(sectiondict) >= 2 else False
             isFirstOfSection = False
             headerstring = item['ctx']['string']
+            basicheaderstring = item['ctx']['string']
             if isproperty:
                 if '.prototype.' in item['ctx']['string']:
                     headerstring = '.<span class="item-name">%s</span>' % (item['ctx']['name'])
+                    basicheaderstring = '.%s' % (item['ctx']['name'])
                 else:
                     headerstring = '<span class="parent-name">%s</span>.<span class="item-name">%s</span>' % (parent, item['ctx']['name'])
+                    basicheaderstring = '%s.%s' % (parent, item['ctx']['name'])
+                    
             elif item['ctx']['type'] == 'method':
                 if '.prototype.' in item['ctx']['string']:
                     headerstring = '.<span class="item-name">%s</span>(%s)' % (item['ctx']['name'], ', '.join('<var>' + param['name'] + '</var>' for param in params))
+                    basicheaderstring = '%s()' % (item['ctx']['name'])
                 else:
                     headerstring = '<span class="parent-name">%s</span>.<span class="item-name">%s</span>(%s)' % (parent, item['ctx']['name'], ', '.join('<var>' + param['name'] + '</var>' for param in params))
+                    basicheaderstring = '%s.%s()' % (parent, item['ctx']['name'])
+                    
             elif item['ctx']['type'] == 'function':
                 if parent == item['ctx']['name']:
                     headerstring = '<span class="item-name">%s</span>(%s)' % (item['ctx']['name'], ', '.join('<var>' + param['name'] + '</var>' for param in params))
+                    basicheaderstring = '%s()' % (item['ctx']['name'])
                 else:
                     headerstring = '<span class="parent-name">%s</span>.<span class="item-name">%s</span>(%s)' % (parent, item['ctx']['name'], ', '.join('<var>' + param['name'] + '</var>' for param in params))
+                    basicheaderstring = '%s.%s()' % (parent, item['ctx']['name'])
             
             #elif item['ctx']['type'] == 'constructor':
             #    headerstring = '%s(%s)' % (item['ctx']['name'], ', '.join(param['name'] for param in params))
@@ -103,6 +112,7 @@ for path in os.listdir("../api"):
                 print "Unknown type %s" % item['ctx']['type']
             
             item['headerstring'] = headerstring
+            item['basicheaderstring'] = basicheaderstring
             
             if parent in pages:
                 pages[parent].append(item)

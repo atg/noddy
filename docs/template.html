@@ -21,23 +21,33 @@
         <ul>
         {% for categoryname, category in categories.items() %}
             <li>{{ categoryname }}
-            <ul>
+                <ul>
                 {% for otherpage in category %}
-                <li><a href="{{ otherpage|lower }}.html">{{ otherpage }}</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            {% endfor %}
-            </ul>
+                    <li><a href="{{ otherpage|lower }}.html">{{ otherpage }}</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>{% endfor %}
+                </ul>
             </li>
         {% endfor %}
         </ul>
+        
+        <hr>
+        
+        <div id="toc">
+            <ul>
+            {% for item in page %}
+                <li>{% if item.isFirstOfSection %} <a href="#{{ item.sectionName }}Section" class="section-header"><li class="section-header">{{ item.sectionName }}</li></a> {% endif %}
+                
+                <a href="#{{ item.ctx.name }}"><li class="selector-item {% if item.isFirstOfSection %}noline{% else %}line{% endif %}">{{ item.basicheaderstring }}</li></a>
+            {% endfor %}
+            </ul>
+        </div>
     </td>
     <td id="content">
         {% for item in page %}
-            
             {% if item.isFirstOfSection %}
-                <h2 class="section-header">{{ item.sectionName }}</h2>
+                <a name="{{item.sectionName}}Section"><h2 class="section-header">{{ item.sectionName }}</h2></a>
             {% endif %}
             
-            <h3 class="{% if item.isFirstOfSection %}noline{% else %}line{% endif %}">{{ item.headerstring }}</h3>
+            <a name="{{ item.ctx.name }}"><h3 class="{% if item.isFirstOfSection %}noline{% else %}line{% endif %}">{{ item.headerstring }}</h3></a>
             {{item.description.summary|safe}}
             
             {% if item.params %}
@@ -53,9 +63,7 @@
                 <b>Returns</b> <span class="param-type">{{ item.returns.types|join(" or ") }}</span> &ndash; {{ item.returns.description }}
             </p>
             {% endif %}
-            
             {{item.description.body|safe}}
-
         {% endfor %}
     </td>
 </tr>

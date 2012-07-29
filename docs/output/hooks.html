@@ -45,63 +45,73 @@
         <ul>
         
             <li>Text
-            <ul>
+                <ul>
                 
-                <li><a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
             <li>Workspace
-            <ul>
+                <ul>
                 
-                <li><a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="editor.html">Editor</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="document.html">Document</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="editor.html">Editor</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="document.html">Document</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
             <li>UI
-            <ul>
+                <ul>
                 
-                <li><a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
             <li>Misc
-            <ul>
+                <ul>
                 
-                <li><a href="hooks.html">Hooks</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="hooks.html">Hooks</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
         </ul>
+        
+        <hr>
+        
+        <div id="toc">
+            <ul>
+            
+                <li>
+                
+                <a href="#addMenuItem"><li class="selector-item line">Hooks.addMenuItem()</li></a>
+            
+                <li>
+                
+                <a href="#addKeyboardShortcut"><li class="selector-item line">Hooks.addKeyboardShortcut()</li></a>
+            
+                <li>
+                
+                <a href="#addStatusItem"><li class="selector-item line">Hooks.addStatusItem()</li></a>
+            
+                <li>
+                
+                <a href="#setShortcutForMenuItem"><li class="selector-item line">Hooks.setShortcutForMenuItem()</li></a>
+            
+            </ul>
+        </div>
     </td>
     <td id="content">
         
             
             
-            
-            <h3 class="line"><span class="parent-name">Hooks</span>.<span class="item-name">addMenuItem</span>(<var>path</var>, <var>shortcut</var>, <var>callback</var>)</h3>
+            <a name="addMenuItem"><h3 class="line"><span class="parent-name">Hooks</span>.<span class="item-name">addMenuItem</span>(<var>path</var>, <var>shortcut</var>, <var>callback</var>)</h3></a>
             <p>Add a menu item at the given path.</p>
             
             
@@ -118,13 +128,10 @@
             
             
             
-            
-
         
             
             
-            
-            <h3 class="line"><span class="parent-name">Hooks</span>.<span class="item-name">addKeyboardShortcut</span>(<var>shortcut</var>, <var>callback</var>)</h3>
+            <a name="addKeyboardShortcut"><h3 class="line"><span class="parent-name">Hooks</span>.<span class="item-name">addKeyboardShortcut</span>(<var>shortcut</var>, <var>callback</var>)</h3></a>
             <p>Add a keyboard shortcut.</p>
             
             
@@ -139,13 +146,10 @@
             
             
             
-            
-
         
             
             
-            
-            <h3 class="line"><span class="parent-name">Hooks</span>.<span class="item-name">addStatusItem</span>(<var>name</var>, <var>valueFunction</var>, <var>selector</var>)</h3>
+            <a name="addStatusItem"><h3 class="line"><span class="parent-name">Hooks</span>.<span class="item-name">addStatusItem</span>(<var>name</var>, <var>valueFunction</var>, <var>selector</var>)</h3></a>
             <p>Add an item in the bottom status bar.</p>
             
             
@@ -162,13 +166,10 @@
             
             
             
-            
-
         
             
             
-            
-            <h3 class="line"><span class="parent-name">Hooks</span>.<span class="item-name">setShortcutForMenuItem</span>(<var>path</var>, <var>shortcut</var>)</h3>
+            <a name="setShortcutForMenuItem"><h3 class="line"><span class="parent-name">Hooks</span>.<span class="item-name">setShortcutForMenuItem</span>(<var>path</var>, <var>shortcut</var>)</h3></a>
             <p>Remap a menu item to a new keyboard shortcut.</p>
             
             
@@ -182,12 +183,10 @@
             
             
             
-            
             <h2>Example</h2>
 
 <pre><code>UI.setShortcutForMenuItem("Go/Go To File...", "cmd-t");
 </code></pre>
-
         
     </td>
 </tr>

@@ -45,63 +45,113 @@
         <ul>
         
             <li>Text
-            <ul>
+                <ul>
                 
-                <li><a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
             <li>Workspace
-            <ul>
+                <ul>
                 
-                <li><a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="editor.html">Editor</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="document.html">Document</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="editor.html">Editor</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="document.html">Document</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
             <li>UI
-            <ul>
+                <ul>
                 
-                <li><a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
             <li>Misc
-            <ul>
+                <ul>
                 
-                <li><a href="hooks.html">Hooks</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="hooks.html">Hooks</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
         </ul>
+        
+        <hr>
+        
+        <div id="toc">
+            <ul>
+            
+                <li>
+                
+                <a href="#Range"><li class="selector-item line">Range()</li></a>
+            
+                <li>
+                
+                <a href="#isValid"><li class="selector-item line">isValid()</li></a>
+            
+                <li>
+                
+                <a href="#isEmpty"><li class="selector-item line">isEmpty()</li></a>
+            
+                <li>
+                
+                <a href="#max"><li class="selector-item line">max()</li></a>
+            
+                <li>
+                
+                <a href="#min"><li class="selector-item line">min()</li></a>
+            
+                <li>
+                
+                <a href="#lastIndex"><li class="selector-item line">lastIndex()</li></a>
+            
+                <li>
+                
+                <a href="#hasIndex"><li class="selector-item line">hasIndex()</li></a>
+            
+                <li>
+                
+                <a href="#containsIndex"><li class="selector-item line">containsIndex()</li></a>
+            
+                <li>
+                
+                <a href="#overlapsWith"><li class="selector-item line">overlapsWith()</li></a>
+            
+                <li>
+                
+                <a href="#intersectsWith"><li class="selector-item line">intersectsWith()</li></a>
+            
+                <li>
+                
+                <a href="#containsRange"><li class="selector-item line">containsRange()</li></a>
+            
+                <li>
+                
+                <a href="#equals"><li class="selector-item line">equals()</li></a>
+            
+                <li>
+                
+                <a href="#toString"><li class="selector-item line">toString()</li></a>
+            
+                <li>
+                
+                <a href="#compare"><li class="selector-item line">Range.compare()</li></a>
+            
+            </ul>
+        </div>
     </td>
     <td id="content">
         
             
             
-            
-            <h3 class="line"><span class="item-name">Range</span>(<var>loc</var>, <var>len</var>)</h3>
+            <a name="Range"><h3 class="line"><span class="item-name">Range</span>(<var>loc</var>, <var>len</var>)</h3></a>
             <p>Creates a new Range.</p>
             
             
@@ -116,13 +166,10 @@
             
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">isValid</span>(<var>documentLength</var>)</h3>
+            <a name="isValid"><h3 class="line">.<span class="item-name">isValid</span>(<var>documentLength</var>)</h3></a>
             <p>Is the range valid?</p>
             
             
@@ -138,18 +185,15 @@
                 <b>Returns</b> <span class="param-type">Boolean</span> &ndash; whether the range is valid.
             </p>
             
-            
             <ul>
 <li><p>To be valid, both the <code>length</code> and <code>location</code> must be >= 0.</p></li>
 <li><p><code>length</code>, <code>location</code> and <code>length + location</code> must all be "small" (less than 2^30).</p></li>
 <li><p>If <code>documentLength</code> is specified, <code>location + length</code> must not exceed it.</p></li>
 </ul>
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">isEmpty</span>()</h3>
+            <a name="isEmpty"><h3 class="line">.<span class="item-name">isEmpty</span>()</h3></a>
             <p>Is the range's length 0?</p>
             
             
@@ -160,13 +204,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">max</span>()</h3>
+            <a name="max"><h3 class="line">.<span class="item-name">max</span>()</h3></a>
             <p>Returns the end of the range (i.e. location + length)</p>
             
             
@@ -177,13 +218,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">min</span>()</h3>
+            <a name="min"><h3 class="line">.<span class="item-name">min</span>()</h3></a>
             <p>Returns the range's location</p>
             
             
@@ -194,13 +232,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">lastIndex</span>()</h3>
+            <a name="lastIndex"><h3 class="line">.<span class="item-name">lastIndex</span>()</h3></a>
             <p>Returns the last index in the range (<code>length + location - 1</code>), or <code>location</code> if the range is empty.</p>
             
             
@@ -211,13 +246,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">hasIndex</span>(<var>idx</var>)</h3>
+            <a name="hasIndex"><h3 class="line">.<span class="item-name">hasIndex</span>(<var>idx</var>)</h3></a>
             <p>Test whether the range has a given index. <em>If the range is empty (<code>length</code> is 0), then returns <code>false</code>.</em></p>
             
             
@@ -234,13 +266,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">containsIndex</span>(<var>idx</var>)</h3>
+            <a name="containsIndex"><h3 class="line">.<span class="item-name">containsIndex</span>(<var>idx</var>)</h3></a>
             <p>Test whether the range has a given index. <em>If the range is empty (<code>length</code> is 0), then it treats it as a range of <code>length == 1</code>.</em></p>
             
             
@@ -257,13 +286,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">overlapsWith</span>(<var>rng</var>)</h3>
+            <a name="overlapsWith"><h3 class="line">.<span class="item-name">overlapsWith</span>(<var>rng</var>)</h3></a>
             <p>Checks if two ranges's indexes overlap. <em>If either range is empty, returns <code>false</code>.</em></p>
             
             
@@ -280,13 +306,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">intersectsWith</span>(<var>rng</var>)</h3>
+            <a name="intersectsWith"><h3 class="line">.<span class="item-name">intersectsWith</span>(<var>rng</var>)</h3></a>
             <p>Checks if two ranges's indexes overlap. <em>Considers empty ranges as if they were of length <code>1</code>.</em></p>
             
             
@@ -303,13 +326,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">containsRange</span>(<var>rng</var>)</h3>
+            <a name="containsRange"><h3 class="line">.<span class="item-name">containsRange</span>(<var>rng</var>)</h3></a>
             <p>Checks if all indexes of a given range are contained in this range.</p>
             
             
@@ -326,13 +346,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">equals</span>(<var>rng</var>)</h3>
+            <a name="equals"><h3 class="line">.<span class="item-name">equals</span>(<var>rng</var>)</h3></a>
             <p>Checks if both ranges are equal (treats any two invalid ranges as equal).</p>
             
             
@@ -349,13 +366,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">toString</span>()</h3>
+            <a name="toString"><h3 class="line">.<span class="item-name">toString</span>()</h3></a>
             <p>Returns a string in the form of <code>{loc, len}</code>. For debugging only, do not attempt to parse this string.</p>
             
             
@@ -366,13 +380,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line"><span class="parent-name">Range</span>.<span class="item-name">compare</span>(<var>a</var>, <var>b</var>)</h3>
+            <a name="compare"><h3 class="line"><span class="parent-name">Range</span>.<span class="item-name">compare</span>(<var>a</var>, <var>b</var>)</h3></a>
             <p>Compare first by <code>location</code>, then by <code>length</code>. Treats any two invalid ranges as equal.</p>
             
             
@@ -391,8 +402,6 @@
             </p>
             
             
-            
-
         
     </td>
 </tr>

@@ -45,63 +45,109 @@
         <ul>
         
             <li>Text
-            <ul>
+                <ul>
                 
-                <li><a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
             <li>Workspace
-            <ul>
+                <ul>
                 
-                <li><a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="editor.html">Editor</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="document.html">Document</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="editor.html">Editor</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="document.html">Document</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
             <li>UI
-            <ul>
+                <ul>
                 
-                <li><a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
             <li>Misc
-            <ul>
+                <ul>
                 
-                <li><a href="hooks.html">Hooks</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="hooks.html">Hooks</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
         </ul>
+        
+        <hr>
+        
+        <div id="toc">
+            <ul>
+            
+                <li>
+                
+                <a href="#run"><li class="selector-item line">Recipe.run()</li></a>
+            
+                <li>
+                
+                <a href="#selection"><li class="selector-item line">.selection</li></a>
+            
+                <li>
+                
+                <a href="#length"><li class="selector-item line">.length</li></a>
+            
+                <li>
+                
+                <a href="#text"><li class="selector-item line">.text</li></a>
+            
+                <li>
+                
+                <a href="#textInRange"><li class="selector-item line">textInRange()</li></a>
+            
+                <li>
+                
+                <a href="#rangeOfLinesInRange"><li class="selector-item line">rangeOfLinesInRange()</li></a>
+            
+                <li>
+                
+                <a href="#contentRangeOfLinesInRange"><li class="selector-item line">contentRangeOfLinesInRange()</li></a>
+            
+                <li>
+                
+                <a href="#lineIndexesForCharacterRange"><li class="selector-item line">lineIndexesForCharacterRange()</li></a>
+            
+                <li>
+                
+                <a href="#characterRangeForLineIndexes"><li class="selector-item line">characterRangeForLineIndexes()</li></a>
+            
+                <li>
+                
+                <a href="#foreachLine"><li class="selector-item line">foreachLine()</li></a>
+            
+                <li>
+                
+                <a href="#replaceTextInRange"><li class="selector-item line">replaceTextInRange()</li></a>
+            
+                <li>
+                
+                <a href="#deleteTextInRange"><li class="selector-item line">deleteTextInRange()</li></a>
+            
+                <li>
+                
+                <a href="#insertTextAtLocation"><li class="selector-item line">insertTextAtLocation()</li></a>
+            
+            </ul>
+        </div>
     </td>
     <td id="content">
         
             
             
-            
-            <h3 class="line"><span class="parent-name">Recipe</span>.<span class="item-name">run</span>(<var>callback</var>)</h3>
+            <a name="run"><h3 class="line"><span class="parent-name">Recipe</span>.<span class="item-name">run</span>(<var>callback</var>)</h3></a>
             <p>Run a text recipe.</p>
             
             
@@ -113,19 +159,16 @@
             
             
             
-            
             <h2>Example</h2>
 
 <pre><code>Recipe.run(function(recipe) {
     recipe.insertTextAtLocation(recipe.length, "Hello World!");
 });
 </code></pre>
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">selection</span></h3>
+            <a name="selection"><h3 class="line">.<span class="item-name">selection</span></h3></a>
             <p>Get or set the editor's selected range.</p>
             
             
@@ -136,13 +179,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">length</span></h3>
+            <a name="length"><h3 class="line">.<span class="item-name">length</span></h3></a>
             <p>Get the length of the document.</p>
             
             
@@ -153,13 +193,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">text</span></h3>
+            <a name="text"><h3 class="line">.<span class="item-name">text</span></h3></a>
             <p>Get or set the text of the document.</p>
             
             
@@ -170,13 +207,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">textInRange</span>(<var>rng</var>)</h3>
+            <a name="textInRange"><h3 class="line">.<span class="item-name">textInRange</span>(<var>rng</var>)</h3></a>
             <p>Returns text in range.</p>
             
             
@@ -189,13 +223,10 @@
             
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">rangeOfLinesInRange</span>(<var>rng</var>)</h3>
+            <a name="rangeOfLinesInRange"><h3 class="line">.<span class="item-name">rangeOfLinesInRange</span>(<var>rng</var>)</h3></a>
             <p>Expands a given range to cover the entire range of each line, <em>including</em> ending newlines.</p>
             
             
@@ -208,13 +239,10 @@
             
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">contentRangeOfLinesInRange</span>(<var>rng</var>)</h3>
+            <a name="contentRangeOfLinesInRange"><h3 class="line">.<span class="item-name">contentRangeOfLinesInRange</span>(<var>rng</var>)</h3></a>
             <p>Expands a given range to cover the entire range of each line, <em>excluding</em> ending newlines.</p>
             
             
@@ -227,13 +255,10 @@
             
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">lineIndexesForCharacterRange</span>(<var>rng</var>)</h3>
+            <a name="lineIndexesForCharacterRange"><h3 class="line">.<span class="item-name">lineIndexesForCharacterRange</span>(<var>rng</var>)</h3></a>
             <p>Gives a range of line indexes (line numbers starting from zero) for the given character range.</p>
             
             
@@ -246,13 +271,10 @@
             
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">characterRangeForLineIndexes</span>(<var>rng</var>)</h3>
+            <a name="characterRangeForLineIndexes"><h3 class="line">.<span class="item-name">characterRangeForLineIndexes</span>(<var>rng</var>)</h3></a>
             <p>Gives a character range for the given range of line indexes (line numbers starting from zero).</p>
             
             
@@ -265,13 +287,10 @@
             
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">foreachLine</span>(<var>f</var>, <var>rng</var>)</h3>
+            <a name="foreachLine"><h3 class="line">.<span class="item-name">foreachLine</span>(<var>f</var>, <var>rng</var>)</h3></a>
             <p>Execute function <code>f</code> on lines in character range <code>rng</code>. If no range is passed, execute the function<br />on all the lines in the document.</p>
             
             
@@ -289,7 +308,6 @@
                 <b>Returns</b> <span class="param-type">Number</span> &ndash; the total number of characters added or deleted (0 if nothing was changed).
             </p>
             
-            
             <h2>Example</h2>
 
 <pre><code>// Wrap each line in brackets
@@ -300,12 +318,10 @@ Recipe.run(function(recipe) {
     });
 });
 </code></pre>
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">replaceTextInRange</span>(<var>rng</var>, <var>replacement</var>, <var>recordUndo</var>)</h3>
+            <a name="replaceTextInRange"><h3 class="line">.<span class="item-name">replaceTextInRange</span>(<var>rng</var>, <var>replacement</var>, <var>recordUndo</var>)</h3></a>
             <p>Replace text in <code>rng</code> with <code>replacement</code>, optionally recording the operation for undo.</p>
             
             
@@ -322,13 +338,10 @@ Recipe.run(function(recipe) {
             
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">deleteTextInRange</span>(<var>rng</var>, <var>recordUndo</var>)</h3>
+            <a name="deleteTextInRange"><h3 class="line">.<span class="item-name">deleteTextInRange</span>(<var>rng</var>, <var>recordUndo</var>)</h3></a>
             <p>Delete text in range <code>rng</code>, optionally recording the operation for undo.</p>
             
             
@@ -343,13 +356,10 @@ Recipe.run(function(recipe) {
             
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">insertTextAtLocation</span>(<var>location</var>, <var>newText</var>, <var>recordUndo</var>)</h3>
+            <a name="insertTextAtLocation"><h3 class="line">.<span class="item-name">insertTextAtLocation</span>(<var>location</var>, <var>newText</var>, <var>recordUndo</var>)</h3></a>
             <p>Insert text at specified location, optionally recording the operation for undo.</p>
             
             
@@ -366,8 +376,6 @@ Recipe.run(function(recipe) {
             
             
             
-            
-
         
     </td>
 </tr>

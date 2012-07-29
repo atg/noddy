@@ -45,63 +45,85 @@
         <ul>
         
             <li>Text
-            <ul>
+                <ul>
                 
-                <li><a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
             <li>Workspace
-            <ul>
+                <ul>
                 
-                <li><a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="editor.html">Editor</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="document.html">Document</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="editor.html">Editor</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="document.html">Document</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
             <li>UI
-            <ul>
+                <ul>
                 
-                <li><a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
             <li>Misc
-            <ul>
+                <ul>
                 
-                <li><a href="hooks.html">Hooks</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="hooks.html">Hooks</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
         </ul>
+        
+        <hr>
+        
+        <div id="toc">
+            <ul>
+            
+                <li>
+                
+                <a href="#current"><li class="selector-item line">Editor.current()</li></a>
+            
+                <li>
+                
+                <a href="#document"><li class="selector-item line">document()</li></a>
+            
+                <li>
+                
+                <a href="#selection"><li class="selector-item line">.selection</li></a>
+            
+                <li>
+                
+                <a href="#visibleRange"><li class="selector-item line">visibleRange()</li></a>
+            
+                <li>
+                
+                <a href="#selectionContext"><li class="selector-item line">selectionContext()</li></a>
+            
+                <li>
+                
+                <a href="#insertSnippet"><li class="selector-item line">insertSnippet()</li></a>
+            
+                <li>
+                
+                <a href="#storage"><li class="selector-item line">storage()</li></a>
+            
+            </ul>
+        </div>
     </td>
     <td id="content">
         
             
             
-            
-            <h3 class="line"><span class="parent-name">Editor</span>.<span class="item-name">current</span>()</h3>
+            <a name="current"><h3 class="line"><span class="parent-name">Editor</span>.<span class="item-name">current</span>()</h3></a>
             <p>Class method that returns the current Editor.</p>
             
             
@@ -112,13 +134,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">document</span>()</h3>
+            <a name="document"><h3 class="line">.<span class="item-name">document</span>()</h3></a>
             <p>The document edited by this editor.</p>
             
             
@@ -129,13 +148,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">selection</span></h3>
+            <a name="selection"><h3 class="line">.<span class="item-name">selection</span></h3></a>
             <p>Get or set the selected text in this editor.</p>
             
             
@@ -146,13 +162,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">visibleRange</span>()</h3>
+            <a name="visibleRange"><h3 class="line">.<span class="item-name">visibleRange</span>()</h3></a>
             <p>Get the range of text that is visible in this editor.</p>
             
             
@@ -163,13 +176,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">selectionContext</span>()</h3>
+            <a name="selectionContext"><h3 class="line">.<span class="item-name">selectionContext</span>()</h3></a>
             <p>Get the context (list of scopes) at the editor's selection.</p>
             
             
@@ -180,13 +190,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">insertSnippet</span>(<var>snippet</var>)</h3>
+            <a name="insertSnippet"><h3 class="line">.<span class="item-name">insertSnippet</span>(<var>snippet</var>)</h3></a>
             <p>Insert a snippet where the cursor is located.</p>
             
             
@@ -199,13 +206,10 @@
             
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">storage</span>()</h3>
+            <a name="storage"><h3 class="line">.<span class="item-name">storage</span>()</h3></a>
             <p>Access the storage object of the Editor (see Storage class).</p>
             
             
@@ -216,8 +220,6 @@
             </p>
             
             
-            
-
         
     </td>
 </tr>

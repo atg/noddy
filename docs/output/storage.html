@@ -45,63 +45,73 @@
         <ul>
         
             <li>Text
-            <ul>
+                <ul>
                 
-                <li><a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="recipe.html">Recipe</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="range.html">Range</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="clipboard.html">Clipboard</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
             <li>Workspace
-            <ul>
+                <ul>
                 
-                <li><a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="editor.html">Editor</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="document.html">Document</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="mainwindow.html">MainWindow</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="tab.html">Tab</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="editor.html">Editor</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="document.html">Document</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
             <li>UI
-            <ul>
+                <ul>
                 
-                <li><a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="window.html">Window</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="sheet.html">Sheet</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="popover.html">Popover</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="alert.html">Alert</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
             <li>Misc
-            <ul>
+                <ul>
                 
-                <li><a href="hooks.html">Hooks</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-                <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-            
-            </ul>
+                    <li><a href="hooks.html">Hooks</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="storage.html">Storage</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ul>
             </li>
         
         </ul>
+        
+        <hr>
+        
+        <div id="toc">
+            <ul>
+            
+                <li>
+                
+                <a href="#get"><li class="selector-item line">get()</li></a>
+            
+                <li>
+                
+                <a href="#set"><li class="selector-item line">set()</li></a>
+            
+                <li>
+                
+                <a href="#count"><li class="selector-item line">count()</li></a>
+            
+                <li>
+                
+                <a href="#forall"><li class="selector-item line">forall()</li></a>
+            
+            </ul>
+        </div>
     </td>
     <td id="content">
         
             
             
-            
-            <h3 class="line">.<span class="item-name">get</span>(<var>k</var>)</h3>
+            <a name="get"><h3 class="line">.<span class="item-name">get</span>(<var>k</var>)</h3></a>
             <p>Retrieves a value in the storage.</p>
             
             
@@ -118,13 +128,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">set</span>(<var>k</var>, <var>v</var>)</h3>
+            <a name="set"><h3 class="line">.<span class="item-name">set</span>(<var>k</var>, <var>v</var>)</h3></a>
             <p>Sets a value in the storage.</p>
             
             
@@ -139,13 +146,10 @@
             
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">count</span>()</h3>
+            <a name="count"><h3 class="line">.<span class="item-name">count</span>()</h3></a>
             <p>Returns the number of keys in the storage.<br />s</p>
             
             
@@ -156,13 +160,10 @@
             </p>
             
             
-            
-
         
             
             
-            
-            <h3 class="line">.<span class="item-name">forall</span>(<var>f</var>)</h3>
+            <a name="forall"><h3 class="line">.<span class="item-name">forall</span>(<var>f</var>)</h3></a>
             <p>Applies function <code>f</code> to every items in the storage. The function should<br />have the following signature: <code>f(k, v)</code> where k is the key for the item<br />and v is its value.</p>
             
             
@@ -175,8 +176,6 @@
             
             
             
-            
-
         
     </td>
 </tr>

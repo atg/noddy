@@ -41,7 +41,8 @@ h2 {
     font-size: 16px;
 }
 h2.section-header {
-    padding-top: 30px;
+    margin-top: 10px;
+    padding-top: 20px;
     text-align: left;
     font-size: 20px;
     text-indent: -30px;
@@ -109,12 +110,12 @@ ul.params {
     width: 720px;
     vertical-align: top;
 }
-#nav > ul {
+#nav > ul, #toc > ul {
     margin-left: 0;
     padding-left: 0;
     list-style-type: none;
 }
-#nav ul li {
+#nav ul li, #toc ul li {
     font-weight: bold;
 }
 #nav ul ul {
@@ -123,5 +124,34 @@ ul.params {
 }
 #nav ul li ul li {
     font-weight: normal;
+}
+#toc li.section-header {
+    font-weight: bold;
+    margin-top: 10px;
+}
+#toc li.selector-item {
+    font-weight: normal;
+    list-style-type: square;
+    margin-left: 40px;
+}
+#toc a:link, #toc a:visited {
+    text-decoration: none;
+    color: black;
+}
+#toc a:hover, #toc a:active {
+    text-decoration: underline;
+}
+#toc a:active {
+    color: red !important;
+}
+
+
+hr {
+    border-style: none;
+    border-top: 3px #eee dashed;
+    margin-right: 40px;
+}
+#toc {
+    opacity: 0.65;
 }
 
