@@ -259,7 +259,9 @@ Window.prototype.onMessage = function() {
     return global.objc_msgSendSync(this.nid, "onMessage");
 };
 Window.prototype.setOnMessage = function(callback) {
-    global.objc_msgSend(this.nid, "setOnMessage:", function () { return callback.apply(this, JSON.parse(arguments)[0]); });
+    global.objc_msgSend(this.nid, "setOnMessage:", function (name, args) {
+        return callback(name, JSON.parse(args)[0]);
+    });
 };
 Window.prototype.__defineGetter__("onMessage", Window.prototype.onMessage);
 Window.prototype.__defineSetter__("onMessage", Window.prototype.setOnMessage);

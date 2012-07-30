@@ -300,30 +300,12 @@ static id webkit_to_cocoa(id x) {
 }
 
 - (void)privateSendMessage:(NSString*)messagename arguments:(id)jsargs {
-    NSLog(@"messagename = %@, args = %@", messagename, jsargs);
     if (onMessage) {
+        onMessage.mixin = mixin;
         NoddyScheduleBlock(^{
-            [onMessage call:nil arguments:[NSArray arrayWithObject:jsargs]];
+            [onMessage call:nil arguments:[NSArray arrayWithObjects:messagename, jsargs, nil]];
         });
     }
-    /*
-    NSMutableArray* arguments = [[NSMutableArray alloc] init];
-    @try {
-        
-//        for (int i = 0; i < [[jsargs valueForKey:@"length"] integerValue]; i++) {
-//            id obj = [jsargs webScriptValueAtIndex:i];
-//            if (obj)
-//                [arguments addObject:obj];
-//        }
-    }
-    @catch (NSException *exception) {
-        // Web script objects can throw exceptions
-    }
-
-    NSLog(@"parsed args = %@", webkit_to_cocoa(jsargs));
-    [self server_sendMessage:messagename arguments:webkit_to_cocoa(jsargs)];
-    NSLog(@"args = %@", arguments);
-     */
 }
 + (BOOL)isSelectorExcludedFromWebScript:(SEL)selector {
     return NO;
