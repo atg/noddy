@@ -614,92 +614,196 @@ Recipe.prototype.insertTextAtLocation = function(location, newText, recordUndo) 
 /**
  * Create a new window.
  * @memberOf Window
+ * @isconstructor
+ * @section Setup
  */
 var Window = function() {
-//  this.resourcePath = '';
-//  this.indexPath = '';
-//  this.generateHTML = '';
-//  this.canResize = true;
-  this.onLoad = null;
-//  this.onMessage = null;
-    
     this.nid = global.objc_msgSendSync(private_get_mixin(), "createWindow:", "Window");
 };
 
 global.Window = Window;
 
 /**
- * Display the window.
+ * Set up and display the window.
+ *
+ * Example:
+ *     var win = new Window();
+ *     win.html = "<!DOCTYPE html><h1>Test</h1>";
+ *     win.buttons = ["OK"];
+ *     win.onButtonClick = function() { win.close(); }
+ *     win.run();
+ *     win.maximize();
+ *
  * @memberOf Window
+ * @section Setup
  */
 Window.prototype.run = function() {
     global.objc_msgSend(this.nid, "run");
 };
 
 /**
- * Close the window.
+ * Get or set the title of the window.
+ * 
+ * Example:
+ *     var win = new Window();
+ *     win.title = "My window";
+ * 
+ * @return {String} the title of the window.
+ * @isproperty
  * @memberOf Window
+ * @section Basics
  */
-Window.prototype.close = function() {
-    global.objc_msgSend(this.nid, "close");
+Window.prototype.title = function() {
+    return global.objc_msgSendSync(this.nid, "title");
 };
+Window.prototype.setTitle = function(callback) {
+    global.objc_msgSend(this.nid, "setTitle:", callback);
+};
+Window.prototype.__defineGetter__("title", Window.prototype.title);
+Window.prototype.__defineSetter__("title", Window.prototype.setTitle);
+
 
 /**
- * Get the window's frame.
- * @return the window's frame.
+ * Get or set the window's frame. Setter is equivalent to `.setFrame(rect, false)`.
+ * @return {Rect} the window's frame.
+ * @isproperty
  * @memberOf Window
+ * @section Basics
  */
 Window.prototype.frame = function() {
     return global.objc_msgSendSync(this.nid, "frame");
 };
 
-
-
-Window.prototype.show = function() {
-    global.objc_msgSend(this.nid, "show");
-}
-Window.prototype.hide = function() {
-    global.objc_msgSend(this.nid, "hide");
-}
-Window.prototype.toggle = function() {
-    return global.objc_msgSendSync(this.nid, "toggle");
-}
-Window.prototype.isVisible = function() {
-    return global.objc_msgSendSync(this.nid, "isVisible");
-}
-
-Window.prototype.isKeyWindow = function() {
-    return global.objc_msgSendSync(this.nid, "isKeyWindow");
-}
-Window.prototype.isMainWindow = function() {
-    return global.objc_msgSendSync(this.nid, "isMainWindow");
-}
-
-Window.prototype.center = function() {
-    global.objc_msgSend(this.nid, "center");
-}
-Window.prototype.maximize = function() {
-    global.objc_msgSend(this.nid, "maximize");
-}
-Window.prototype.minimize = function() {
-    global.objc_msgSend(this.nid, "minimize");
-}
-Window.prototype.isMinimized = function() {
-    return global.objc_msgSendSync(this.nid, "isMinimized");
-}
-
 /**
  * Set the window's frame. The frame should be an object with the x, y, width and
  * height properties. e.g. `{x: 0, y: 0, width: 250, height: 300}`
- * @param {Object} newFrame the new window's frame.
+ * @param {Rect} newFrame the new window's frame.
  * @param {Bool} shouldAnimate optional, whether to animate the resizing or not (default: false)
  * @memberOf Window
+ * @section Basics
  */
 Window.prototype.setFrame = function(newFrame, shouldAnimate) {
     if (typeof shouldAnimate === 'undefined') {
         shouldAnimate = false;
     }
     global.objc_msgSend(this.nid, "setFrame:animate:", newFrame, shouldAnimate);
+};
+Window.prototype.__defineGetter__("frame", Window.prototype.frame);
+Window.prototype.__defineSetter__("frame", Window.prototype.setFrame);
+
+/**
+ * Center the window on screen. Must be called after run() has been invoked.
+ * @memberOf Window
+ * @section Basics
+ */
+Window.prototype.center = function() {
+    global.objc_msgSend(this.nid, "center");
+};
+
+/**
+ * Maximize the window so that it takes up the entire size of the screen.
+ * @memberOf Window
+ * @section Basics
+ */
+Window.prototype.maximize = function() {
+    global.objc_msgSend(this.nid, "maximize");
+};
+
+
+/**
+ * Permanently close the window. After a window is closed all resources are freed. Use `.hide()` to temporarily hide a window.
+ * @memberOf Window
+ * @section Visibility
+ */
+Window.prototype.close = function() {
+    global.objc_msgSend(this.nid, "close");
+};
+
+
+/**
+ * Show the window if it was previously hidden.
+ * @memberOf Window
+ * @section Visibility
+ */
+Window.prototype.show = function() {
+    global.objc_msgSend(this.nid, "show");
+};
+
+/**
+ * Hide the window offscreen but don't close it.
+ * @memberOf Window
+ * @section Visibility
+ */
+Window.prototype.hide = function() {
+    global.objc_msgSend(this.nid, "hide");
+};
+
+/**
+ * Hides a visible window or show a hidden window.
+ * @return {Boolean} whether the window is *now* onscreen.
+ * @memberOf Window
+ * @section Visibility
+ */
+Window.prototype.toggleShown = function() {
+    return global.objc_msgSendSync(this.nid, "toggle");
+};
+
+/**
+ * Is this window onscreen?
+ * @return {Boolean} whether the window is onscreen.
+ * @memberOf Window
+ * @section Visibility
+ */
+Window.prototype.isVisible = function() {
+    return global.objc_msgSendSync(this.nid, "isVisible");
+};
+
+/**
+ * Is this the key window? The key window receives key events.
+ * @return {Boolean} whether the window is the key window.
+ * @memberOf Window
+ * @section Visibility
+ */
+Window.prototype.isKeyWindow = function() {
+    return global.objc_msgSendSync(this.nid, "isKeyWindow");
+};
+
+/**
+ * Is this the main window?
+ * @return {Boolean} whether the window is the main window.
+ * @memberOf Window
+ * @section Visibility
+ */
+Window.prototype.isMainWindow = function() {
+    return global.objc_msgSendSync(this.nid, "isMainWindow");
+};
+
+/**
+ * Minimize the window into the dock.
+ * @memberOf Window
+ * @section Minimization
+ */
+Window.prototype.minimize = function() {
+    global.objc_msgSend(this.nid, "minimize");
+};
+
+/**
+ * Unminimize the window out of the dock.
+ * @memberOf Window
+ * @section Minimization
+ */
+Window.prototype.unminimize = function() {
+    global.objc_msgSend(this.nid, "unminimize");
+};
+
+/**
+ * Return whether the window is minimized.
+ * @return {Boolean} whether the window is minimized.
+ * @memberOf Window
+ * @section Minimization
+ */
+Window.prototype.isMinimized = function() {
+    return global.objc_msgSendSync(this.nid, "isMinimized");
 };
 
 /**
@@ -710,7 +814,9 @@ Window.prototype.setFrame = function(newFrame, shouldAnimate) {
  *     win.buttons = ["OK", "Cancel"];
  * 
  * @return {Array} the names of the buttons. Note that you cannot mutate the return value of this property, you must set it for it to be updated.
+ * @isproperty
  * @memberOf Window
+ * @section Setup
  */
 Window.prototype.buttons = function() {
     return global.objc_msgSendSync(this.nid, "buttons");
@@ -732,7 +838,9 @@ Window.prototype.__defineSetter__("buttons", Window.prototype.setButtons);
  *     }
  * 
  * @return {Function(String)} a callback function with one argument: the name of the button that was clicked.
+ * @isproperty
  * @memberOf Window
+ * @section Events
  */
 Window.prototype.onButtonClick = function() {
     return global.objc_msgSendSync(this.nid, "onButtonClick");
@@ -756,18 +864,36 @@ Window.prototype.__defineSetter__("onButtonClick", Window.prototype.setOnButtonC
  *     }
  * 
  * @return {Function(String, Array or Object)} a callback function with two arguments: the first is the name of the message, the second is the arguments passed to it
+ * @isproperty
  * @memberOf Window
+ * @section Events
  */
 Window.prototype.onMessage = function() {
     return global.objc_msgSendSync(this.nid, "onMessage");
 };
 Window.prototype.setOnMessage = function(callback) {
-    global.objc_msgSend(this.nid, "setOnMessage:", callback);
+    global.objc_msgSend(this.nid, "setOnMessage:", function () { return callback.apply(this, JSON.parse(arguments)[0]); });
 };
 Window.prototype.__defineGetter__("onMessage", Window.prototype.onMessage);
 Window.prototype.__defineSetter__("onMessage", Window.prototype.setOnMessage);
 
 
+/**
+ * Get or set a function that will be called *in the client context* when the page loads. Equivalent to setting an onload attribute. Useful if using default.html to build up the page exclusively in JS.
+ * 
+ * Example:
+ *     var win = new Window()
+ *     win.htmlPath = "default.html";
+ *     win.onLoad = function () {
+ *         document.body.innerHTML = "<h1>Hello World</h1>";
+ *     };
+ *     win.run();
+ * 
+ * @return {Function} a function that will run in the client JS. Referencing anything in the server JS won't work.
+ * @isproperty
+ * @memberOf Window
+ * @section Events
+ */
 Window.prototype.onLoad = function() {
     return global.objc_msgSendSync(this.nid, "onLoad");
 };
@@ -776,25 +902,6 @@ Window.prototype.setOnLoad = function(callback) {
 };
 Window.prototype.__defineGetter__("onLoad", Window.prototype.onLoad);
 Window.prototype.__defineSetter__("onLoad", Window.prototype.setOnLoad);
-
-/**
- * Get or set the title of the window.
- * 
- * Example:
- *     var win = new Window();
- *     win.title = "My window";
- * 
- * @return {String} the title of the window.
- * @memberOf Window
- */
-Window.prototype.title = function() {
-    return global.objc_msgSendSync(this.nid, "title");
-};
-Window.prototype.setTitle = function(callback) {
-    global.objc_msgSend(this.nid, "setTitle:", callback);
-};
-Window.prototype.__defineGetter__("title", Window.prototype.title);
-Window.prototype.__defineSetter__("title", Window.prototype.setTitle);
 
 
 
@@ -806,7 +913,9 @@ Window.prototype.__defineSetter__("title", Window.prototype.setTitle);
  *     win.htmlPath = "index.html";
  * 
  * @return {String} the path to the HTML file.
+ * @isproperty
  * @memberOf Window
+ * @section Setup
  */
 Window.prototype.htmlPath = function() {
     return global.objc_msgSendSync(this.nid, "htmlPath");
@@ -826,7 +935,9 @@ Window.prototype.__defineSetter__("htmlPath", Window.prototype.setHtmlPath);
  *     win.html = "<!DOCTYPE html><h1>Test</h1>";
  * 
  * @return {String} the path to the HTML file.
+ * @isproperty
  * @memberOf Window
+ * @section Setup
  */
 Window.prototype.html = function() {
     return global.objc_msgSendSync(this.nid, "html");
@@ -838,8 +949,6 @@ Window.prototype.setHtml = function(newHtml) {
 Window.prototype.__defineGetter__("html", Window.prototype.html);
 Window.prototype.__defineSetter__("html", Window.prototype.setHtml);
 
-
-
 /**
  * Eval some code on the client-side.
  * 
@@ -848,9 +957,10 @@ Window.prototype.__defineSetter__("html", Window.prototype.setHtml);
  * 
  * @param {String} code some code to evaluate on the client-side.
  * @memberOf Window
+ * @section Communication
  */
 Window.prototype.eval = function(code) {
-
+    global.objc_msgSend(this.nid, "client_eval:", code);
 };
 
 /**
@@ -861,19 +971,61 @@ Window.prototype.eval = function(code) {
  * 
  * @param {String} code some code to evaluate on the client-side.
  * @memberOf Window
+ * @section Communication
  */
 Window.prototype.addFunction = function(name, f) {
-
+    if (arguments.length == 1) {
+        f = name;
+        name = f.name;
+    }
+    global.objc_msgSend(this.nid, "client_addFunction:named:", f.toString(), name);
 };
 
 /**
  * Send a message to the window that you can catch with the window.onMessage attribute.
+ * 
+ * Example:
+ *     win.sendMessage("I'm sending a message", [42]);
+ * 
  * @param {String} msg the name of the message to send.
- * @param {Value} arg an argument to pass to the callback function.
+ * @param {Value} args an argument to pass to the callback function.
  * @memberOf Window
+ * @section Communication
  */
-Window.prototype.sendMessage = function (msg, arg) {
+Window.prototype.sendMessage = function (msg, args) {
+    if (arg == null) {
+        arg = [];
+    }
+    
+    global.objc_msgSend(this.nid, "client_sendMessage:arguments:", msg, JSON.stringify([args]));
+};
 
+/**
+ * Call a named function or a function literal on the client side.
+ * 
+ * Example:
+ *     win.applyFunction("updateData", [42, 3.14, 2.71828]);
+ *     
+ *     win.applyFunction(function(data) {
+ *         document.write(data.join("<br>"));
+ *     }, [42, 3.14, 2.71828]);
+ * 
+ * @param {String|Function} f either the name of a client function, or a function literal to call in the client context.
+ * @param {Array} args a list of arguments to pass to the function.
+ * @memberOf Window
+ * @section Communication
+ */
+Window.prototype.applyFunction = function(f, args) {
+    if (args == null) {
+        args = [];
+    }
+    
+    if (typeof f === "string") {
+        global.objc_msgSend("client_callFunctionNamed:arguments:", f, JSON.stringify([args]));
+    }
+    else {
+        global.objc_msgSend("client_callFunctionCode:arguments:", f.toString(), JSON.stringify([args]));
+    }
 };
 
 /**
@@ -883,7 +1035,7 @@ Window.prototype.sendMessage = function (msg, arg) {
 var Sheet = function(w) {
   Window.call(this);
   this.parentWindow = w;
-}
+};
 
 noddyInherit(Sheet, Window);
 
@@ -934,7 +1086,7 @@ MainWindow.current = function() {
  * @memberOf MainWindow
  */
 MainWindow.prototype.tabs = function() {
-  return global.objc_msgSendSync(this.nid, "mainwindow_tabs");
+    return global.objc_msgSendSync(this.nid, "mainwindow_tabs");
 };
 
 /**
@@ -944,7 +1096,7 @@ MainWindow.prototype.tabs = function() {
  * @memberOf MainWindow
  */
 MainWindow.prototype.currentTab = function() {
-  return global.objc_msgSendSync(this.nid, "mainwindow_currentTab");
+    return global.objc_msgSendSync(this.nid, "mainwindow_currentTab");
 };
 
 /**
@@ -1213,7 +1365,7 @@ global.Editor = Editor;
  * @memberOf Editor
  */
 Editor.current = function() {
-
+    return new Editor(global.objc_msgSendSync(private_get_mixin(), "editor_current"));
 };
 
 /**
@@ -1223,7 +1375,7 @@ Editor.current = function() {
  * @memberOf Editor
  */
 Editor.prototype.document = function() {
-  
+    return new Document(global.objc_msgSendSync(this.nid, "editor_document"));
 };
 
 /**
@@ -1234,11 +1386,11 @@ Editor.prototype.document = function() {
  * @isproperty
  */
 Editor.prototype.selection = function() {
-  
+    return global.objc_msgSendSync(this.nid, "editor_selection");
 };
 
 Editor.prototype.setSelection = function(rng) {
-  
+    global.objc_msgSend(this.nid, "editor_setSelection:", rng);
 };
 
 Editor.prototype.__defineGetter__("selection", Editor.prototype.selection);
@@ -1252,7 +1404,7 @@ Editor.prototype.__defineSetter__("selection", Editor.prototype.setSelection);
  * @memberOf Editor
  */
 Editor.prototype.visibleRange = function() {
-  
+  return global.objc_msgSendSync(this.nid, "editor_visibleRange");
 };
 
 /**
@@ -1262,7 +1414,7 @@ Editor.prototype.visibleRange = function() {
  * @memberOf Editor
  */
 Editor.prototype.selectionContext = function() {
-  
+  return global.objc_msgSendSync(this.nid, "editor_selectionContext");
 };
 
 /**
@@ -1272,7 +1424,7 @@ Editor.prototype.selectionContext = function() {
  * @memberOf Editor
  */
 Editor.prototype.insertSnippet = function(snippet) {
-
+    global.objc_msgSend(this.nid, "editor_insertSnippet:", snippet);
 };
 
 /**
@@ -1282,6 +1434,6 @@ Editor.prototype.insertSnippet = function(snippet) {
  * @memberOf Editor
  */
 Editor.prototype.storage = function() {
-
+    return new Storage(global.objc_msgSendSync(this.nid, "editor_storage"));
 };
 

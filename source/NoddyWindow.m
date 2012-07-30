@@ -240,14 +240,14 @@ static id webkit_to_cocoa(id x) {
 }
 
 
-- (void)client_callFunctionNamed:(NSString*)functionName jsonArguments:(NSString*)jsonedArguments {
-    WebScriptObject* wso = [webview windowScriptObject];
-    [wso callWebScriptMethod:functionName withArguments:arguments];
+- (void)client_callFunctionNamed:(NSString*)functionName jsonArguments:(NSArray*)jsonedArguments {
+//    WebScriptObject* wso = [webview windowScriptObject];
+//    [wso callWebScriptMethod:functionName withArguments:arguments];
+    [self client_eval:[NSString stringWithFormat:@"(window.%@).apply({}, JSON.parse(%@)[0])", functionName, jsonedArguments]];
 }
 - (void)client_callFunctionCode:(NSString*)functionString jsonArguments:(NSString*)jsonedArguments {
     
-//    NSString* argumentsString = [jsonedArguments componentsJoinedByString:@", "];
-    [self client_eval:[NSString stringWithFormat:@"(%@).apply(%@)", functionString, argumentsString]];
+    [self client_eval:[NSString stringWithFormat:@"(%@).apply({}, JSON.parse(%@)[0]))", functionString, jsonedArguments]];
 }
 - (void)client_eval:(NSString*)code {
     WebScriptObject* wso = [webview windowScriptObject];
@@ -301,6 +301,11 @@ static id webkit_to_cocoa(id x) {
 
 - (void)privateSendMessage:(NSString*)messagename arguments:(id)jsargs {
     NSLog(@"messagename = %@, args = %@", messagename, jsargs);
+    if (onMessage) {
+        NoddyScheduleBlock(^{
+            [onMessage call:nil arguments:[NSArray arrayWithObject:jsargs]];
+        });
+    }
     /*
     NSMutableArray* arguments = [[NSMutableArray alloc] init];
     @try {

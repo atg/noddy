@@ -5,13 +5,6 @@
  * @section Setup
  */
 var Window = function() {
-//  this.resourcePath = '';
-//  this.indexPath = '';
-//  this.generateHTML = '';
-//  this.canResize = true;
-  this.onLoad = null;
-//  this.onMessage = null;
-    
     this.nid = global.objc_msgSendSync(private_get_mixin(), "createWindow:", "Window");
 };
 
@@ -92,7 +85,7 @@ Window.prototype.__defineSetter__("frame", Window.prototype.setFrame);
  */
 Window.prototype.center = function() {
     global.objc_msgSend(this.nid, "center");
-}
+};
 
 /**
  * Maximize the window so that it takes up the entire size of the screen.
@@ -101,7 +94,7 @@ Window.prototype.center = function() {
  */
 Window.prototype.maximize = function() {
     global.objc_msgSend(this.nid, "maximize");
-}
+};
 
 
 /**
@@ -121,7 +114,8 @@ Window.prototype.close = function() {
  */
 Window.prototype.show = function() {
     global.objc_msgSend(this.nid, "show");
-}
+};
+
 /**
  * Hide the window offscreen but don't close it.
  * @memberOf Window
@@ -129,7 +123,8 @@ Window.prototype.show = function() {
  */
 Window.prototype.hide = function() {
     global.objc_msgSend(this.nid, "hide");
-}
+};
+
 /**
  * Hides a visible window or show a hidden window.
  * @return {Boolean} whether the window is *now* onscreen.
@@ -138,7 +133,8 @@ Window.prototype.hide = function() {
  */
 Window.prototype.toggleShown = function() {
     return global.objc_msgSendSync(this.nid, "toggle");
-}
+};
+
 /**
  * Is this window onscreen?
  * @return {Boolean} whether the window is onscreen.
@@ -147,7 +143,7 @@ Window.prototype.toggleShown = function() {
  */
 Window.prototype.isVisible = function() {
     return global.objc_msgSendSync(this.nid, "isVisible");
-}
+};
 
 /**
  * Is this the key window? The key window receives key events.
@@ -157,7 +153,8 @@ Window.prototype.isVisible = function() {
  */
 Window.prototype.isKeyWindow = function() {
     return global.objc_msgSendSync(this.nid, "isKeyWindow");
-}
+};
+
 /**
  * Is this the main window?
  * @return {Boolean} whether the window is the main window.
@@ -166,7 +163,7 @@ Window.prototype.isKeyWindow = function() {
  */
 Window.prototype.isMainWindow = function() {
     return global.objc_msgSendSync(this.nid, "isMainWindow");
-}
+};
 
 /**
  * Minimize the window into the dock.
@@ -175,7 +172,8 @@ Window.prototype.isMainWindow = function() {
  */
 Window.prototype.minimize = function() {
     global.objc_msgSend(this.nid, "minimize");
-}
+};
+
 /**
  * Unminimize the window out of the dock.
  * @memberOf Window
@@ -183,7 +181,8 @@ Window.prototype.minimize = function() {
  */
 Window.prototype.unminimize = function() {
     global.objc_msgSend(this.nid, "unminimize");
-}
+};
+
 /**
  * Return whether the window is minimized.
  * @return {Boolean} whether the window is minimized.
@@ -192,8 +191,7 @@ Window.prototype.unminimize = function() {
  */
 Window.prototype.isMinimized = function() {
     return global.objc_msgSendSync(this.nid, "isMinimized");
-}
-
+};
 
 /**
  * Get or set an `Array` of button names to be shown at the bottom of the window. Buttons are shown from right-to-left.
@@ -261,7 +259,7 @@ Window.prototype.onMessage = function() {
     return global.objc_msgSendSync(this.nid, "onMessage");
 };
 Window.prototype.setOnMessage = function(callback) {
-    global.objc_msgSend(this.nid, "setOnMessage:", callback);
+    global.objc_msgSend(this.nid, "setOnMessage:", function () { return callback.apply(this, JSON.parse(arguments)[0]); });
 };
 Window.prototype.__defineGetter__("onMessage", Window.prototype.onMessage);
 Window.prototype.__defineSetter__("onMessage", Window.prototype.setOnMessage);

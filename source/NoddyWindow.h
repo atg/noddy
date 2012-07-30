@@ -55,7 +55,7 @@
 - (NSNumber*)isKeyWindow;
 - (NSNumber*)isMainWindow;
 
-- (void)client_callFunctionNamed:(NSString*)functionName arguments:(NSArray*)arguments;
+- (void)client_callFunctionNamed:(NSString*)functionName jsonArguments:(NSArray*)arguments;
 - (void)client_callFunctionCode:(NSString*)functionString jsonArguments:(NSArray*)jsonedArguments;
 - (void)client_eval:(NSString*)code;
 - (void)client_addFunction:(NSString*)functionString named:(NSString*)functionName;
