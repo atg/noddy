@@ -11,6 +11,8 @@
 #import "NoddyThread.h"
 #import "NoddyIndirectObjects.h"
 
+using namespace v8;
+
 // What we need to do is receive json and convert to json
 
 /*
@@ -53,7 +55,7 @@ static id webkit_to_cocoa(id x) {
 @synthesize htmlPath; // Instead of html, a path to show
 @synthesize buttons; // A list of buttons to display at the bottom of the window.
 @synthesize buttonObjects;
-@synthesize onLoad;
+@synthesize clientOnLoad, onLoad;
 @synthesize onButtonClick;
 @synthesize onMessage;
 @synthesize canResize;
@@ -115,6 +117,7 @@ static id webkit_to_cocoa(id x) {
     if ([buttons count]) {
         [window setContentBorderThickness:32 forEdge:NSMinYEdge];
         
+        CGFloat deltaX = 0.0;
         for (NSString* name in buttons) {
             
             NSRect buttonFrame = NSMakeRect(0, 3, 3, 25);
@@ -129,8 +132,14 @@ static id webkit_to_cocoa(id x) {
             [button sizeToFit];
             
             buttonFrame = [button frame];
-            buttonFrame.origin.x = [window frame].size.width - [button frame].size.width - 12;
+            if (buttonFrame.size.width < 60)
+                buttonFrame.size.width = 60;
+            
+            buttonFrame.origin.x = [window frame].size.width - buttonFrame.size.width - 12 - deltaX;
             [button setFrame:buttonFrame];
+            
+            deltaX += buttonFrame.size.width + 8;
+            
             [buttonObjects addObject:button];
             [[window contentView] addSubview:button];
         }
@@ -149,7 +158,11 @@ static id webkit_to_cocoa(id x) {
     
     NSString* htmlstring = nil;
     if ([htmlPath length]) {
-        htmlstring = [NSString stringWithContentsOfFile:[mixin.path stringByAppendingPathComponent:htmlPath] encoding:NSUTF8StringEncoding error:NULL];
+        NSString* htmlPathReplaced = [mixin.path stringByAppendingPathComponent:htmlPath];
+        if ([htmlPath isEqual:@"default.html"])
+            htmlPathReplaced = [[NSBundle mainBundle] pathForResource:@"nodeui_default" ofType:@"html"];
+        
+        htmlstring = [NSString stringWithContentsOfFile:htmlPathReplaced encoding:NSUTF8StringEncoding error:NULL];
     }
     if (![htmlstring length]) {
         htmlstring = html;
@@ -160,9 +173,7 @@ static id webkit_to_cocoa(id x) {
     
     // Add default.css
     htmlstring = [htmlstring stringByReplacingOccurrencesOfString:@"default.css" withString:[[NSBundle mainBundle] pathForResource:@"nodeui_default" ofType:@"css"]];
-    NSLog(@"htmlstring = %@", htmlstring);
     [[webview mainFrame] loadHTMLString:htmlstring baseURL:[NSURL URLWithString:mixin.path]];
-    NSLog(@"[webview windowScriptObject] = %@", [webview windowScriptObject]);
     
 }
 - (void)setTitle:(NSString *)newTitle {
@@ -171,6 +182,17 @@ static id webkit_to_cocoa(id x) {
 }
 - (void)windowWillClose:(NSNotification *)notification {
     [[mixin windows] removeObject:self];
+    
+    double delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        window = nil;
+        webview = nil;
+        onMessage = nil;
+        onButtonClick = nil;
+        onMessage = nil;
+        onLoad = nil;
+    });
 }
 
 - (void)setButtons:(NSArray *)btts {
@@ -184,9 +206,6 @@ static id webkit_to_cocoa(id x) {
 //    NSLog(@"[buttonObjects indexOfObject:sender] = %@", [buttonObjects indexOfObject:sender]);
 //    NSLog(@"[buttons objectAtIndex:[buttonObjects indexOfObject:sender]] = %@", [buttons objectAtIndex:[buttonObjects indexOfObject:sender]]);
 //    NSLog(@"callback = %@", [[buttons objectAtIndex:[buttonObjects indexOfObject:sender]] objectForKey:@"callback"]);
-    
-    
-    NSLog(@"onButtonClick = %@", onButtonClick);
     NoddyFunction* callback = onButtonClick;//[[buttons objectAtIndex:[buttonObjects indexOfObject:sender]] objectForKey:@"callback"];
     callback.mixin = mixin;
     
@@ -241,48 +260,61 @@ static id webkit_to_cocoa(id x) {
 
 
 - (void)client_callFunctionNamed:(NSString*)functionName jsonArguments:(NSArray*)jsonedArguments {
-//    WebScriptObject* wso = [webview windowScriptObject];
-//    [wso callWebScriptMethod:functionName withArguments:arguments];
-    [self client_eval:[NSString stringWithFormat:@"(window.%@).apply({}, JSON.parse(%@)[0])", functionName, jsonedArguments]];
+//    NSLog(@"-client_callFunctionNamed: '%@' jsonArguments: '%@'", functionName, jsonedArguments);
+    
+    [self client_eval:[NSString stringWithFormat:@"((%@).apply({}, (%@)[0]))", functionName, jsonedArguments]];
 }
 - (void)client_callFunctionCode:(NSString*)functionString jsonArguments:(NSString*)jsonedArguments {
+//    NSLog(@"-client_callFunctionCode: '%@' jsonArguments: '%@'", functionString, jsonedArguments);
     
-    [self client_eval:[NSString stringWithFormat:@"(%@).apply({}, JSON.parse(%@)[0]))", functionString, jsonedArguments]];
+    [self client_eval:[NSString stringWithFormat:@"((%@).apply({}, (%@)[0]))", functionString, jsonedArguments]];
 }
 - (void)client_eval:(NSString*)code {
+//    NSLog(@"-client_eval: '%@'", code);
     WebScriptObject* wso = [webview windowScriptObject];
     [wso evaluateWebScript:code];
 }
 - (void)client_addFunction:(NSString*)functionString named:(NSString*)functionName {
+//    NSLog(@"-client_addFunction: '%@' named: '%@'", functionString, functionName);
     NSString* code = [NSString stringWithFormat:@"window[\"%@\"] = %@;", functionName, functionString];
     [self client_eval:code];
 }
 
-
-- (void)server_callFunctionNamed:(NSString*)functionName arguments:(NSArray*)arguments {
-    
-//    NSString* mixinName = [[mixin.path lastPathComponent] stringByDeletingPathExtension];
-//    [NoddyThread callGlobalFunction:@"call_function_as"
-//                          arguments:[NSArray arrayWithObjects:mixinName, functionName, arguments, nil]];
+- (void)serverAddFunction:(NSString*)functionString named:(NSString*)functionName {
+//    NSLog(@"-serverAddFunction: '%@' named: '%@'", functionString, functionName);
+    NSString* code = [NSString stringWithFormat:@"global[\"%@\"] = %@;\n", functionName, functionString];
+    [self serverEval:code];
 }
-- (void)server_callFunctionCode:(NSString*)functionString arguments:(NSArray*)arguments {
+- (void)serverCallFunctionNamed:(NSString*)functionName jsonArguments:(NSArray*)jsonedArguments {
+//    NSLog(@"-serverCallFunctionNamed: '%@' jsonArguments: '%@'", functionName, jsonedArguments);
     
-//    NSMutableArray* jsonedArguments = [NSMutableArray arrayWithCapacity:[arguments count]];
-//    for (id argument in arguments) {
-//        [jsonedArguments addObject:to_json(argument)];
-//    }
+    [self serverEval:[NSString stringWithFormat:@"(%@).apply({}, (%@)[0]);\n", functionName, jsonedArguments]];
+}
+- (void)serverCallFunctionCode:(NSString*)functionString jsonArguments:(NSArray*)jsonedArguments {
+//    NSLog(@"-serverCallFunctionCode: '%@' jsonArguments: '%@'", functionString, jsonedArguments);
     
-//    NSString* argumentsString = [jsonedArguments componentsJoinedByString:@", "];
-//    [self server_eval:[NSString stringWithFormat:@"(%@)(%@)", functionString, argumentsString]];
+    [self serverEval:[NSString stringWithFormat:@"(%@).apply({}, (%@)[0]);\n", functionString, jsonedArguments]];
 }
-- (void)server_eval:(NSString*)code {
-    
-//    [NoddyThread callGlobalFunction:@"run_code_as"
-//                          arguments:[NSArray arrayWithObjects:[mixin noddyID], functionName, arguments, nil]];    
+- (void)serverEval:(NSString*)code {
+    NoddyScheduleBlock(^{
+        
+//        NSLog(@" SERVER EVAL: %@", code);
+        // Create a stack-allocated handle scope.
+        HandleScope handle_scope;
+        
+        // Create a string containing the JavaScript source code.
+        Handle<String> source = String::New([code UTF8String]);
+        
+        // Compile the source code.
+        Handle<Script> script = Script::Compile(source);
+        
+        // Run the script to get the result.
+        script->Run();
+    });
 }
-- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
-    NSLog(@"[webview windowScriptObject] = %@", [webview windowScriptObject]);
-}
+//- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame {
+//    NSLog(@"[webview windowScriptObject] = %@", [webview windowScriptObject]);
+//}
 - (void)webView:(WebView *)webView didClearWindowObject:(WebScriptObject *)windowObject forFrame:(WebFrame *)frame {
     static NSString* nodeui_default_js;
     static dispatch_once_t onceToken;
@@ -291,13 +323,18 @@ static id webkit_to_cocoa(id x) {
     });
     
     [windowObject setValue:self forKey:@"chocprivate"];
-    NSLog(@"chocprivate = %@", [windowObject valueForKey:@"chocprivate"]);
     [windowObject evaluateWebScript:nodeui_default_js];
     
-    if (onLoad) {
-        [self client_callFunctionCode:onLoad jsonArguments:[NSArray array]];
+    if (clientOnLoad) {
+        [self client_callFunctionCode:clientOnLoad jsonArguments:[NSArray array]];
     }
-}
+    
+    if (onLoad) {
+        onLoad.mixin = mixin;
+        NoddyScheduleBlock(^{
+            [onLoad call:nil arguments:[NSArray array]];
+        });
+    }}
 
 - (void)privateSendMessage:(NSString*)messagename arguments:(id)jsargs {
     if (onMessage) {
@@ -336,21 +373,19 @@ static id webkit_to_cocoa(id x) {
 
 // Messaging
 - (void)client_sendMessage:(NSString*)message arguments:(NSString*)arguments {
+    NSLog(@"client_sendMessage: '%@' arguments: '%@'", message, arguments);
     [self client_callFunctionNamed:@"noddy_private_receivedMessage"
                          arguments:[NSArray arrayWithObjects:message, arguments, nil]];
 }
 - (void)server_sendMessage:(NSString*)message arguments:(NSString*)arguments {
     
-    NSLog(@"got message: %@, arguments = %@", message, arguments);
+    NSLog(@"server_sendMessage: '%@' arguments: '%@'", message, arguments);
     if (onMessage) {
         onMessage.mixin = mixin;
         NoddyScheduleBlock(^{
             [onMessage call:nil arguments:[NSArray arrayWithObjects:message, arguments, nil]];
         });
     }
-    
-//    [self server_callFunctionNamed:@"window_received_message" arguments:[NSArray arrayWithObjects:[mixin noddyID], message, arguments, nil]];
-
 }
 
 @end

@@ -30,7 +30,8 @@
 @property (copy) NSString* htmlPath; // Instead of html, a path to show
 @property (copy) NSArray* buttons; // A list of buttons to display at the bottom of the window.
 @property (readonly) NSMutableArray* buttonObjects; // A list of buttons to display at the bottom of the window.
-@property (assign) NSString* onLoad;
+@property (assign) NSString* clientOnLoad;
+@property (assign) NoddyFunction* onLoad;
 @property (assign) NoddyFunction* onButtonClick;
 @property (assign) NoddyFunction* onMessage;
 @property (assign) NSNumber* canResize;

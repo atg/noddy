@@ -246,6 +246,9 @@ Handle<Value> noddy_objc_msgSend(const Arguments& args) {
     }
     
     NSMethodSignature *signature = [target methodSignatureForSelector:NSSelectorFromString(selectorstring)];
+    if (!signature) {
+        NSLog(@"'%@' does not respond to @selector(%@)", node_to_cocoa(receiver), selectorstring);
+    }
     NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:signature];
     
     dispatch_block_t invocationBlock = ^{

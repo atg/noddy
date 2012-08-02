@@ -1,38 +1,38 @@
 var chocolat = {};
-chocolat.noddy_private = {};
-chocolat.noddy_private.callbacks = {};
-chocolat.onMessage = null; //function (name, callback) {
-//    if (noddy_private.callbacks[name] == null) {
-//        noddy_private.callbacks[name] = []
-//    }
-//    noddy_private.callbacks[name][key] = callback;
-//    return key;
-//};
-
-//chocolat.removeOnMessage = function (key) {
-//    if (noddy_private.callbacks[name] == null) {
-//        return;
-//    }
-//    delete noddy_private.callbacks[name][key];
-//};
-
+chocolat.onMessage = null;
 chocolat.noddy_private_receivedMessage = function(message_name, args) {
-//    var privcallbacks = window.noddy_private.callbacks[message_name];
-//    if (privcallbacks == null)
-//        return;
-    
     if (chocolat.onMessage != null)
         chocolat.onMessage(message_name, JSON.parse(args)[0]);
-    
-//    for (var k in privcallbacks) {
-//        privcallbacks[k].apply({ "message": message_name }, JSON.parse(arguments));
-//    }
 };
 
 chocolat.sendMessage = function(message_name, args) {
     if (args == null) {
         args = [];
     }
-    
     window.chocprivate.privateSendMessage_arguments_(message_name, JSON.stringify([args]));
+};
+
+chocolat.eval = function(code) {
+    window.chocprivate.serverEval_(code);
+};
+
+chocolat.addFunction = function(name, f) {
+    if (arguments.length == 1) {
+        f = name;
+        name = f.name;
+    }
+    window.chocprivate.serverAddFunction_named_(f.toString(), name);
+};
+
+chocolat.applyFunction = function(f, args) {
+    if (args == null) {
+        args = [];
+    }
+    
+    if (typeof f === "string") {
+        window.chocprivate.serverCallFunctionNamed_jsonArguments_(f, JSON.stringify([args]));
+    }
+    else {
+        window.chocprivate.serverCallFunctionCode_jsonArguments_(f.toString(), JSON.stringify([args]));
+    }
 };

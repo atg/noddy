@@ -1023,10 +1023,10 @@ Window.prototype.applyFunction = function(f, args) {
     }
     
     if (typeof f === "string") {
-        global.objc_msgSend("client_callFunctionNamed:arguments:", f, JSON.stringify([args]));
+        global.objc_msgSend(this.nid, "client_callFunctionNamed:jsonArguments:", f, JSON.stringify([args]));
     }
     else {
-        global.objc_msgSend("client_callFunctionCode:arguments:", f.toString(), JSON.stringify([args]));
+        global.objc_msgSend(this.nid, "client_callFunctionCode:jsonArguments:", f.toString(), JSON.stringify([args]));
     }
 };
 

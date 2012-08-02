@@ -1,6 +1,7 @@
 #import "NoddyMixin.h"
 #import "NoddyIndirectObjects.h"
 #import "NoddyThread.h"
+#import "NoddyWindow.h"
 
 @implementation NoddyMixin
 
@@ -54,6 +55,10 @@
     for (NSMenuItem *anItem in self.menuItems) {
         [anItem.menu removeItem:anItem];
     }
+    for (NoddyWindow* window in self.windows) {
+        [window close];
+    }
+    
     [self.menuItems removeAllObjects];
     [self.keyboardShortcuts removeAllObjects];
     [self.windows removeAllObjects];
