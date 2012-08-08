@@ -39,6 +39,8 @@
 		75CD4A0A15AC8F5600F97D8B /* underscore.string.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75CD4A0715AC8F5600F97D8B /* underscore.string.js */; };
 		75E9D7BC15C076DC0020EB8D /* nodeui_default.js in Resources */ = {isa = PBXBuildFile; fileRef = 75E9D7B915C074D10020EB8D /* nodeui_default.js */; };
 		7C53DDE615BDA7FF00E91E04 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C53DDE515BDA7FF00E91E04 /* NSString+Utilities.m */; };
+		7CB55F8C15D294F40038929F /* NoddyExtraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB55F8A15D294F40038929F /* NoddyExtraManager.m */; };
+		7CB55F8D15D294F40038929F /* NoddyExtraManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CB55F8B15D294F40038929F /* NoddyExtraManager.xib */; };
 		7CB5D2F915C1C4B700C16058 /* CDEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB5D2F815C1C4B700C16058 /* CDEvents.framework */; };
 		7CB5D2FC15C1C4DB00C16058 /* CDEvents.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7CB5D2F815C1C4B700C16058 /* CDEvents.framework */; };
 		7CD8FB0B15BEEEA400F82F4D /* NSArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD8FB0A15BEEEA400F82F4D /* NSArray+Utilities.m */; };
@@ -126,6 +128,9 @@
 		75E9D7B915C074D10020EB8D /* nodeui_default.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = nodeui_default.js; path = resources/nodeui_default.js; sourceTree = SOURCE_ROOT; };
 		7C53DDE415BDA7FF00E91E04 /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Utilities.h"; path = "source/NSString+Utilities.h"; sourceTree = SOURCE_ROOT; };
 		7C53DDE515BDA7FF00E91E04 /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Utilities.m"; path = "source/NSString+Utilities.m"; sourceTree = SOURCE_ROOT; };
+		7CB55F8915D294F40038929F /* NoddyExtraManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoddyExtraManager.h; sourceTree = SOURCE_ROOT; };
+		7CB55F8A15D294F40038929F /* NoddyExtraManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoddyExtraManager.m; sourceTree = SOURCE_ROOT; };
+		7CB55F8B15D294F40038929F /* NoddyExtraManager.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoddyExtraManager.xib; sourceTree = SOURCE_ROOT; };
 		7CB5D2F815C1C4B700C16058 /* CDEvents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CDEvents.framework; path = deps/CDEvents.framework; sourceTree = "<group>"; };
 		7CD8FB0915BEEEA400F82F4D /* NSArray+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+Utilities.h"; path = "source/NSArray+Utilities.h"; sourceTree = SOURCE_ROOT; };
 		7CD8FB0A15BEEEA400F82F4D /* NSArray+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Utilities.m"; path = "source/NSArray+Utilities.m"; sourceTree = SOURCE_ROOT; };
@@ -272,6 +277,9 @@
 				7507ADE615BDA56800B9118C /* NoddyRecipe.h */,
 				7507ADE715BDA56800B9118C /* NoddyRecipe.m */,
 				752E37B215C459C5009B6A59 /* prelude.js */,
+				7CB55F8915D294F40038929F /* NoddyExtraManager.h */,
+				7CB55F8A15D294F40038929F /* NoddyExtraManager.m */,
+				7CB55F8B15D294F40038929F /* NoddyExtraManager.xib */,
 			);
 			name = Source;
 			path = noddy;
@@ -347,6 +355,7 @@
 				7519910215BF6EB900C7B7D3 /* NoddyWindow.xib in Resources */,
 				75419F1315C02EED0050554A /* nodeui_default.css in Resources */,
 				75419F1415C02EED0050554A /* nodeui_default.html in Resources */,
+				7CB55F8D15D294F40038929F /* NoddyExtraManager.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +396,7 @@
 				7C53DDE615BDA7FF00E91E04 /* NSString+Utilities.m in Sources */,
 				7CD8FB0B15BEEEA400F82F4D /* NSArray+Utilities.m in Sources */,
 				752E37B315C459C5009B6A59 /* prelude.js in Sources */,
+				7CB55F8C15D294F40038929F /* NoddyExtraManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
