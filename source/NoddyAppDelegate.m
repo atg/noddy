@@ -10,19 +10,27 @@
 #import "NoddyThread.h"
 #import "NoddyController.h"
 #import "NSString+Utilities.h"
-
+#import "NoddyExtraManager.h"
+#import "Taskit.h"
 
 @implementation NoddyAppDelegate
 
 @synthesize window = _window;
+@synthesize extraManager;
+
+
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [[NoddyController sharedController] reloadMixins];
+    self.extraManager = [[NoddyExtraManager alloc] initWithWindowNibName:@"NoddyExtraManager"];
 }
 
 - (IBAction)helloButton:(id)sender {
-    [NoddyThread callGlobalFunction:@"sayHelloTo" arguments:[NSArray arrayWithObject:NSFullUserName()]];
+    
 }
 
 
+- (IBAction)showExtraManager:(id)sender {
+    [self.extraManager showWindow:sender];
+}
 @end

@@ -102,18 +102,21 @@
     }
     
     // add a watch for those urls
-    self.events = [[CDEvents alloc] initWithURLs:urlsToWatch
-                                           block:[^(CDEvents *watcher, CDEvent *event) {
-                                               // a change! reload that mixin...
-                                               //NSLog(@"URLWatcher: %@\n%@", event, self);
-                                               for (NoddyMixin *aMixin in self.mixins) {
-                                                   if([[NSURL fileURLWithPath:aMixin.path] isEqualTo:event.URL]) {
-                                                       NSLog(@"Found the culprit!");
-                                                       [aMixin reload];
-                                                   }
-                                               }
-                                               
-                                           } copy]];
+    if ([urlsToWatch count] > 0) {
+        self.events = [[CDEvents alloc] initWithURLs:urlsToWatch
+                                               block:[^(CDEvents *watcher, CDEvent *event) {
+            // a change! reload that mixin...
+            //NSLog(@"URLWatcher: %@\n%@", event, self);
+            for (NoddyMixin *aMixin in self.mixins) {
+                if([[NSURL fileURLWithPath:aMixin.path] isEqualTo:event.URL]) {
+                    NSLog(@"Found the culprit!");
+                    [aMixin reload];
+                }
+            }
+            
+        } copy]];
+    }
+    
 }
 
 

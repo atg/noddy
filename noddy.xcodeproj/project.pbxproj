@@ -38,6 +38,7 @@
 		75CD4A0915AC8F5600F97D8B /* underscore.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75CD4A0615AC8F5600F97D8B /* underscore.js */; };
 		75CD4A0A15AC8F5600F97D8B /* underscore.string.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75CD4A0715AC8F5600F97D8B /* underscore.string.js */; };
 		75E9D7BC15C076DC0020EB8D /* nodeui_default.js in Resources */ = {isa = PBXBuildFile; fileRef = 75E9D7B915C074D10020EB8D /* nodeui_default.js */; };
+		7C52DC6B15DD33E2009559E0 /* NoddyExtraTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C52DC6A15DD33E2009559E0 /* NoddyExtraTableCellView.m */; };
 		7C53DDE615BDA7FF00E91E04 /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C53DDE515BDA7FF00E91E04 /* NSString+Utilities.m */; };
 		7CB55F8D15D294F40038929F /* NoddyExtraManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CB55F8B15D294F40038929F /* NoddyExtraManager.xib */; };
 		7CB55F9015D295800038929F /* NoddyExtraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB55F8F15D295800038929F /* NoddyExtraManager.m */; };
@@ -46,6 +47,9 @@
 		7CD8FB0B15BEEEA400F82F4D /* NSArray+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD8FB0A15BEEEA400F82F4D /* NSArray+Utilities.m */; };
 		7CEE72DF15AC949100C8C95A /* NoddyController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE72DE15AC949100C8C95A /* NoddyController.mm */; };
 		7CEE72E215AC9D9100C8C95A /* NoddyMixin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7CEE72E115AC9D9100C8C95A /* NoddyMixin.mm */; };
+		7CEF69A215E3D270005B00AB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7CEF698A15E3D270005B00AB /* .gitignore */; };
+		7CEF69A315E3D270005B00AB /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 7CEF698B15E3D270005B00AB /* README.markdown */; };
+		7CEF69A415E3D270005B00AB /* Taskit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF698D15E3D270005B00AB /* Taskit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -126,6 +130,8 @@
 		75CD4A0615AC8F5600F97D8B /* underscore.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = underscore.js; path = libraries/underscore.js; sourceTree = "<group>"; };
 		75CD4A0715AC8F5600F97D8B /* underscore.string.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = underscore.string.js; path = libraries/underscore.string.js; sourceTree = "<group>"; };
 		75E9D7B915C074D10020EB8D /* nodeui_default.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = nodeui_default.js; path = resources/nodeui_default.js; sourceTree = SOURCE_ROOT; };
+		7C52DC6915DD33E2009559E0 /* NoddyExtraTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoddyExtraTableCellView.h; sourceTree = SOURCE_ROOT; };
+		7C52DC6A15DD33E2009559E0 /* NoddyExtraTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoddyExtraTableCellView.m; sourceTree = SOURCE_ROOT; };
 		7C53DDE415BDA7FF00E91E04 /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Utilities.h"; path = "source/NSString+Utilities.h"; sourceTree = SOURCE_ROOT; };
 		7C53DDE515BDA7FF00E91E04 /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Utilities.m"; path = "source/NSString+Utilities.m"; sourceTree = SOURCE_ROOT; };
 		7CB55F8B15D294F40038929F /* NoddyExtraManager.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoddyExtraManager.xib; sourceTree = SOURCE_ROOT; };
@@ -136,6 +142,10 @@
 		7CD8FB0A15BEEEA400F82F4D /* NSArray+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Utilities.m"; path = "source/NSArray+Utilities.m"; sourceTree = SOURCE_ROOT; };
 		7CEE72DE15AC949100C8C95A /* NoddyController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NoddyController.mm; path = source/NoddyController.mm; sourceTree = SOURCE_ROOT; };
 		7CEE72E115AC9D9100C8C95A /* NoddyMixin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NoddyMixin.mm; path = source/NoddyMixin.mm; sourceTree = SOURCE_ROOT; };
+		7CEF698A15E3D270005B00AB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7CEF698B15E3D270005B00AB /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
+		7CEF698C15E3D270005B00AB /* Taskit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Taskit.h; sourceTree = "<group>"; };
+		7CEF698D15E3D270005B00AB /* Taskit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Taskit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,9 +263,8 @@
 		7535578B15AC7CDF006AFA43 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				7C52DC6715DD33BC009559E0 /* Extra Manager */,
 				7535575B15AC7C6F006AFA43 /* chocolat.js */,
-				7CB55F8E15D295800038929F /* NoddyExtraManager.h */,
-				7CB55F8F15D295800038929F /* NoddyExtraManager.m */,
 				7CD8FB0915BEEEA400F82F4D /* NSArray+Utilities.h */,
 				7CD8FB0A15BEEEA400F82F4D /* NSArray+Utilities.m */,
 				7C53DDE415BDA7FF00E91E04 /* NSString+Utilities.h */,
@@ -279,7 +288,6 @@
 				7507ADE615BDA56800B9118C /* NoddyRecipe.h */,
 				7507ADE715BDA56800B9118C /* NoddyRecipe.m */,
 				752E37B215C459C5009B6A59 /* prelude.js */,
-				7CB55F8B15D294F40038929F /* NoddyExtraManager.xib */,
 			);
 			name = Source;
 			path = noddy;
@@ -293,6 +301,31 @@
 			);
 			path = node;
 			sourceTree = "<group>";
+		};
+		7C52DC6715DD33BC009559E0 /* Extra Manager */ = {
+			isa = PBXGroup;
+			children = (
+				7CEF698915E3D270005B00AB /* taskit */,
+				7CB55F8E15D295800038929F /* NoddyExtraManager.h */,
+				7CB55F8F15D295800038929F /* NoddyExtraManager.m */,
+				7CB55F8B15D294F40038929F /* NoddyExtraManager.xib */,
+				7C52DC6915DD33E2009559E0 /* NoddyExtraTableCellView.h */,
+				7C52DC6A15DD33E2009559E0 /* NoddyExtraTableCellView.m */,
+			);
+			name = "Extra Manager";
+			sourceTree = "<group>";
+		};
+		7CEF698915E3D270005B00AB /* taskit */ = {
+			isa = PBXGroup;
+			children = (
+				7CEF698A15E3D270005B00AB /* .gitignore */,
+				7CEF698B15E3D270005B00AB /* README.markdown */,
+				7CEF698C15E3D270005B00AB /* Taskit.h */,
+				7CEF698D15E3D270005B00AB /* Taskit.m */,
+			);
+			name = taskit;
+			path = source/taskit;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -356,6 +389,8 @@
 				75419F1315C02EED0050554A /* nodeui_default.css in Resources */,
 				75419F1415C02EED0050554A /* nodeui_default.html in Resources */,
 				7CB55F8D15D294F40038929F /* NoddyExtraManager.xib in Resources */,
+				7CEF69A215E3D270005B00AB /* .gitignore in Resources */,
+				7CEF69A315E3D270005B00AB /* README.markdown in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +432,8 @@
 				7CD8FB0B15BEEEA400F82F4D /* NSArray+Utilities.m in Sources */,
 				752E37B315C459C5009B6A59 /* prelude.js in Sources */,
 				7CB55F9015D295800038929F /* NoddyExtraManager.m in Sources */,
+				7C52DC6B15DD33E2009559E0 /* NoddyExtraTableCellView.m in Sources */,
+				7CEF69A415E3D270005B00AB /* Taskit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

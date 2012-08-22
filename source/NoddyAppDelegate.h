@@ -7,15 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class NoddyThread;
+@class NoddyThread, NoddyExtraManager;
 
 @interface NoddyAppDelegate : NSObject <NSApplicationDelegate> {
     NoddyThread* thread;
 }
 
 @property (assign) IBOutlet NSWindow *window;
-
+@property (assign) NoddyExtraManager *extraManager;
 - (IBAction)helloButton:(id)sender;
 - (void)ui_addMenuItem:(NSDictionary *)options;
+- (IBAction)showExtraManager:(id)sender;
 
 @end
