@@ -13,6 +13,7 @@
 #import "Taskit.h"
 
 @implementation NoddyExtraManager
+@synthesize progressIndicator, mixinTableView;
 
 @synthesize mixins=_mixins;
 
@@ -38,7 +39,6 @@
 - (void)reloadMixins
 {
     // test gitpath
-    NSLog(@"Which git: %@", [self whichGit]);
     [self.mixins removeAllObjects];
     NSURL *mixinUrl = [NSURL URLWithString:@"http://mixins.chocolatapp.com/json/mixins/"];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:mixinUrl];
@@ -80,8 +80,8 @@
     NSDictionary *mixin = [[self.mixins objectAtIndex:row] objectForKey:@"fields"];
     result.textField.stringValue = [mixin objectForKey:@"name"];
     result.descriptionField.stringValue = [mixin objectForKey:@"description"];
-    [result.checkbox setState:([self mixinIsInstalled:mixin])];
-    [result.updateButton setHidden:!([self mixinIsInstalled:mixin])];
+    [result.checkbox setState:([self mixinForMixinDictionary:mixin] != nil && (![self mixinIsDisabled:mixin]))];
+    [result.updateButton setHidden:([self mixinForMixinDictionary:mixin] == nil)];
     return result;
 }
 
@@ -95,13 +95,11 @@
     if ([sender state] == 1) {
         // install the mixin...
         [self installMixin:[self.mixins objectAtIndex:clickedRow]];
+    } else {
+        [self disableMixin:[self.mixins objectAtIndex:clickedRow]];
     }
 }
 
-- (NSString *)completeMixinName:(NSDictionary *)mixin
-{
-    
-}
 
 - (NSString *)mixinDestinationDirectory
 {
@@ -119,8 +117,35 @@
     return dest;
 }
 
+- (void)disableMixin:(NSDictionary *)mixin
+{
+    // just add .disabled to its extension
+    [self.progressIndicator startAnimation:nil];
+    [self.progressIndicator setHidden:NO];
+    
+    NSDictionary *fields = [mixin objectForKey:@"fields"];
+    NoddyMixin *theMixin = [self mixinForMixinDictionary:[mixin objectForKey:@"fields"]];
+    if (theMixin) {
+        NSString *disabledPath = [[theMixin path] stringByAppendingString:@".disabled"];
+        NSError *error = nil;
+        [[NSFileManager defaultManager] moveItemAtPath:[theMixin path]
+                                                toPath:disabledPath
+                                                 error:&error];
+        if (error)
+            NSLog(@"%@", [error localizedDescription]);
+        
+        [[NoddyController sharedController] reloadMixins];
+        [self reloadMixins];
+        
+    }
+    [self.progressIndicator stopAnimation:nil];
+    [self.progressIndicator setHidden:YES];
+}
+
 - (void)installMixin:(NSDictionary *)mixin
 {
+    [self.progressIndicator setHidden:NO];
+    [self.progressIndicator startAnimation:nil];
     NSDictionary *fields = [mixin objectForKey:@"fields"];
     NSString *mixinName = [[fields objectForKey:@"name"] stringByAppendingString:@".chocmixin"];
     // gather the args...
@@ -138,16 +163,20 @@
     [task.arguments addObjectsFromArray:args];
     task.launchPath = [self whichGit];
     [task launch];
-    NSString *output = [task waitForOutputString];
-    NSLog(@"Done... %@", output);
+    [task waitUntilExit];
+    
     [[NoddyController sharedController] reloadMixins];
     [self reloadMixins];
+    [self.progressIndicator stopAnimation:nil];
+    [self.progressIndicator setHidden:YES];
 }
 
-- (BOOL)mixinIsInstalled:(NSDictionary *)mixinFields
+
+
+- (NoddyMixin *)mixinForMixinDictionary:(NSDictionary *)mixinFields
 {
     NSString *mixinName;
-    // check if we should add the extension...
+    // check if we should remove the extension...
     if ([[mixinFields objectForKey:@"name"] rangeOfString:@".chocmixin"].location == NSNotFound) {
         mixinName = [mixinFields objectForKey:@"name"];
     } else {
@@ -157,16 +186,39 @@
     for (NoddyMixin *aMixin in [[NoddyController sharedController] mixins]) {
         if ([aMixin.name isEqualToString:mixinName] &&
             [aMixin.path rangeOfString:@"SharedSupport"].location == NSNotFound) {
-            return YES;
+            return aMixin;
         }
     }
+    return nil;
+
+}
+
+- (BOOL)mixinIsDisabled:(NSDictionary *)mixinFields
+{
+    // obviously if it's in the active mixins, its not disabled...
+    if ([self mixinForMixinDictionary:mixinFields] != nil)
+        return NO;
+    // check on disk...
+    // App Support
+    NSString *executableName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleExecutable"];
+    NSArray *basePaths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *appSupportPath = [[[basePaths objectAtIndex:0] stringByAppendingPathComponent:executableName] stringByAppendingPathComponent:@"Mixins"];
     
+    // home dir
+    NSString *homePath = [NSHomeDirectory() stringByAppendingPathComponent:@".chocolat/mixins/"];
     
-    return NO;
+    NSString *disabledName = [[mixinFields objectForKey:@"name"] stringByAppendingString:@".chocmixin.disabled"];
+    return ([[[NSFileManager defaultManager] subpathsAtPath:appSupportPath] containsObject:disabledName] ||
+            [[[NSFileManager defaultManager] subpathsAtPath:homePath] containsObject:disabledName]);
+        
 }
 
 - (IBAction)reloadMixinClicked:(id)sender {
+    [self.progressIndicator setHidden:NO];
+    [self.progressIndicator startAnimation:nil];
     [self reloadMixins];
+    [self.progressIndicator stopAnimation:nil];
+    [self.progressIndicator setHidden:YES];
 }
 
 - (NSString *)whichGit

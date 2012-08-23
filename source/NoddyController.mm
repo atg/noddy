@@ -56,6 +56,8 @@
 
 - (void)reloadMixins
 {
+    [self.mixins removeAllObjects];
+    self.events = nil;
     // an URL watcher...
     NSMutableArray *urlsToWatch = [[NSMutableArray alloc] init];
     
